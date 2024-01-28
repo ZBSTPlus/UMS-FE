@@ -3,42 +3,41 @@
  * @see https://v0.dev/t/w9gsS6YM8gD
  */
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const data = [
   {
     id: 1,
-    question: 'Which of the following is not a programming language?',
-    options: ['C++', 'JAVA', 'Python', 'CSS'],
-    correctAnswer: 'CSS',
+    question: "Which of the following is not a programming language?",
+    options: ["C++", "JAVA", "Python", "CSS"],
+    correctAnswer: "CSS",
   },
   {
     id: 2,
-    question: '2+2=?',
-    options: ['1', '2', '4', '3'],
-    correctAnswer: '4',
+    question: "2+2=?",
+    options: ["1", "2", "4", "3"],
+    correctAnswer: "4",
   },
   {
     id: 3,
-    question: '14/7 =?',
-    options: ['1', '2', '4', '3'],
-    correctAnswer: '2',
+    question: "14/7 =?",
+    options: ["1", "2", "4", "3"],
+    correctAnswer: "2",
   },
   // Add more questions as needed
   {
-    id:4,
-    question: '20*2',
-    options:['40','30', '10', '0'],
-    correctAnswer: '40',
+    id: 4,
+    question: "20*2",
+    options: ["40", "30", "10", "0"],
+    correctAnswer: "40",
   },
   {
-    id:'5',
-    question:'0-1',
-    options: ['1','-1','0','-2'],
-    correctAnswer: '-1',
+    id: "5",
+    question: "0-1",
+    options: ["1", "-1", "0", "-2"],
+    correctAnswer: "-1",
   },
-
 ];
 
 export default function Question() {
@@ -57,14 +56,16 @@ export default function Question() {
     if (selectedOption !== null) {
       // Logic to handle the submitted answer
       const isCorrect = selectedOption === question.correctAnswer;
-      console.log(`Selected Option: ${selectedOption}, Correct Answer: ${question.correctAnswer}, Correct: ${isCorrect}`);
+      console.log(
+        `Selected Option: ${selectedOption}, Correct Answer: ${question.correctAnswer}, Correct: ${isCorrect}`
+      );
 
       // Set answerSubmitted and isCorrectAnswer after submission
       setAnswerSubmitted(true);
       setIsCorrectAnswer(isCorrect);
     } else {
       // Display an error or notification for the user to choose an option
-      console.log('Please choose an option before submitting.');
+      console.log("Please choose an option before submitting.");
     }
   };
 
@@ -75,11 +76,10 @@ export default function Question() {
     setIsCorrectAnswer(false);
 
     // Check if the current answer is correct before enabling the next question
-    
+
     setQuestionIndex((prevIndex) => (prevIndex + 1) % data.length);
     // Reset selected option for the new question
     setSelectedOption(null);
-    
   };
   const handleReset = () => {
     // Reset selected option and question
@@ -89,15 +89,20 @@ export default function Question() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-      <div className="w-full max-w-md p-4 space-y-4">
-     
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#040404] dark:bg-gray-900">
+      
+      <div className="w-[95%] p-4 space-y-4">
         <div className="flex flex-col p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
-        
-          <h1 className="mb-4 text-2xl font-bold text-center text-gray-700 dark:text-white">Practice Questions</h1>
-          <br/>
-          <h2 className="text-lg font-semibold text-gray-700 dark:text-white">{`Question ${questionIndex + 1}`}</h2>
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{question.question}</p>
+          <h1 className="mb-4 text-2xl font-bold text-center text-gray-700 dark:text-white">
+            Practice Questions
+          </h1>
+          <br />
+          <h2 className="text-lg font-semibold text-gray-700 dark:text-white">{`Question ${
+            questionIndex + 1
+          }`}</h2>
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {question.question}
+          </p>
           <div className="mt-4 space-y-2">
             {question.options.map((option, index) => (
               <label
@@ -105,11 +110,11 @@ export default function Question() {
                 className={`block bg-gray-200 text-left dark:bg-gray-700 rounded-md p-3 cursor-pointer ${
                   answerSubmitted
                     ? option === question.correctAnswer
-                      ? 'bg-green-300'
+                      ? "bg-green-300"
                       : selectedOption === option
-                      ? 'bg-red-300'
-                      : ''
-                    : ''
+                      ? "bg-red-300"
+                      : ""
+                    : ""
                 }`}
               >
                 <input
@@ -125,49 +130,58 @@ export default function Question() {
             ))}
           </div>
           {answerSubmitted && (
-            <div className={`mt-4 ${isCorrectAnswer ? 'text-green-600' : 'text-red-600'}`}>
-              {isCorrectAnswer ? 'Correct!' : `Wrong! The correct answer is: ${question.correctAnswer}`}
+            <div
+              className={`mt-4 ${
+                isCorrectAnswer ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {isCorrectAnswer
+                ? "Correct!"
+                : `Wrong! The correct answer is: ${question.correctAnswer}`}
             </div>
           )}
           <div className="flex justify-between mt-6 space-x-4">
             <button
               onClick={handleSubmitAnswer}
               className={`px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500 ${
-                selectedOption === null ? ' opacity-50 cursor-not-allowed' : ''
+                selectedOption === null ? " opacity-50 cursor-not-allowed" : ""
               }`}
               disabled={answerSubmitted || selectedOption === null}
             >
               Submit
             </button>
             <button
-              onClick = {handleReset}
+              onClick={handleReset}
               className={`px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500${
-              selectedOption === null ? ' opacity-50 cursor-not-allowed' : ''
-              }`} 
-              disabled= {selectedOption === null}
+                selectedOption === null ? " opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={selectedOption === null}
             >
               Reset
             </button>
             <button
               onClick={handleNextQuestion}
               className={`px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500 ${
-              !answerSubmitted || !isCorrectAnswer ? ' opacity-50 cursor-not-allowed' : ''
+                !answerSubmitted || !isCorrectAnswer
+                  ? " opacity-50 cursor-not-allowed"
+                  : ""
               }`}
-              disabled={!answerSubmitted || !isCorrectAnswer }
+              disabled={!answerSubmitted || !isCorrectAnswer}
             >
               Next
             </button>
           </div>
         </div>
-        <br/>
-        <Link to='/detailspage'><button className='px-6 py-3 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500'>Back To Classroom</button> </Link>
-        
+        <br />
+        <Link to="/detailspage">
+          <button className="px-6 py-3 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
+            Back To Classroom
+          </button>{" "}
+        </Link>
       </div>
     </div>
   );
 }
-
-
 
 function XIcon(props) {
   return (
@@ -187,5 +201,5 @@ function XIcon(props) {
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
     </svg>
-  )
+  );
 }
