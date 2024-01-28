@@ -16,9 +16,9 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import './Studentui.css'
 import Dropdown from "./dropdown"
-import cardAssessmentData from '../../assets/data.json'
-import classroomData from '../../assets/classroomdata.json'
-import Logo from '../../assets/Logo/logo.png'
+import cardAssessmentData from '../../../assets/data.json'
+import classroomData from '../../../assets/classroomdata.json'
+import Logo from '../../../assets/Logo/logo.png'
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
