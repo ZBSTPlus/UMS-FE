@@ -18,12 +18,29 @@ import {
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import unitData from "../../../assets/units.json";
+
 import Logo from "../../../assets/Logo/logo.png";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-export default function Detailspage() {
+import { useParams } from "react-router-dom";
+
+export default function Detailspage({ classes }) {
+  //Dynamic classrooms
+
+  const { classId } = useParams();
+  const parsedClassId = parseInt(classId);
+  if (isNaN(parsedClassId)) {
+    return <div>Invalid class ID!</div>;
+  }
+  const selectedClass = classes.find(
+    (classItem) => classItem.id === parsedClassId
+  );
+  if (!selectedClass) {
+    return <div>Class not found!</div>;
+  }
+
+  //Below are for GSAP lite Transitions
   const imgRef = useRef(null);
   const subRef = useRef(null);
   const profRef = useRef(null);
@@ -43,10 +60,13 @@ export default function Detailspage() {
     });
   });
 
+  //Actual View Details Page starts here
   return (
     <div className="flex items-center bg-[#040404] min-h-screen relative flex-col justify-start gap-4">
-      <div className="flex items-center justify-start flex-col w-full">
-        <header className="flex items-center h-16 mb-5 dark:bg-gray-900 mt-5 relative w-full">
+      <div className="flex items-center justify-start flex-col w-full mt-16">
+        {/* It is a Header (Navbar) */}
+
+        <header className="flex items-center h-16 mb-5 dark:bg-gray-900  sticky top-5 z-[1] w-full">
           <nav className="flex items-center justify-between w-[100%] p-10">
             <div className="flex gap-4" ref={imgRef}>
               <div className=" h-[100px] w-[100px] flex items-center justify-center relative overflow-hidden">
@@ -60,9 +80,8 @@ export default function Detailspage() {
               </div>
 
               <div className="flex items-center space-x-4">
-                {/* <LayoutDashboardIcon className="w-6 h-6" /> */}
                 <span className="text-xl font-semibold  py-2 bg-[#040404] text-[#B3CCC2] rounded-md ">
-                  Your Classroom
+                  YOUR CLASSROOM
                 </span>
               </div>
             </div>
@@ -74,7 +93,6 @@ export default function Detailspage() {
                       alt="User avatar"
                       src="https://imgs.search.brave.com/J0ixr3aHGA8aitBrET8u4exc5KcrQl8PWXGrvAdsUY4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mcmVl/c3ZnLm9yZy9pbWcv/YWJzdHJhY3QtdXNl/ci1mbGF0LTQucG5n"
                     />
-                    {/* <AvatarFallback>JD</AvatarFallback> */}
                   </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
@@ -103,20 +121,23 @@ export default function Detailspage() {
             </div>
           </nav>
         </header>
+
+        {/* Here it starts Subject content which contains units or Topics */}
+
         <div
           key="1"
           className="flex flex-col gap-6 p-10 w-[95%] border rounded-[30px] bg-[#fff]"
           ref={subRef}
         >
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-4xl font-bold">Mathematics</h1>
+            <h1 className="text-4xl font-bold">{selectedClass.title}</h1>
             <p className="text-xl font-semibold">
               Estimated Completion : 8 weeks
             </p>
           </div>
           <hr className="border-2 border-gray-500 dark:border-gray-800 mb-2" />
 
-          {unitData.map((unit, index) => (
+          {selectedClass.units.map((unit, index) => (
             <Collapsible
               className="border border-[#494b55] rounded-lg dark:border-gray-800 relative bg-[#ECF0F1]"
               key={index}
@@ -124,9 +145,7 @@ export default function Detailspage() {
               <CollapsibleTrigger asChild className="relative">
                 <div className="flex items-center justify-between p-4">
                   <div className="flex items-center gap-4">
-                    <h2 className="text-xl font-semibold">
-                      Unit-{unit.id} : {unit.unit}
-                    </h2>
+                    <h2 className="text-xl font-semibold">{unit.name}</h2>
                   </div>
                   <ChevronDownIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
                 </div>
@@ -134,7 +153,7 @@ export default function Detailspage() {
 
               <CollapsibleContent>
                 <div className="flex justify-start gap-2 p-4">
-                  <Link to="/practicepage">
+                  <Link to={`/practicepage/${unit.id}`}>
                     <Button
                       className="inline-flex items-center gap-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]  w-[150px]"
                       download
@@ -161,6 +180,8 @@ export default function Detailspage() {
     </div>
   );
 }
+
+//These below are the used Icons in the above code
 
 function ChevronDownIcon(props) {
   return (
@@ -241,3 +262,5 @@ function LogOutIcon(props) {
     </svg>
   );
 }
+
+//  View Details Page Ends Here.
