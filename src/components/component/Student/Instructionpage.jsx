@@ -3,9 +3,11 @@
  * @see https://v0.dev/t/ZbbvCFPEM1F
  */
 // import Link from "next/link"
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-export default function Instructionpage() {
+export default function Instructionpage({ assessments }) {
+  const { assessment } = useParams();
+
   return (
     <main className="flex flex-col h-screen  bg-[#040404] text-[#A8ABBA] relative justify-center items-center">
       <div className="flex flex-col h-[700px] justify-center relative">
@@ -32,7 +34,7 @@ export default function Instructionpage() {
               Back
             </button>
           </Link>
-          <Link to="/assessmentpage">
+          <Link to={`/assessmentpage/${assessment}`}>
             <button
               className="inline-flex items-center justify-center h-10 px-8 text-sm font-medium transition-colors bg-[#B3CCC2] rounded-md shadow text-[#040404] hover:bg-gray-900 hover:text-gray-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
               href="#"

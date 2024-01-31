@@ -28,13 +28,10 @@ import { useParams } from "react-router-dom";
 export default function Detailspage({ classes }) {
   //Dynamic classrooms
 
-  const { classId } = useParams();
-  const parsedClassId = parseInt(classId);
-  if (isNaN(parsedClassId)) {
-    return <div>Invalid class ID!</div>;
-  }
+  const { subject } = useParams();
+ 
   const selectedClass = classes.find(
-    (classItem) => classItem.id === parsedClassId
+    (c) => c.title.toLowerCase() === subject
   );
   if (!selectedClass) {
     return <div>Class not found!</div>;
@@ -137,10 +134,10 @@ export default function Detailspage({ classes }) {
           </div>
           <hr className="border-2 border-gray-500 dark:border-gray-800 mb-2" />
 
-          {selectedClass.units.map((unit, index) => (
+          {selectedClass.units.map((unit) => (
             <Collapsible
               className="border border-[#494b55] rounded-lg dark:border-gray-800 relative bg-[#ECF0F1]"
-              key={index}
+              key={unit.id}
             >
               <CollapsibleTrigger asChild className="relative">
                 <div className="flex items-center justify-between p-4">
@@ -153,7 +150,7 @@ export default function Detailspage({ classes }) {
 
               <CollapsibleContent>
                 <div className="flex justify-start gap-2 p-4">
-                  <Link to={`/practicepage/${unit.id}`}>
+                  <Link to={`/practicepage/${subject}/${unit.name.toLowerCase()}`}>
                     <Button
                       className="inline-flex items-center gap-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]  w-[150px]"
                       download
@@ -162,7 +159,7 @@ export default function Detailspage({ classes }) {
                       Practice Questions
                     </Button>
                   </Link>
-                  <Link to="/quizpage">
+                  <Link to={`/quizpage/${subject}/${unit.name.toLowerCase()}`}>
                     {" "}
                     <Button
                       className="inline-flex items-center gap-2 text-sm font-medium bg-[#B3CCC2] text-[#040404] hover:bg-[#040404] hover:text-[#B3CCC2] w-[150px]"

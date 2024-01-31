@@ -54,7 +54,10 @@ const data = [
   },
 ];
 
-export default function Question() {
+export default function Question({classes}) {
+  const {subject,unit}=useParams();
+  const selectedClass=classes.find((c)=> c.title.toLowerCase()===subject);
+  const selectedUnit = selectedClass.units.find((u)=>u.name.toLowerCase()===unit);
   const imgRef = useRef(null);
   const profRef = useRef(null);
   const practiceRef = useRef(null);
@@ -144,7 +147,7 @@ export default function Question() {
                   PRACTICE
                 </span>
                 <span className="text-xl font-semibold  py-2  text-[#B3CCC2] rounded-md ">
-                  : Intro
+                  : {selectedUnit.name}
                 </span>
               </div>
             </div>

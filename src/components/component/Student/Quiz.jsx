@@ -21,7 +21,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Logo from "../../../assets/Logo/logo.png";
 import { AvatarImage, Avatar } from "@/components/ui/avatar";
-export default function Quiz() {
+import { useParams } from "react-router-dom";
+
+export default function Quiz({ classes }) {
+  const { subject, unit } = useParams();
+  const selectedClass = classes.find((c) => c.title.toLowerCase() === subject);
+  const selectedUnit = selectedClass.units.find(
+    (u) => u.name.toLowerCase() === unit
+  );
+
   const NUM_QUESTIONS = data1.length;
   const [questionStatus, setQuestionsStatus] = useState(
     new Array(NUM_QUESTIONS).fill(null)
@@ -99,7 +107,7 @@ export default function Quiz() {
                 QUIZ
               </span>
               <span className="text-xl font-semibold  py-2 text-[#B3CCC2] rounded-md ">
-                : INTRO
+                : {selectedUnit.name}
               </span>
             </div>
           </div>

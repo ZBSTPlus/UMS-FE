@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   DropdownMenuTrigger,
   DropdownMenu,
@@ -49,7 +49,12 @@ const data = [
   },
 ];
 
-export default function Assessmentpage() {
+export default function Assessmentpage({ assessments }) {
+  const { assessment } = useParams();
+
+  const selectedAssessment = assessments.find((a) => a.id === assessment);
+  useEffect(() => {}, [selectedAssessment]);
+
   const assesmentRef = useRef(null);
   useGSAP(() => {
     gsap.from(assesmentRef.current, {
@@ -150,7 +155,7 @@ export default function Assessmentpage() {
             <div className="flex items-center space-x-4">
               {/* <LayoutDashboardIcon className="w-6 h-6" /> */}
               <span className="text-xl font-semibold  py-2  text-[#B3CCC2] rounded-md ">
-                ASSESSMENT
+                {selectedAssessment.title}
               </span>
             </div>
           </div>

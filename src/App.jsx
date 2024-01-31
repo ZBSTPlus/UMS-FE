@@ -54,19 +54,57 @@ function App() {
     },
   ];
 
+  const assessments = [
+    {
+      id: "lcmandhcf",
+      title: "LCM and HCF",
+      description: "Duration: 1hour",
+    },
+    {
+      id: "conversion",
+      title: "Conversions",
+      description: "Duration: 1hour",
+    },
+    {
+      id: "algebra",
+      title: "Algebra",
+      description: "Duration: 1hour",
+    },
+    {
+      id: "equations",
+      title: "Linear Equations",
+      description: "Duration: 1hour",
+    },
+  ];
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
           <Route
-            path="/detailspage/:classId"
+            path="/detailspage/:subject"
             element={<Detailspage classes={classes} />}
           />
-          <Route path="/studentui" element={<Studentui classes={classes} />} />
-          <Route path="/practicepage/:pracId" element={<Question />} />
-          <Route path="/quizpage" element={<Quiz />} />
-          <Route path="/assessmentpage" element={<Assessmentpage />} />
-          <Route path="/instructionpage" element={<Instructionpage />} />
+          <Route
+            path="/studentui"
+            element={<Studentui classes={classes} assessments={assessments} />}
+          />
+          <Route
+            path="/practicepage/:subject/:unit"
+            element={<Question classes={classes} />}
+          />
+          <Route
+            path="/quizpage/:subject/:unit"
+            element={<Quiz classes={classes} />}
+          />
+          <Route
+            path="/assessmentpage/:assessment"
+            element={<Assessmentpage assessments={assessments} />}
+          />
+          <Route
+            path="/instructionpage/:assessment"
+            element={<Instructionpage assessments={assessments} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

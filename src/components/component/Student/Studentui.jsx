@@ -36,8 +36,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import "./Studentui.css";
 import Dropdown from "./dropdown";
-import cardAssessmentData from "../../../assets/data.json";
-import classroomData from "../../../assets/classroomdata.json";
+
 import Logo from "../../../assets/Logo/logo.png";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -47,7 +46,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import Leaderboard from "../../../assets/leaderboard.json";
 
-export default function Studentui({ classes }) {
+export default function Studentui({ classes, assessments }) {
   // Below are the references used for GSAP animations
 
   const links = useRef(null);
@@ -119,7 +118,7 @@ export default function Studentui({ classes }) {
                 href="#studentdetails"
               >
                 {/* <FlagIcon className="hover:text-white  text-[#A8ABBA] h-8 w-8 " /> Home */}
-                <HomeIcon className="w-6 h-6 text-blue-500" />
+                <HomeIcon className="w-6 h-6 text-[#A8ABBA]" />
                 <span className="text-[#A8ABBA]  hover:text-[#ECF0F1]">
                   Home
                 </span>
@@ -129,7 +128,7 @@ export default function Studentui({ classes }) {
                 href="#completedcourses"
               >
                 {/* <LayoutDashboardIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA]" /> */}
-                <SchoolIcon className="w-6 h-6 text-green-500" />
+                <SchoolIcon className="w-6 h-6 text-[#A8ABBA]" />
                 <span className="text-[#A8ABBA]  hover:text-[#ECF0F1]">
                   Classroom
                 </span>
@@ -140,7 +139,7 @@ export default function Studentui({ classes }) {
                 href="#upcomingassessments"
               >
                 {/* <SettingsIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA]" /> */}
-                <ActivityIcon className="w-6 h-6 text-red-500" />
+                <ActivityIcon className="w-6 h-6 text-[#A8ABBA]" />
                 <span className="text-[#A8ABBA]  hover:text-[#ECF0F1]">
                   Assessment
                 </span>
@@ -151,7 +150,7 @@ export default function Studentui({ classes }) {
                 href="#analyticsboard"
               >
                 {/* <SignalIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA] " /> */}
-                <PieChartIcon className="w-6 h-6 text-yellow-500" />
+                <PieChartIcon className="w-6 h-6 text-[#A8ABBA]" />
                 <span className="text-[#A8ABBA] hover:text-[#ECF0F1]">
                   Analytics
                 </span>
@@ -259,14 +258,14 @@ export default function Studentui({ classes }) {
               spaceBetween={30}
               ref={classroomRef}
             >
-              {classes.map((classItem) => (
-                <SwiperSlide className=" rounded-[50px]" key={classItem.id}>
-                  <Card className="p-4 bg-[#EEFCEF] shadow-lg w-[100%] rounded-[30px]">
+              {classes.map((subject) => (
+                <SwiperSlide className=" rounded-[50px]" key={subject.id}>
+                  <Card className="p-4 bg-[#ECF0F1] shadow-lg w-[100%] rounded-[30px]">
                     <CardHeader>
-                      <CardTitle>{classItem.title}</CardTitle>
+                      <CardTitle>{subject.title}</CardTitle>
                       {/* <CardDescription>{card.description}</CardDescription> */}
                     </CardHeader>
-                    <Link to={`/detailspage/${classItem.id}`}>
+                    <Link to={`/detailspage/${subject.title.toLowerCase()}`}>
                       <Button className="mt-4 bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]">
                         View Details
                       </Button>
@@ -289,15 +288,17 @@ export default function Studentui({ classes }) {
               spaceBetween={30}
               ref={assessmentref}
             >
-              {cardAssessmentData.map((card, index) => (
-                <SwiperSlide key={index} className="rounded-[50px]">
-                  <Card className="p-4 bg-[#E6F5FA] shadow-lg w-[100%] rounded-[30px]">
+              {assessments.map((assessment) => (
+                <SwiperSlide key={assessment.id} className="rounded-[50px]">
+                  <Card className="p-4 bg-[#ECF0F1] shadow-lg w-[100%] rounded-[30px]">
                     <CardHeader>
-                      <CardTitle>{card.title}</CardTitle>
-                      <CardDescription>{card.description}</CardDescription>
+                      <CardTitle>{assessment.title}</CardTitle>
+                      <CardDescription>
+                        {assessment.description}
+                      </CardDescription>
                     </CardHeader>
                     <br />
-                    <Link to="/instructionpage">
+                    <Link to={`/instructionpage/${assessment.id}`}>
                       {" "}
                       <Button className="  bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]">
                         Start
