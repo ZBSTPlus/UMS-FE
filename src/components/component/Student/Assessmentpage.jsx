@@ -143,13 +143,30 @@ export default function Assessmentpage({ assessments }) {
     (option) => option !== null
   );
 
+  //previous button
+  const handlePrevButtonClick = () => {
+    setQuestionIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+  };
+
+  //next button
+  const handleNextButtonClick =() => {
+    if (questionIndex < data.length - 1) {
+      setQuestionIndex((prevIndex) => prevIndex + 1);
+    }
+    else{
+      console.log("The End")
+    }
+    
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#040404] dark:bg-gray-900">
       <header className="flex items-center h-10 mb-5 dark:bg-gray-900  w-[95%] fixed top-12">
         <nav className="flex items-center justify-between w-[100%]  px-10 py-0">
           <div className="flex gap-4">
+          
             <div className=" h-[100px] w-[100px] flex items-center justify-center relative overflow-hidden">
-              <img className=" object-cover" src={Logo} alt="" />
+              <img className="object-cover " src={Logo} alt="" />
             </div>
 
             <div className="flex items-center space-x-4">
@@ -252,10 +269,15 @@ export default function Assessmentpage({ assessments }) {
             )}
             <div className="flex justify-between mt-6 space-x-4">
               <div className="flex gap-5">
-                <button className="px-4 py-2 text-sm font-medium text-[#A8ABBA] bg-[#040404] rounded-md hover:bg-[#B3CCC2]  hover:text-[#040404] focus:outline-none">
+                
+                <button
+                onClick={handlePrevButtonClick}
+                className="px-4 py-2 text-sm font-medium text-[#A8ABBA] bg-[#040404] rounded-md hover:bg-[#B3CCC2]  hover:text-[#040404] focus:outline-none">
                   Prev
                 </button>
-                <button className="px-4 py-2 text-sm font-medium text-[#A8ABBA] bg-[#040404] rounded-md hover:bg-[#B3CCC2]  hover:text-[#040404] focus:outline-none">
+                <button
+                onClick={handleNextButtonClick}
+                className="px-4 py-2 text-sm font-medium text-[#A8ABBA] bg-[#040404] rounded-md hover:bg-[#B3CCC2]  hover:text-[#040404] focus:outline-none">
                   Next
                 </button>
               </div>

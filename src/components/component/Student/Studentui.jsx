@@ -460,12 +460,12 @@ function LineChart(props) {
           {
             id: "Desktop",
             data: [
-              { x: "Jan", y: 43 },
-              { x: "Feb", y: 137 },
-              { x: "Mar", y: 61 },
-              { x: "Apr", y: 145 },
-              { x: "May", y: 26 },
-              { x: "Jun", y: 154 },
+              { x: "Quiz1", y: 43 },
+              { x: "Quiz2", y: 95 },
+              { x: "Quiz3", y: 61 },
+              { x: "Quiz4", y: 90 },
+              { x: "Quiz5", y: 26 },
+              { x: "Quiz6", y: 100 },
             ],
           },
         ]}

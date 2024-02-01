@@ -26,7 +26,7 @@ import { useRef } from "react";
 import { useParams } from "react-router-dom";
 
 export default function Detailspage({ classes }) {
-  //Dynamic classrooms
+ 
 
   const { subject } = useParams();
  
@@ -37,7 +37,7 @@ export default function Detailspage({ classes }) {
     return <div>Class not found!</div>;
   }
 
-  //Below are for GSAP lite Transitions
+ 
   const imgRef = useRef(null);
   const subRef = useRef(null);
   const profRef = useRef(null);
@@ -57,11 +57,11 @@ export default function Detailspage({ classes }) {
     });
   });
 
-  //Actual View Details Page starts here
+
   return (
     <div className="flex items-center bg-[#040404] min-h-screen relative flex-col justify-start gap-4">
-      <div className="flex items-center justify-start flex-col w-full mt-16">
-        {/* It is a Header (Navbar) */}
+      <div className="flex flex-col items-center justify-start w-full mt-16">
+       
 
         <header className="flex items-center h-16 mb-5 dark:bg-gray-900  sticky top-5 z-[1] w-full">
           <nav className="flex items-center justify-between w-[100%] p-10">
@@ -69,7 +69,7 @@ export default function Detailspage({ classes }) {
               <div className=" h-[100px] w-[100px] flex items-center justify-center relative overflow-hidden">
                 <Link to="/studentui">
                   <img
-                    className=" object-cover cursor-pointer"
+                    className="object-cover cursor-pointer "
                     src={Logo}
                     alt=""
                   />
@@ -132,7 +132,7 @@ export default function Detailspage({ classes }) {
               Estimated Completion : 8 weeks
             </p>
           </div>
-          <hr className="border-2 border-gray-500 dark:border-gray-800 mb-2" />
+          <hr className="mb-2 border-2 border-gray-500 dark:border-gray-800" />
 
           {selectedClass.units.map((unit) => (
             <Collapsible

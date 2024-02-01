@@ -82,23 +82,11 @@ export default function Quiz({ classes }) {
   });
   return (
     <div key="1" className="bg-[#040404] min-h-screen">
-      {/* <nav className="bg-blue-400 shadow dark:bg-gray-800">
-        <div className="container px-6 py-4 mx-auto">
-          <div className="md:flex md:items-center md:justify-between">
-            <div className="flex items-center justify-between">
-              <div
-                className="text-3xl font-bold text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300">
-                <h2>QUIZ</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav> */}
       <header className="flex  h-10 mb-5 dark:bg-gray-900 w-[95%]">
         <nav className="flex items-center justify-between w-[100%] sticky top-24 px-10 py-0 h-[100%] mt-10">
           <div className="flex gap-4" ref={imgRef}>
             <div className=" h-[100px] w-[100px] flex items-center justify-center relative overflow-hidden">
-              <img className=" object-cover cursor-pointer" src={Logo} alt="" />
+              <img className="object-cover cursor-pointer " src={Logo} alt="" />
             </div>
 
             <div className="flex items-center space-x-4">
@@ -126,7 +114,7 @@ export default function Quiz({ classes }) {
           </div>
         </nav>
       </header>
-      <div className="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow-md space-y-6 mt-24">
+      <div className="p-6 mx-auto mt-24 space-y-6 bg-white rounded-lg shadow-md max-w-7xl">
         {data1.map((question, index) => (
           <New
             question={question.question}
@@ -143,7 +131,7 @@ export default function Quiz({ classes }) {
         <Popover>
           <PopoverTrigger>
             <button
-              className="mt-4 px-4 py-2 bg-[#3399ff] text-white rounded hover:bg-blue-600 focus:bg-blue-600 focus:text-white"
+              className="mt-4 px-4 py-2 bg-[#040404] rounded text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]"
               onClick={handleSubmit}
             >
               Submit
@@ -152,9 +140,9 @@ export default function Quiz({ classes }) {
           <PopoverContent>
             <div
               key="1"
-              className="w-full max-w-2xl mx-auto bg-white shadow-md rounded-lg overflow-hidden dark:bg-gray-800"
+              className="w-full max-w-2xl mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
             >
-              <div className="flex justify-between items-center px-6 py-4 bg-gray-50 dark:bg-gray-700">
+              <div className="flex items-center justify-between px-6 py-4 bg-gray-50 dark:bg-gray-700">
                 <p className="text-lg font-semibold text-gray-700 dark:text-white">
                   Quiz Results
                 </p>
@@ -202,9 +190,9 @@ export default function Quiz({ classes }) {
                   </div>
                 </div>
 
-                <div className="mt-6 flex justify-center">
+                <div className="flex justify-center mt-6">
                   <button
-                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none"
+                    className="px-4 py-2 bg-[#040404]  rounded text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] focus:outline-none"
                     onClick={handleDone}
                   >
                     Done

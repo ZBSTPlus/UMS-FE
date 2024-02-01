@@ -23,9 +23,9 @@ import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 const data = [
   {
     id: 1,
-    question: "Which of the following is not a programming language?",
-    options: ["C++", "JAVA", "Python", "CSS"],
-    correctAnswer: "CSS",
+    question: "20+6?",
+    options: ["26", "20", "25", "24"],
+    correctAnswer: "26",
   },
   {
     id: 2,
@@ -35,22 +35,22 @@ const data = [
   },
   {
     id: 3,
-    question: "14/7 =?",
-    options: ["1", "2", "4", "3"],
-    correctAnswer: "2",
+    question: "14+7 =?",
+    options: ["21", "22", "23", "18"],
+    correctAnswer: "21",
   },
   // Add more questions as needed
   {
     id: 4,
-    question: "20*2",
-    options: ["40", "30", "10", "0"],
-    correctAnswer: "40",
+    question: "100+2=?",
+    options: ["98", "100", "102", "101"],
+    correctAnswer: "102",
   },
   {
     id: "5",
-    question: "0-1",
+    question: "0+1=?",
     options: ["1", "-1", "0", "-2"],
-    correctAnswer: "-1",
+    correctAnswer: "1",
   },
 ];
 
@@ -134,7 +134,7 @@ export default function Question({classes}) {
               <div className=" h-[100px] w-[100px] flex items-center justify-center relative overflow-hidden">
                 <Link to="/studentui">
                   <img
-                    className=" object-cover cursor-pointer"
+                    className="object-cover cursor-pointer "
                     src={Logo}
                     alt=""
                   />
@@ -277,7 +277,7 @@ export default function Question({classes}) {
             </div>
           </div>
           <br />
-          <Link to="/detailspage">
+          <Link to={`/detailspage/${subject}`}>
             <button className="px-6 py-3 text-lg font-semibold   bg-[#B3CCC2] text-[#040404] hover:bg-[#fff] hover:text-[#040404] rounded-md focus:outline-none focus:bg-indigo-500">
               Back To Classroom
             </button>{" "}

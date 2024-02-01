@@ -8,12 +8,12 @@ export default function New(props) {
   };
   return (
     <div>
-      <div className="border-b border-gray-200 pb-6" id={props.id}>
+      <div className="pb-6 border-b border-gray-200" id={props.id}>
         <h2 className="text-2xl font-bold">Question {props.index + 1}</h2>
-        <p className="mt-4 text--600black font-semibold" name={props.index}>
+        <p className="mt-4 font-semibold text--600black" name={props.index}>
           {props.question}
         </p>
-        <div className="mt-8 flex flex-col" onChange={handler}>
+        <div className="flex flex-col mt-8" onChange={handler}>
           <div className="bg-[#ECF0F1] p-3 rounded-md">
             <input type="radio" name={props.index} value="1" />
             &nbsp;

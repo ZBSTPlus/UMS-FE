@@ -89,7 +89,4 @@ export const data1=[
         option4:"A type of computer hardware",
         ans:"3",
     },
-    
-    
-
 ]
