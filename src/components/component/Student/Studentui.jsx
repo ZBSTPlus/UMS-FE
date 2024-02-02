@@ -112,7 +112,10 @@ export default function Studentui({ classes, assessments }) {
               alt=""
               ref={logoRef}
             />
-            <div className="flex flex-col justify-start gap-6 mt-8" ref={links}>
+            <div
+              className="flex flex-col justify-start gap-6 mt-8 scroll-smooth"
+              ref={links}
+            >
               <a
                 className="flex items-center gap-2 px-3 py-2 text-white rounded dark:hover:bg-gray-700"
                 href="#studentdetails"
@@ -130,7 +133,7 @@ export default function Studentui({ classes, assessments }) {
                 {/* <LayoutDashboardIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA]" /> */}
                 <SchoolIcon className="w-6 h-6 text-[#A8ABBA]" />
                 <span className="text-[#A8ABBA]  hover:text-[#ECF0F1]">
-                  Classroom
+                  Classrooms
                 </span>
               </a>
 
@@ -141,7 +144,7 @@ export default function Studentui({ classes, assessments }) {
                 {/* <SettingsIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA]" /> */}
                 <ActivityIcon className="w-6 h-6 text-[#A8ABBA]" />
                 <span className="text-[#A8ABBA]  hover:text-[#ECF0F1]">
-                  Assessment
+                  Assessments
                 </span>
               </a>
 

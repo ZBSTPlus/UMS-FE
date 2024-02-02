@@ -54,10 +54,12 @@ const data = [
   },
 ];
 
-export default function Question({classes}) {
-  const {subject,unit}=useParams();
-  const selectedClass=classes.find((c)=> c.title.toLowerCase()===subject);
-  const selectedUnit = selectedClass.units.find((u)=>u.name.toLowerCase()===unit);
+export default function Question({ classes }) {
+  const { subject, unit } = useParams();
+  const selectedClass = classes.find((c) => c.title.toLowerCase() === subject);
+  const selectedUnit = selectedClass.units.find(
+    (u) => u.name.toLowerCase() === unit
+  );
   const imgRef = useRef(null);
   const profRef = useRef(null);
   const practiceRef = useRef(null);
@@ -124,7 +126,6 @@ export default function Question({classes}) {
     setIsCorrectAnswer(false);
   };
 
-  
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#040404] dark:bg-gray-900 relative">
       <div className="w-[100%] flex flex-col justify-start items-center">
@@ -243,7 +244,7 @@ export default function Question({classes}) {
             <div className="flex justify-between mt-6 space-x-4">
               <button
                 onClick={handleSubmitAnswer}
-                className={`px-4 py-2 text-sm font-medium  bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] rounded-md  focus:outline-none focus:bg-indigo-500 ${
+                className={`px-4 py-2 text-sm font-medium  bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] rounded-md  focus:outline-none ${
                   selectedOption === null
                     ? " opacity-50 cursor-not-allowed"
                     : ""
@@ -254,7 +255,7 @@ export default function Question({classes}) {
               </button>
               <button
                 onClick={handleReset}
-                className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]  rounded-md  focus:outline-none focus:bg-blue-500${
+                className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]  rounded-md  focus:outline-none ${
                   selectedOption === null
                     ? " opacity-50 cursor-not-allowed"
                     : ""
@@ -265,7 +266,7 @@ export default function Question({classes}) {
               </button>
               <button
                 onClick={handleNextQuestion}
-                className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] rounded-md focus:outline-none focus:bg-blue-500 ${
+                className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] rounded-md focus:outline-none ${
                   !answerSubmitted || !isCorrectAnswer
                     ? " opacity-50 cursor-not-allowed"
                     : ""
@@ -278,7 +279,7 @@ export default function Question({classes}) {
           </div>
           <br />
           <Link to={`/detailspage/${subject}`}>
-            <button className="px-6 py-3 text-lg font-semibold   bg-[#B3CCC2] text-[#040404] hover:bg-[#fff] hover:text-[#040404] rounded-md focus:outline-none focus:bg-indigo-500">
+            <button className="px-6 py-3 text-lg font-semibold   bg-[#B3CCC2] text-[#040404] hover:bg-[#fff] hover:text-[#040404] rounded-md focus:outline-none">
               Back To Classroom
             </button>{" "}
           </Link>

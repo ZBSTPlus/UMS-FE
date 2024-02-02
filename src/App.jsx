@@ -64,7 +64,7 @@ function App() {
           name: "DBMS",
         },
       ],
-    }
+    },
   ];
 
   const assessments = [

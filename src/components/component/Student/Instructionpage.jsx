@@ -11,7 +11,7 @@ export default function Instructionpage({ assessments }) {
   return (
     <main className="flex flex-col h-screen  bg-[#040404] text-[#A8ABBA] relative justify-center items-center">
       <div className="flex flex-col h-[700px] justify-center relative">
-        <header className="mb-10 w-full">
+        <header className="w-full mb-10">
           <h1 className="text-6xl font-bold text-[#fff]">
             Assessment Instructions
           </h1>
@@ -25,7 +25,7 @@ export default function Instructionpage({ assessments }) {
             Click the "SUBMIT" button to submit your answer for next question.
           </li>
         </ol>
-        <div className="mt-10 space-x-60 flex justify-between items-center w-full">
+        <div className="flex items-center justify-between w-full mt-10 space-x-60">
           <Link to="/studentui">
             <button
               className="inline-flex items-center justify-center h-10 px-8 text-sm font-medium transition-colors bg-[#B3CCC2] rounded-md shadow text-[#040404] hover:bg-gray-900  hover:text-gray-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"

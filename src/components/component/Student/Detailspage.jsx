@@ -26,18 +26,13 @@ import { useRef } from "react";
 import { useParams } from "react-router-dom";
 
 export default function Detailspage({ classes }) {
- 
-
   const { subject } = useParams();
- 
-  const selectedClass = classes.find(
-    (c) => c.title.toLowerCase() === subject
-  );
+
+  const selectedClass = classes.find((c) => c.title.toLowerCase() === subject);
   if (!selectedClass) {
     return <div>Class not found!</div>;
   }
 
- 
   const imgRef = useRef(null);
   const subRef = useRef(null);
   const profRef = useRef(null);
@@ -57,12 +52,9 @@ export default function Detailspage({ classes }) {
     });
   });
 
-
   return (
     <div className="flex items-center bg-[#040404] min-h-screen relative flex-col justify-start gap-4">
       <div className="flex flex-col items-center justify-start w-full mt-16">
-       
-
         <header className="flex items-center h-16 mb-5 dark:bg-gray-900  sticky top-5 z-[1] w-full">
           <nav className="flex items-center justify-between w-[100%] p-10">
             <div className="flex gap-4" ref={imgRef}>
@@ -150,7 +142,9 @@ export default function Detailspage({ classes }) {
 
               <CollapsibleContent>
                 <div className="flex justify-start gap-2 p-4">
-                  <Link to={`/practicepage/${subject}/${unit.name.toLowerCase()}`}>
+                  <Link
+                    to={`/practicepage/${subject}/${unit.name.toLowerCase()}`}
+                  >
                     <Button
                       className="inline-flex items-center gap-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]  w-[150px]"
                       download

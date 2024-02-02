@@ -189,15 +189,6 @@ export default function Quiz({ classes }) {
                     </p>
                   </div>
                 </div>
-
-                <div className="flex justify-center mt-6">
-                  <button
-                    className="px-4 py-2 bg-[#040404]  rounded text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] focus:outline-none"
-                    onClick={handleDone}
-                  >
-                    Done
-                  </button>
-                </div>
               </div>
             </div>
           </PopoverContent>

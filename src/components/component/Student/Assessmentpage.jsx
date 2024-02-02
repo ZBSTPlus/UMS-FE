@@ -93,16 +93,10 @@ export default function Assessmentpage({ assessments }) {
     return () => clearInterval(timer);
   }, [questionIndex, timeLeft]);
 
-  //   useEffect(() => {
-  //     // Adjust the time limit whenever a new question is added
-  //     setTimeLeft(60); // Reset time limit to 1 minute for each new question
-  //   }, [questionIndex]);
-
   const handleTimeUp = () => {
     // Handle logic when time is up (e.g., show quiz completed screen)
     setQuestionIndex(data.length);
   };
-
   const question = data[questionIndex];
 
   const handleOptionChange = (option) => {
@@ -112,30 +106,24 @@ export default function Assessmentpage({ assessments }) {
   };
 
   const handleSubmitAnswer = () => {
-    if (selectedOptions[questionIndex] !== null) {
-      // Logic to handle the submitted answer for the current question
-      const isCorrect =
-        selectedOptions[questionIndex] === question.correctAnswer;
-      console.log(
-        `Selected Option: ${selectedOptions[questionIndex]}, Correct Answer: ${question.correctAnswer}, Correct: ${isCorrect}`
-      );
+    // Logic to handle the submitted answer for the current question
+    const isCorrect = selectedOptions[questionIndex] === question.correctAnswer;
+    console.log(
+      `Selected Option: ${selectedOptions[questionIndex]}, Correct Answer: ${question.correctAnswer}, Correct: ${isCorrect}`
+    );
 
-      // Update isCorrectAnswers for the current question
-      const newIsCorrectAnswers = [...isCorrectAnswers];
-      newIsCorrectAnswers[questionIndex] = isCorrect;
-      setIsCorrectAnswers(newIsCorrectAnswers);
+    // Update isCorrectAnswers for the current question
+    const newIsCorrectAnswers = [...isCorrectAnswers];
+    newIsCorrectAnswers[questionIndex] = isCorrect;
+    setIsCorrectAnswers(newIsCorrectAnswers);
 
-      // Update the score
-      setScore((prevScore) => (isCorrect ? prevScore + 1 : prevScore));
+    // Update the score
+    setScore((prevScore) => (isCorrect ? prevScore + 1 : prevScore));
+    setQuestionIndex((prev) => prev + 1);
+    // Move to the next question
 
-      // Move to the next question
-      setQuestionIndex((prevIndex) => prevIndex + 1);
-      // Reset answerSubmitted for the new question
-      setAnswerSubmitted(false);
-    } else {
-      // Display an error or notification for the user to choose an option
-      console.log("Please choose an option before submitting.");
-    }
+    // Reset answerSubmitted for the new question
+    setAnswerSubmitted(false);
   };
 
   // Check if all questions are answered
@@ -149,14 +137,12 @@ export default function Assessmentpage({ assessments }) {
   };
 
   //next button
-  const handleNextButtonClick =() => {
+  const handleNextButtonClick = () => {
     if (questionIndex < data.length - 1) {
       setQuestionIndex((prevIndex) => prevIndex + 1);
+    } else {
+      console.log("The End");
     }
-    else{
-      console.log("The End")
-    }
-    
   };
 
   return (
@@ -164,7 +150,6 @@ export default function Assessmentpage({ assessments }) {
       <header className="flex items-center h-10 mb-5 dark:bg-gray-900  w-[95%] fixed top-12">
         <nav className="flex items-center justify-between w-[100%]  px-10 py-0">
           <div className="flex gap-4">
-          
             <div className=" h-[100px] w-[100px] flex items-center justify-center relative overflow-hidden">
               <img className="object-cover " src={Logo} alt="" />
             </div>
@@ -187,33 +172,11 @@ export default function Assessmentpage({ assessments }) {
                   {/* <AvatarFallback>JD</AvatarFallback> */}
                 </Avatar>
               </DropdownMenuTrigger>
-              {/* <DropdownMenuContent>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <a className="flex items-center gap-2" href="#">
-                    <UserIcon className="w-4 h-4" />
-                    John Doe
-                  </a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <a className="flex items-center gap-2" href="#">
-                    <MailIcon className="w-4 h-4" />
-                    ums@gmail.com
-                  </a>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <a className="flex items-center gap-2" href="#">
-                    <LogOutIcon className="w-4 h-4" />
-                    Logout
-                  </a>
-                </DropdownMenuItem>
-              </DropdownMenuContent> */}
             </DropdownMenu>
           </div>
         </nav>
       </header>
-      <div className="w-[90%] p-4 space-y-4 mt-5" ref={assesmentRef}>
+      <div className="w-[75%] p-4 space-y-4 mt-5" ref={assesmentRef}>
         {questionIndex < data.length ? (
           <div className="flex flex-col p-6 bg-[#ECF0F1] rounded-lg shadow-md dark:bg-gray-800">
             <h1 className="mb-4 text-2xl font-bold text-center text-[#040404] dark:text-white">
@@ -232,15 +195,7 @@ export default function Assessmentpage({ assessments }) {
               {question.options.map((option, index) => (
                 <label
                   key={index}
-                  className={`block  text-left dark:bg-gray-700 rounded-md p-3 cursor-pointer bg-[#6cdaf96f] text-[#040404] font-semibold ${
-                    answerSubmitted
-                      ? option === question.correctAnswer
-                        ? "bg-green-300"
-                        : selectedOptions[questionIndex] === option
-                        ? "bg-red-300"
-                        : ""
-                      : ""
-                  }`}
+                  className={`block  text-left dark:bg-gray-700 rounded-md p-3 cursor-pointer bg-gray-300 text-[#040404] font-semibold`}
                 >
                   <input
                     type="radio"
@@ -254,51 +209,34 @@ export default function Assessmentpage({ assessments }) {
                 </label>
               ))}
             </div>
-            {answerSubmitted && (
-              <div
-                className={`mt-4 ${
-                  isCorrectAnswers[questionIndex]
-                    ? "text-green-600"
-                    : "text-red-600"
-                }`}
-              >
-                {isCorrectAnswers[questionIndex]
-                  ? "Correct!"
-                  : `Wrong! The correct answer is: ${question.correctAnswer}`}
-              </div>
-            )}
             <div className="flex justify-between mt-6 space-x-4">
               <div className="flex gap-5">
-                
                 <button
-                onClick={handlePrevButtonClick}
-                className="px-4 py-2 text-sm font-medium text-[#A8ABBA] bg-[#040404] rounded-md hover:bg-[#B3CCC2]  hover:text-[#040404] focus:outline-none">
+                  onClick={handlePrevButtonClick}
+                  className="px-4 py-2 text-sm font-medium text-[#A8ABBA] bg-[#040404] rounded-md hover:bg-[#B3CCC2]  hover:text-[#040404] focus:outline-none"
+                >
                   Prev
                 </button>
-                <button
-                onClick={handleNextButtonClick}
-                className="px-4 py-2 text-sm font-medium text-[#A8ABBA] bg-[#040404] rounded-md hover:bg-[#B3CCC2]  hover:text-[#040404] focus:outline-none">
-                  Next
-                </button>
+                {questionIndex === data.length - 1 ? (
+                  <button
+                    onClick={handleSubmitAnswer}
+                    className={`px-4 py-2 text-sm font-medium text-[#A8ABBA] bg-[#040404] rounded-md hover:bg-[#B3CCC2]  hover:text-[#040404] focus:outline-none `}
+                  >
+                    Submit
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleNextButtonClick}
+                    className="px-4 py-2 text-sm font-medium text-[#A8ABBA] bg-[#040404] rounded-md ]  hover:text-[#040404] hover:bg-[#B3CCC2] focus:outline-none"
+                  >
+                    Next
+                  </button>
+                )}
               </div>
-              <button
-                onClick={handleSubmitAnswer}
-                className={`px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-[#040404] ${
-                  selectedOptions[questionIndex] === null
-                    ? " opacity-50 cursor-not-allowed"
-                    : ""
-                }`}
-                disabled={
-                  answerSubmitted || selectedOptions[questionIndex] === null
-                }
-              >
-                Submit
-              </button>
             </div>
           </div>
         ) : (
-          // Display successful submission message
-          <div className="flex flex-col p-6 bg-[#ECF0F1] rounded-lg shadow-md dark:bg-gray-800">
+          <div className="flex flex-col p-6 bg-[#ECF0F1] rounded-lg      shadow-md dark:bg-gray-800">
             <h1 className="mb-4 text-2xl font-bold text-center text-[#040404] dark:text-white">
               Assessment Submitted Successfully!
             </h1>
@@ -308,7 +246,7 @@ export default function Assessmentpage({ assessments }) {
             <br />
             <div>
               <Link to="/studentui">
-                <button className="px-6 py-3 text-lg  font-semibold rounded-md  bg-[#96b1a7] text-[#040404] hover:bg-[#040404] hover:text-[#ECF0F1] focus:outline-none focus:bg-indigo-500">
+                <button className="px-6 py-3 text-lg  font-semibold rounded-md  bg-[#96b1a7] text-[#040404] hover:bg-[#040404] hover:text-[#ECF0F1] focus:outline-none">
                   Back To Home
                 </button>
               </Link>
