@@ -71,7 +71,7 @@ export default function Quiz({ classes }) {
   const profRef = useRef(null);
 
   useGSAP(() => {
-    var tl = gsap.timeline();
+    let tl = gsap.timeline();
 
     tl.from([imgRef.current, profRef.current], {
       y: -100,
