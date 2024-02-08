@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
-import Studentui from "./components/component/Student/studentui";
+import Studentui from "./components/component/Student/Studentui";
 
 import React from "react";
 
-import Detailspage from "./components/component/Student/detailspage";
+import Detailspage from "./components/component/Student/Detailspage";
 import Question from "./components/component/Student/Question";
 import Assessmentpage from "./components/component/Student/Assessmentpage";
-import Instructionpage from "./components/component/Student/instructionpage";
+import Instructionpage from "./components/component/Student/Instructionpage";
 import Quiz from "./components/component/Student/Quiz";
-import Professorui from "./components/component/Professor/professorui";
+import Professorui from "./components/component/Professor/Professorui";
 
 function App() {
   const classes = [
