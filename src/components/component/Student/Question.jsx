@@ -79,6 +79,7 @@ export default function Question({ classes }) {
       duration: 0.5,
     });
   });
+
   const [questionIndex, setQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [answerSubmitted, setAnswerSubmitted] = useState(false);

@@ -8,6 +8,7 @@ import Question from "./components/component/Student/Question";
 import Assessmentpage from "./components/component/Student/Assessmentpage";
 import Instructionpage from "./components/component/Student/instructionpage";
 import Quiz from "./components/component/Student/Quiz";
+import Professorui from "./components/component/Professor/professorui";
 
 function App() {
   const classes = [
@@ -94,6 +95,8 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
+          <Route path="/professorui" element={<Professorui />} />
+
           <Route
             path="/detailspage/:subject"
             element={<Detailspage classes={classes} />}
