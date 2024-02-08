@@ -143,7 +143,7 @@ export default function Professorui() {
                         <span className="text-[#111129] font-bold">
                           Subjects
                         </span>
-                        : Mathematics, DLD
+                        : Mathematics, Database
                       </div>
                     </div>
                   </CardContent>

@@ -5,6 +5,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
@@ -19,13 +20,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Logo from "../../../assets/Logo/logo.png";
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
+=======
+>>>>>>> 7838443ae18e078f9ce1879dd21e40befd838f28
 
 const data = [
   {
     id: 1,
+<<<<<<< HEAD
     question: "20+6?",
     options: ["26", "20", "25", "24"],
     correctAnswer: "26",
+=======
+    question: "Which of the following is not a programming language?",
+    options: ["C++", "JAVA", "Python", "CSS"],
+    correctAnswer: "CSS",
+>>>>>>> 7838443ae18e078f9ce1879dd21e40befd838f28
   },
   {
     id: 2,
@@ -35,13 +44,20 @@ const data = [
   },
   {
     id: 3,
+<<<<<<< HEAD
     question: "14+7 =?",
     options: ["21", "22", "23", "18"],
     correctAnswer: "21",
+=======
+    question: "14/7 =?",
+    options: ["1", "2", "4", "3"],
+    correctAnswer: "2",
+>>>>>>> 7838443ae18e078f9ce1879dd21e40befd838f28
   },
   // Add more questions as needed
   {
     id: 4,
+<<<<<<< HEAD
     question: "100+2=?",
     options: ["98", "100", "102", "101"],
     correctAnswer: "102",
@@ -80,6 +96,21 @@ export default function Question({ classes }) {
     });
   });
 
+=======
+    question: "20*2",
+    options: ["40", "30", "10", "0"],
+    correctAnswer: "40",
+  },
+  {
+    id: "5",
+    question: "0-1",
+    options: ["1", "-1", "0", "-2"],
+    correctAnswer: "-1",
+  },
+];
+
+export default function Question() {
+>>>>>>> 7838443ae18e078f9ce1879dd21e40befd838f28
   const [questionIndex, setQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [answerSubmitted, setAnswerSubmitted] = useState(false);
@@ -128,6 +159,7 @@ export default function Question({ classes }) {
   };
 
   return (
+<<<<<<< HEAD
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#040404] dark:bg-gray-900 relative">
       <div className="w-[100%] flex flex-col justify-start items-center">
         <header className="flex  h-10 mb-5 dark:bg-gray-900 w-[95%] fixed top-12">
@@ -285,6 +317,97 @@ export default function Question({ classes }) {
             </button>{" "}
           </Link>
         </div>
+=======
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#040404] dark:bg-gray-900">
+      
+      <div className="w-[95%] p-4 space-y-4">
+        <div className="flex flex-col p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
+          <h1 className="mb-4 text-2xl font-bold text-center text-gray-700 dark:text-white">
+            Practice Questions
+          </h1>
+          <br />
+          <h2 className="text-lg font-semibold text-gray-700 dark:text-white">{`Question ${
+            questionIndex + 1
+          }`}</h2>
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {question.question}
+          </p>
+          <div className="mt-4 space-y-2">
+            {question.options.map((option, index) => (
+              <label
+                key={index}
+                className={`block bg-gray-200 text-left dark:bg-gray-700 rounded-md p-3 cursor-pointer ${
+                  answerSubmitted
+                    ? option === question.correctAnswer
+                      ? "bg-green-300"
+                      : selectedOption === option
+                      ? "bg-red-300"
+                      : ""
+                    : ""
+                }`}
+              >
+                <input
+                  type="radio"
+                  className="mr-2"
+                  value={option}
+                  checked={option === selectedOption}
+                  onChange={() => handleOptionChange(option)}
+                  disabled={answerSubmitted}
+                />
+                {option}
+              </label>
+            ))}
+          </div>
+          {answerSubmitted && (
+            <div
+              className={`mt-4 ${
+                isCorrectAnswer ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {isCorrectAnswer
+                ? "Correct!"
+                : `Wrong! The correct answer is: ${question.correctAnswer}`}
+            </div>
+          )}
+          <div className="flex justify-between mt-6 space-x-4">
+            <button
+              onClick={handleSubmitAnswer}
+              className={`px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500 ${
+                selectedOption === null ? " opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={answerSubmitted || selectedOption === null}
+            >
+              Submit
+            </button>
+            <button
+              onClick={handleReset}
+              className={`px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500${
+                selectedOption === null ? " opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={selectedOption === null}
+            >
+              Reset
+            </button>
+            <button
+              onClick={handleNextQuestion}
+              className={`px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500 ${
+                !answerSubmitted || !isCorrectAnswer
+                  ? " opacity-50 cursor-not-allowed"
+                  : ""
+              }`}
+              disabled={!answerSubmitted || !isCorrectAnswer}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+        <br />
+        <Link to="/detailspage">
+          <button className="px-6 py-3 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
+            Back To Classroom
+          </button>{" "}
+        </Link>
+>>>>>>> 7838443ae18e078f9ce1879dd21e40befd838f28
       </div>
     </div>
   );
@@ -310,6 +433,7 @@ function XIcon(props) {
     </svg>
   );
 }
+<<<<<<< HEAD
 function UserIcon(props) {
   return (
     <svg
@@ -370,3 +494,5 @@ function LogOutIcon(props) {
     </svg>
   );
 }
+=======
+>>>>>>> 7838443ae18e078f9ce1879dd21e40befd838f28
