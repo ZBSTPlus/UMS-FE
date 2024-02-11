@@ -8,13 +8,14 @@ import Question from "./components/component/Student/Question";
 import Assessmentpage from "./components/component/Student/Assessmentpage";
 import Instructionpage from "./components/component/Student/instructionpage";
 import Quiz from "./components/component/Student/Quiz";
-import Professorui from "./components/component/Professor/professorui";
+import ProfessorPage from "./components/component/Professor/ProfessorPage";
 
 function App() {
   const classes = [
     {
       id: 1,
       title: "Mathematics",
+      value: "30",
       units: [
         {
           id: "1",
@@ -33,6 +34,7 @@ function App() {
     {
       id: 2,
       title: "Digital Logic Design",
+      value: "50",
       units: [
         {
           id: "1",
@@ -51,6 +53,26 @@ function App() {
     {
       id: 3,
       title: "DBMS",
+      value: "75",
+      units: [
+        {
+          id: "1",
+          name: "Database",
+        },
+        {
+          id: "2",
+          name: "MySQL",
+        },
+        {
+          id: "3",
+          name: "DBMS",
+        },
+      ],
+    },
+    {
+      id: 4,
+      title: "COA",
+      value: "100",
       units: [
         {
           id: "1",
@@ -95,7 +117,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/professorui" element={<Professorui />} />
+          <Route path="/professorpage" element={<ProfessorPage classes={classes} />} />
 
           <Route
             path="/detailspage/:subject"
