@@ -26,18 +26,18 @@ import "./ProfessorPage.css";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import Logo from "../../../assets/Logo/logo.png";
+import { Link } from "react-router-dom";
 
 export default function ProfessorPage({ classes }) {
   return (
-    <div className="min-h-screen flex bg-gray-100">
-      <aside className="w-60 bg-black text-white">
+    <div className="flex min-h-screen bg-gray-100">
+      <aside className="text-white bg-black w-60">
         <div className="flex flex-col items-center justify-center py-6">
           <img
-            className="h-36 w-48 object-cover rounded-full cursor-pointer"
+            className="object-cover w-48 rounded-full cursor-pointer h-36"
             src={Logo}
             alt=""
           />
-          <span className="ml-2 font-semibold text-xl">John Doe</span>
         </div>
         <nav className="mt-7 min-h-[400px]">
           <a
@@ -89,8 +89,8 @@ export default function ProfessorPage({ classes }) {
         </nav>
       </aside>
       <main className="flex-1 p-6 overflow-auto">
-        <header className="bg-white shadow mb-8">
-          <div className="px-4 py-5 sm:px-6 flex justify-between items-center">
+        <header className="mb-8 bg-white shadow">
+          <div className="flex items-center justify-between px-4 py-5 sm:px-6">
             <h1 className="text-xl font-semibold px-32 py-2 bg-[#040404] text-[#A8ABBA] rounded-md">
               Teacher Dashboard
             </h1>
@@ -137,7 +137,7 @@ export default function ProfessorPage({ classes }) {
         </header>
         <div className="px-4 py-5 sm:p-6">
           <section className="mb-8">
-            <h2 className=" leading-6 text-gray-900 mb-2 text-2xl font-bold">
+            <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900 ">
               Assigned Courses
             </h2>
             <Swiper
@@ -178,8 +178,8 @@ export default function ProfessorPage({ classes }) {
           </section>
 
           <section className="mb-8">
-            <div className="flex gap-5 items-center justify-between">
-              <h2 className="leading-6 text-gray-900 mb-2 text-2xl font-bold">
+            <div className="flex items-center justify-between gap-5">
+              <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900">
                 Student Practice Questions
               </h2>
               <Button className="bg-[#040404] text-[#B3CCC2]">
@@ -187,7 +187,7 @@ export default function ProfessorPage({ classes }) {
               </Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3">
               <Card className="w-full">
                 <CardHeader>
                   <CardTitle>Algebra Practice</CardTitle>
@@ -242,15 +242,15 @@ export default function ProfessorPage({ classes }) {
             </div>
           </section>
           <section className="mb-8">
-            <div className="flex gap-5 items-center justify-between">
-              <h2 className="leading-6 text-gray-900 mb-2 text-2xl font-bold">
+            <div className="flex items-center justify-between gap-5">
+              <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900">
                 Quizzes
               </h2>
               <Button className="bg-[#040404] text-[#B3CCC2]">
                 Create Quiz
               </Button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
               <Card className="w-full">
                 <CardHeader>
                   <CardTitle>Weekly Quiz</CardTitle>
@@ -271,15 +271,18 @@ export default function ProfessorPage({ classes }) {
             </div>
           </section>
           <section>
-            <div className="flex gap-5 items-center justify-between">
-              <h2 className="leading-6 text-gray-900 mb-2 text-2xl font-bold">
+            <div className="flex items-center justify-between gap-5">
+              <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900">
                 Assessments
               </h2>
-              <Button className="bg-[#040404] text-[#B3CCC2]">
-                Create Assessments
-              </Button>
+              <Link to="/ca">
+                {" "}
+                <Button className="bg-[#040404] text-[#B3CCC2]">
+                  Create Assessments
+                </Button>
+              </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
               <Card className="w-full">
                 <CardHeader>
                   <CardTitle>Unit Test</CardTitle>

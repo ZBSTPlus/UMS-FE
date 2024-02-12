@@ -107,7 +107,7 @@ export default function Studentui({ classes, assessments }) {
         <aside className="w-60 bg-[#040404] min-h-screen flex flex-col items-center py-4 space-y-4 px-24 ">
           <div className="flex flex-col items-center">
             <img
-              className="h-40 w-51 object-cover  rounded-full cursor-pointer"
+              className="object-cover h-40 rounded-full cursor-pointer w-51"
               src={Logo}
               alt=""
               ref={logoRef}
@@ -117,7 +117,7 @@ export default function Studentui({ classes, assessments }) {
               ref={links}
             >
               <a
-                className="flex items-center gap-2 px-3 py-2 text-white rounded dark:hover:bg-gray-700 font-semibold text-lg"
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
                 href="#studentdetails"
               >
                 {/* <FlagIcon className="hover:text-white  text-[#A8ABBA] h-8 w-8 " /> Home */}
@@ -127,7 +127,7 @@ export default function Studentui({ classes, assessments }) {
                 </span>
               </a>
               <a
-                className="flex items-center gap-2 px-3 py-2 text-white rounded dark:hover:bg-gray-700 font-semibold text-lg"
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
                 href="#completedcourses"
               >
                 {/* <LayoutDashboardIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA]" /> */}
@@ -138,7 +138,7 @@ export default function Studentui({ classes, assessments }) {
               </a>
 
               <a
-                className="flex items-center gap-2 px-3 py-2 text-white rounded dark:hover:bg-gray-700 font-semibold text-lg"
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
                 href="#upcomingassessments"
               >
                 {/* <SettingsIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA]" /> */}
@@ -149,7 +149,7 @@ export default function Studentui({ classes, assessments }) {
               </a>
 
               <a
-                className="flex items-center gap-2 px-3 py-2 text-white rounded dark:hover:bg-gray-700 font-semibold text-lg"
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
                 href="#analyticsboard"
               >
                 {/* <SignalIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA] " /> */}
@@ -168,7 +168,7 @@ export default function Studentui({ classes, assessments }) {
           {/* This is the Header Content which contains student dashboard name and Profile */}
 
           <header className="flex items-center h-16 mb-8 dark:bg-gray-900">
-            <nav className="flex items-center justify-between w-full bg-white px-2 py-5">
+            <nav className="flex items-center justify-between w-full px-2 py-5 bg-white">
               <div className="flex items-center space-x-4">
                 <span className="text-xl font-semibold px-32 py-2 bg-[#040404] text-[#A8ABBA] rounded-md ">
                   Student Dashboard

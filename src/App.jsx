@@ -9,6 +9,7 @@ import Assessmentpage from "./components/component/Student/Assessmentpage";
 import Instructionpage from "./components/component/Student/instructionpage";
 import Quiz from "./components/component/Student/Quiz";
 import ProfessorPage from "./components/component/Professor/ProfessorPage";
+import CreateAssessment from "./components/component/Professor/CreateAssessment";
 
 function App() {
   const classes = [
@@ -117,7 +118,12 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/professorpage" element={<ProfessorPage classes={classes} />} />
+          <Route path="/ca" element={<CreateAssessment />} />
+
+          <Route
+            path="/professorpage"
+            element={<ProfessorPage classes={classes} />}
+          />
 
           <Route
             path="/detailspage/:subject"
