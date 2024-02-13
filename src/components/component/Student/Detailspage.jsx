@@ -18,7 +18,6 @@ import {
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
 import Logo from "../../../assets/Logo/logo.png";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";

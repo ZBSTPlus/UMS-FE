@@ -35,7 +35,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import "./Studentui.css";
-import Dropdown from "./dropdown";
+import Dropdown from "./Dropdown";
 
 import Logo from "../../../assets/Logo/logo.png";
 import gsap from "gsap";
@@ -100,14 +100,14 @@ export default function Studentui({ classes, assessments }) {
   // Actual Student Page starts Here
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-800">
+    <div className="flex flex-col flex-1 h-screen bg-gray-100 dark:bg-gray-800">
       <div className="flex flex-1 overflow-hidden">
         {/* It is a side navbar written below as aside */}
 
-        <aside className="w-16 bg-[#040404] min-h-screen flex flex-col items-center py-4 space-y-4 px-24 ">
+        <aside className="w-60 bg-[#040404] min-h-screen flex flex-col items-center py-4 space-y-4 px-24 ">
           <div className="flex flex-col items-center">
             <img
-              className="h-36 w-48 object-cover border rounded-[50%] border-[#82717c] cursor-pointer"
+              className="object-cover h-40 rounded-full cursor-pointer w-51"
               src={Logo}
               alt=""
               ref={logoRef}
@@ -117,7 +117,7 @@ export default function Studentui({ classes, assessments }) {
               ref={links}
             >
               <a
-                className="flex items-center gap-2 px-3 py-2 text-white rounded dark:hover:bg-gray-700"
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
                 href="#studentdetails"
               >
                 {/* <FlagIcon className="hover:text-white  text-[#A8ABBA] h-8 w-8 " /> Home */}
@@ -127,7 +127,7 @@ export default function Studentui({ classes, assessments }) {
                 </span>
               </a>
               <a
-                className="flex items-center gap-2 px-3 py-2 text-white rounded dark:hover:bg-gray-700"
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
                 href="#completedcourses"
               >
                 {/* <LayoutDashboardIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA]" /> */}
@@ -138,7 +138,7 @@ export default function Studentui({ classes, assessments }) {
               </a>
 
               <a
-                className="flex items-center gap-2 px-3 py-2 text-white rounded dark:hover:bg-gray-700"
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
                 href="#upcomingassessments"
               >
                 {/* <SettingsIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA]" /> */}
@@ -149,7 +149,7 @@ export default function Studentui({ classes, assessments }) {
               </a>
 
               <a
-                className="flex items-center gap-2 px-3 py-2 text-white rounded dark:hover:bg-gray-700"
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
                 href="#analyticsboard"
               >
                 {/* <SignalIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA] " /> */}
@@ -164,13 +164,13 @@ export default function Studentui({ classes, assessments }) {
 
         {/* This is the main Content which right side of aside(side navbar) */}
 
-        <main className="flex-1 p-4 overflow-auto bg-[#fff] text-[#040404]">
+        <main className="flex-1 p-6 overflow-auto bg-[#F3F4F6] text-[#040404]">
           {/* This is the Header Content which contains student dashboard name and Profile */}
 
           <header className="flex items-center h-16 mb-8 dark:bg-gray-900">
-            <nav className="flex items-center justify-between w-full">
+            <nav className="flex items-center justify-between w-full px-2 py-5 bg-white">
               <div className="flex items-center space-x-4">
-                <span className="text-xl font-semibold px-32 py-2 bg-[#040404] text-[#B3CCC2] rounded-md ">
+                <span className="text-xl font-semibold px-32 py-2 bg-[#040404] text-[#A8ABBA] rounded-md ">
                   Student Dashboard
                 </span>
               </div>
@@ -216,7 +216,7 @@ export default function Studentui({ classes, assessments }) {
             <h2 className="mb-2 text-2xl font-bold">Student Details</h2>
 
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-              <Card className="p-2 bg-[#ECF0F1] shadow-lg flex justify-between items-center">
+              <Card className="p-2 bg-[#fff] shadow-lg flex justify-between items-center">
                 <div>
                   <CardHeader>
                     <CardTitle>John Doe</CardTitle>
@@ -263,7 +263,7 @@ export default function Studentui({ classes, assessments }) {
             >
               {classes.map((subject) => (
                 <SwiperSlide className=" rounded-[50px]" key={subject.id}>
-                  <Card className="p-4 bg-[#ECF0F1] shadow-lg w-[100%] rounded-[30px]">
+                  <Card className="p-4 bg-[#fff] shadow-lg w-[100%] rounded-[30px]">
                     <CardHeader>
                       <CardTitle>{subject.title}</CardTitle>
                       {/* <CardDescription>{card.description}</CardDescription> */}
@@ -293,7 +293,7 @@ export default function Studentui({ classes, assessments }) {
             >
               {assessments.map((assessment) => (
                 <SwiperSlide key={assessment.id} className="rounded-[50px]">
-                  <Card className="p-4 bg-[#ECF0F1] shadow-lg w-[100%] rounded-[30px]">
+                  <Card className="p-4 bg-[#fff] shadow-lg w-[100%] rounded-[30px]">
                     <CardHeader>
                       <CardTitle>{assessment.title}</CardTitle>
                       <CardDescription>
@@ -338,7 +338,7 @@ export default function Studentui({ classes, assessments }) {
               <div className="h-[300px] overflow-y-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-[#ECF0F1]">
+                    <TableRow className="bg-[#fff]">
                       <TableHead className="text-[#111129]">Rank</TableHead>
                       <TableHead className="text-[#111129]">Name</TableHead>
                       <TableHead className="text-right text-[#111129]">
