@@ -242,3 +242,4 @@ function LogOutIcon(props) {
     </svg>
   );
 }
+
