@@ -64,7 +64,7 @@ export default function Question({ classes }) {
   const profRef = useRef(null);
   const practiceRef = useRef(null);
   useGSAP(() => {
-    var tl = gsap.timeline();
+    let tl = gsap.timeline();
 
     tl.from([imgRef.current, profRef.current], {
       y: -100,
