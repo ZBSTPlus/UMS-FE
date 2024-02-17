@@ -35,7 +35,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import "./Studentui.css";
-import Dropdown from "./dropdown";
+import Dropdown from "./Dropdown";
 
 import Logo from "../../../assets/Logo/logo.png";
 import gsap from "gsap";
