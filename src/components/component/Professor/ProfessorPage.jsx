@@ -30,280 +30,291 @@ import { Link } from "react-router-dom";
 
 export default function ProfessorPage({ classes }) {
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      <aside className="text-white bg-black w-60">
-        <div className="flex flex-col items-center justify-center py-6">
-          <img
-            className="object-cover w-48 rounded-full cursor-pointer h-36"
-            src={Logo}
-            alt=""
-          />
-        </div>
-        <nav className="mt-7 min-h-[400px]">
-          <a
-            className="flex items-center px-6 py-4 text-lg font-semibold"
-            href="#"
-          >
-            <HomeIcon className="w-6 h-6 text-[#A8ABBA]" />
-            <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
-              Home
-            </span>
-          </a>
-          <a
-            className="flex items-center px-6 py-4 text-lg font-semibold "
-            href="#"
-          >
-            <BookIcon className="w-6 h-6 text-[#A8ABBA]" />
-            <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
-              Assigned Courses
-            </span>
-          </a>
+    <div className="flex flex-col flex-1 h-screen bg-gray-100 dark:bg-gray-800">
+      <div className="flex flex-1 overflow-hidden">
+        <aside className="w-60 bg-[#040404] min-h-screen flex flex-col items-center py-4 space-y-4 px-24 ">
+          <div className="flex flex-col items-center">
+            <img
+              className="object-cover w-48 rounded-full cursor-pointer h-36"
+              src={Logo}
+              alt=""
+            />
+            <div className="flex flex-col justify-start gap-6 mt-8 scroll-smooth">
+              <a
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
+                href="#teacherdashboard"
+              >
+                <HomeIcon className="w-6 h-6 text-[#A8ABBA]" />
+                <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
+                  Home
+                </span>
+              </a>
+              <a
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
+                href="#assignedcourses"
+              >
+                <BookIcon className="w-6 h-6 text-[#A8ABBA]" />
+                <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
+                  Assigned Courses
+                </span>
+              </a>
 
-          <a
-            className="flex items-center px-6 py-4 text-lg font-semibold "
-            href="#"
-          >
-            <FileEditIcon className="w-6 h-6 text-[#A8ABBA]" />
-            <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
-              Practice Questions
-            </span>
-          </a>
-          <a
-            className="flex items-center px-6 py-4 text-lg font-semibold"
-            href="#"
-          >
-            <ListIcon className="w-6 h-6 text-[#A8ABBA]" />
-            <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
-              Student Quizzes
-            </span>
-          </a>
-          <a
-            className="flex items-center px-6 py-4 text-lg font-semibold"
-            href="#"
-          >
-            <ActivityIcon className="w-6 h-6 text-[#A8ABBA]" />
-            <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
-              Student Assessments
-            </span>
-          </a>
-        </nav>
-      </aside>
-      <main className="flex-1 p-6 overflow-auto">
-        <header className="mb-8 bg-white shadow">
-          <div className="flex items-center justify-between px-4 py-5 sm:px-6">
-            <h1 className="text-xl font-semibold px-32 py-2 bg-[#040404] text-[#A8ABBA] rounded-md">
-              Teacher Dashboard
-            </h1>
-            {/* <Avatar>
+              <a
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
+                href="#practicequestions"
+              >
+                <FileEditIcon className="w-6 h-6 text-[#A8ABBA]" />
+                <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
+                  Practice Questions
+                </span>
+              </a>
+              <a
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
+                href="#studentquizes"
+              >
+                <ListIcon className="w-6 h-6 text-[#A8ABBA]" />
+                <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
+                  Student Quizes
+                </span>
+              </a>
+              <a
+                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
+                href="#studentassessments"
+              >
+                <ActivityIcon className="w-6 h-6 text-[#A8ABBA]" />
+                <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
+                  Student Assessments
+                </span>
+              </a>
+            </div>
+          </div>
+        </aside>
+        <main className="flex-1 p-6 overflow-auto">
+          <header className="mb-8 bg-white shadow">
+            <div className="flex items-center justify-between px-4 py-5 sm:px-6">
+              <h1
+                className="text-xl font-semibold px-32 py-2 bg-[#040404] text-[#A8ABBA] rounded-md"
+                id="teacherdashboard"
+              >
+                Teacher Dashboard
+              </h1>
+              {/* <Avatar>
               <AvatarImage
                 alt="Teacher profile"
                 src="/placeholder.svg?height=40&width=40"
               />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar> */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Avatar className="h-9 w-9">
-                  <AvatarImage
-                    alt="User avatar"
-                    src="https://imgs.search.brave.com/J0ixr3aHGA8aitBrET8u4exc5KcrQl8PWXGrvAdsUY4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mcmVl/c3ZnLm9yZy9pbWcv/YWJzdHJhY3QtdXNl/ci1mbGF0LTQucG5n"
-                  />
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <a className="flex items-center gap-2" href="#">
-                    <UserIcon className="w-4 h-4" />
-                    John Doe
-                  </a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <a className="flex items-center gap-2" href="#">
-                    <MailIcon className="w-4 h-4" />
-                    ums@gmail.com
-                  </a>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <a className="flex items-center gap-2" href="#">
-                    <LogOutIcon className="w-4 h-4" />
-                    Logout
-                  </a>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </header>
-        <div className="px-4 py-5 sm:p-6">
-          <section className="mb-8">
-            <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900 ">
-              Assigned Courses
-            </h2>
-            <Swiper
-              navigation={true}
-              modules={[Navigation]}
-              className="px-3 py-3 mySwiper"
-              slidesPerView={3}
-              spaceBetween={30}
-            >
-              {classes.map((course) => (
-                <SwiperSlide className=" rounded-[50px]" key={course.id}>
-                  <Card className="w-full shadow-lg  rounded-[30px]">
-                    <CardHeader>
-                      <CardTitle>{course.title}</CardTitle>
-                      {/* <CardDescription>{card.description}</CardDescription> */}
-                    </CardHeader>
-                    <CardContent>
-                      <Progress className="w-full" value={course.value} />
-                    </CardContent>
-                    <CardFooter className="flex justify-between">
-                      <Button variant="outline">View Details</Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Avatar className="h-9 w-9">
+                    <AvatarImage
+                      alt="User avatar"
+                      src="https://imgs.search.brave.com/J0ixr3aHGA8aitBrET8u4exc5KcrQl8PWXGrvAdsUY4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mcmVl/c3ZnLm9yZy9pbWcv/YWJzdHJhY3QtdXNl/ci1mbGF0LTQucG5n"
+                    />
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <a className="flex items-center gap-2" href="#">
+                      <UserIcon className="w-4 h-4" />
+                      John Doe
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <a className="flex items-center gap-2" href="#">
+                      <MailIcon className="w-4 h-4" />
+                      ums@gmail.com
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <a className="flex items-center gap-2" href="#">
+                      <LogOutIcon className="w-4 h-4" />
+                      Logout
+                    </a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </header>
+          <div className="px-4 py-5 sm:p-6">
+            <section className="mb-8" id="assignedcourses">
+              <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900 ">
+                Assigned Courses
+              </h2>
+              <Swiper
+                navigation={true}
+                modules={[Navigation]}
+                className="px-3 py-3 mySwiper"
+                slidesPerView={3}
+                spaceBetween={30}
+              >
+                {classes.map((course) => (
+                  <SwiperSlide className=" rounded-[50px]" key={course.id}>
+                    <Card className="w-full shadow-lg  rounded-[30px]">
+                      <CardHeader>
+                        <CardTitle>{course.title}</CardTitle>
+                        {/* <CardDescription>{card.description}</CardDescription> */}
+                      </CardHeader>
+                      <CardContent>
+                        <Progress className="w-full" value={course.value} />
+                      </CardContent>
+                      <CardFooter className="flex justify-between">
+                        <Link
+                          to={`/assignedcoursedetails/${course.title.toLowerCase()}`}
+                        >
+                          <Button className="mt-4 bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]">
+                            View Details
+                          </Button>
+                        </Link>
 
-                      <div className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-1.5 rounded-md px-2 text-[15px]">
-                        <div className="flex gap-2">
-                          <span className="text-[#272E3F] font-bold">
-                            {course.value}%
-                          </span>{" "}
-                          <span className="text-[#272E3F] font-semibold">
-                            Completed
-                          </span>
+                        <div className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-1.5 rounded-md px-2 text-[15px]">
+                          <div className="flex gap-2">
+                            <span className="text-[#272E3F] font-bold">
+                              {course.value}%
+                            </span>{" "}
+                            <span className="text-[#272E3F] font-semibold">
+                              Completed
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    </CardFooter>
-                  </Card>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </section>
+                      </CardFooter>
+                    </Card>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </section>
 
-          <section className="mb-8">
-            <div className="flex items-center justify-between gap-5">
-              <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900">
-                Student Practice Questions
-              </h2>
-              <Button className="bg-[#040404] text-[#B3CCC2]">
-                Create Practice Questions
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3">
-              <Card className="w-full">
-                <CardHeader>
-                  <CardTitle>Algebra Practice</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>Set of 15 Algebra Questions</p>
-                </CardContent>
-                <CardFooter className="flex justify-end">
-                  {/* <Button>Assigned to Students</Button> */}
-                  <div className="bg-[#B3CCC2] text-secondary-foreground  p-1.5 rounded-md px-2 text-[15px] flex gap-2 items-center">
-                    <span className="font-semibold">Assigned</span>
-                    <span>
-                      <CheckCircleIcon className="w-5 h-5" />
-                    </span>
-                  </div>
-                </CardFooter>
-              </Card>
-              <Card className="w-full">
-                <CardHeader>
-                  <CardTitle>Geometry Practice</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>Set of 10 Geometry Questions</p>
-                </CardContent>
-                <CardFooter className="flex justify-end">
-                  {/* <Button>Assign to Students</Button> */}
-                  <div className="bg-[#B3CCC2] text-secondary-foreground  p-1.5 rounded-md px-2 text-[15px] flex gap-2 items-center">
-                    <span className="font-semibold">Assigned</span>
-                    <span>
-                      <CheckCircleIcon className="w-5 h-5" />
-                    </span>
-                  </div>
-                </CardFooter>
-              </Card>
-              <Card className="w-full">
-                <CardHeader>
-                  <CardTitle>Grammar Practice</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>Set of 20 Grammar Questions</p>
-                </CardContent>
-                <CardFooter className="flex justify-end">
-                  {/* <Button>Assign to Students</Button> */}
-                  <div className="bg-[#B3CCC2] text-secondary-foreground  p-1.5 rounded-md px-2 text-[15px] flex gap-2 items-center">
-                    <span className="font-semibold">Assigned</span>
-                    <span>
-                      <CheckCircleIcon className="w-5 h-5" />
-                    </span>
-                  </div>
-                </CardFooter>
-              </Card>
-            </div>
-          </section>
-          <section className="mb-8">
-            <div className="flex items-center justify-between gap-5">
-              <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900">
-                Quizzes
-              </h2>
-              <Button className="bg-[#040404] text-[#B3CCC2]">
-                Create Quiz
-              </Button>
-            </div>
-            <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
-              <Card className="w-full">
-                <CardHeader>
-                  <CardTitle>Weekly Quiz</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>10 Questions - Multiple Choice</p>
-                </CardContent>
-                <CardFooter className="flex justify-end">
-                  {/* <Button>Assign to Students</Button> */}
-                  <div className="bg-[#B3CCC2] text-secondary-foreground  p-1.5 rounded-md px-2 text-[15px] flex gap-2 items-center">
-                    <span className="font-semibold">Assigned</span>
-                    <span>
-                      <CheckCircleIcon className="w-5 h-5" />
-                    </span>
-                  </div>
-                </CardFooter>
-              </Card>
-            </div>
-          </section>
-          <section>
-            <div className="flex items-center justify-between gap-5">
-              <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900">
-                Assessments
-              </h2>
-              <Link to="/ca">
-                {" "}
+            <section className="mb-8" id="practicequestions">
+              <div className="flex items-center justify-between gap-5">
+                <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900">
+                  Student Practice Questions
+                </h2>
                 <Button className="bg-[#040404] text-[#B3CCC2]">
-                  Create Assessments
+                  Create Practice Questions
                 </Button>
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
-              <Card className="w-full">
-                <CardHeader>
-                  <CardTitle>Unit Test</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>20 Questions - Mix of Types</p>
-                </CardContent>
-                <CardFooter className="flex justify-end">
-                  {/* <Button>Assign to Students</Button> */}
-                  <div className="bg-[#B3CCC2] text-secondary-foreground  p-1.5 rounded-md px-2 text-[15px] flex gap-2 items-center">
-                    <span className="font-semibold">Assigned</span>
-                    <span>
-                      <CheckCircleIcon className="w-5 h-5" />
-                    </span>
-                  </div>
-                </CardFooter>
-              </Card>
-            </div>
-          </section>
-        </div>
-      </main>
+              </div>
+
+              <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3">
+                <Card className="w-full">
+                  <CardHeader>
+                    <CardTitle>Algebra Practice</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p>Set of 15 Algebra Questions</p>
+                  </CardContent>
+                  <CardFooter className="flex justify-end">
+                    {/* <Button>Assigned to Students</Button> */}
+                    <div className="bg-[#B3CCC2] text-secondary-foreground  p-1.5 rounded-md px-2 text-[15px] flex gap-2 items-center">
+                      <span className="font-semibold">Assigned</span>
+                      <span>
+                        <CheckCircleIcon className="w-5 h-5" />
+                      </span>
+                    </div>
+                  </CardFooter>
+                </Card>
+                <Card className="w-full">
+                  <CardHeader>
+                    <CardTitle>Geometry Practice</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p>Set of 10 Geometry Questions</p>
+                  </CardContent>
+                  <CardFooter className="flex justify-end">
+                    {/* <Button>Assign to Students</Button> */}
+                    <div className="bg-[#B3CCC2] text-secondary-foreground  p-1.5 rounded-md px-2 text-[15px] flex gap-2 items-center">
+                      <span className="font-semibold">Assigned</span>
+                      <span>
+                        <CheckCircleIcon className="w-5 h-5" />
+                      </span>
+                    </div>
+                  </CardFooter>
+                </Card>
+                <Card className="w-full">
+                  <CardHeader>
+                    <CardTitle>Grammar Practice</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p>Set of 20 Grammar Questions</p>
+                  </CardContent>
+                  <CardFooter className="flex justify-end">
+                    {/* <Button>Assign to Students</Button> */}
+                    <div className="bg-[#B3CCC2] text-secondary-foreground  p-1.5 rounded-md px-2 text-[15px] flex gap-2 items-center">
+                      <span className="font-semibold">Assigned</span>
+                      <span>
+                        <CheckCircleIcon className="w-5 h-5" />
+                      </span>
+                    </div>
+                  </CardFooter>
+                </Card>
+              </div>
+            </section>
+            <section className="mb-8" id="studentquizes">
+              <div className="flex items-center justify-between gap-5">
+                <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900">
+                  Quizzes
+                </h2>
+                <Button className="bg-[#040404] text-[#B3CCC2]">
+                  Create Quiz
+                </Button>
+              </div>
+              <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
+                <Card className="w-full">
+                  <CardHeader>
+                    <CardTitle>Weekly Quiz</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p>10 Questions - Multiple Choice</p>
+                  </CardContent>
+                  <CardFooter className="flex justify-end">
+                    {/* <Button>Assign to Students</Button> */}
+                    <div className="bg-[#B3CCC2] text-secondary-foreground  p-1.5 rounded-md px-2 text-[15px] flex gap-2 items-center">
+                      <span className="font-semibold">Assigned</span>
+                      <span>
+                        <CheckCircleIcon className="w-5 h-5" />
+                      </span>
+                    </div>
+                  </CardFooter>
+                </Card>
+              </div>
+            </section>
+            <section id="studentassessments">
+              <div className="flex items-center justify-between gap-5">
+                <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900">
+                  Assessments
+                </h2>
+                <Link to="/ca">
+                  {" "}
+                  <Button className="bg-[#040404] text-[#B3CCC2]">
+                    Create Assessments
+                  </Button>
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
+                <Card className="w-full">
+                  <CardHeader>
+                    <CardTitle>Unit Test</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p>20 Questions - Mix of Types</p>
+                  </CardContent>
+                  <CardFooter className="flex justify-end">
+                    {/* <Button>Assign to Students</Button> */}
+                    <div className="bg-[#B3CCC2] text-secondary-foreground  p-1.5 rounded-md px-2 text-[15px] flex gap-2 items-center">
+                      <span className="font-semibold">Assigned</span>
+                      <span>
+                        <CheckCircleIcon className="w-5 h-5" />
+                      </span>
+                    </div>
+                  </CardFooter>
+                </Card>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

@@ -10,6 +10,7 @@ import Instructionpage from "./components/component/Student/instructionpage";
 import Quiz from "./components/component/Student/Quiz";
 import ProfessorPage from "./components/component/Professor/ProfessorPage";
 import CreateAssessment from "./components/component/Professor/CreateAssessment";
+import AssignedCoursedetails from "./components/component/Professor/AssignedCoursedetails";
 
 function App() {
   const classes = [
@@ -123,6 +124,10 @@ function App() {
           <Route
             path="/professorpage"
             element={<ProfessorPage classes={classes} />}
+          />
+          <Route
+            path="/assignedcoursedetails/:subject"
+            element={<AssignedCoursedetails classes={classes} />}
           />
 
           <Route
