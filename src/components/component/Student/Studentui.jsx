@@ -165,12 +165,10 @@ export default function Studentui({ classes, assessments }) {
         {/* This is the main Content which right side of aside(side navbar) */}
 
         <main className="flex-1 p-6 overflow-auto bg-[#F3F4F6] text-[#040404]">
-          {/* This is the Header Content which contains student dashboard name and Profile */}
-
           <header className="flex items-center h-16 mb-8 dark:bg-gray-900">
             <nav className="flex items-center justify-between w-full px-2 py-5 bg-white">
               <div className="flex items-center space-x-4">
-                <span className="text-xl font-semibold px-32 py-2 bg-[#040404] text-[#A8ABBA] rounded-md ">
+                <span className="text-xl font-semibold px-4 py-2 bg-[#040404] text-[#A8ABBA] rounded-md ">
                   Student Dashboard
                 </span>
               </div>
@@ -214,7 +212,6 @@ export default function Studentui({ classes, assessments }) {
 
           <section className="mb-8" id="studentdetails" ref={CardRef}>
             <h2 className="mb-2 text-2xl font-bold">Student Details</h2>
-
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
               <Card className="p-2 bg-[#fff] shadow-lg flex justify-between items-center">
                 <div>
@@ -250,9 +247,9 @@ export default function Studentui({ classes, assessments }) {
 
           {/* The below code related to the Classroom cards which contains different classrooms */}
 
-          <section className="mb-8" id="completedcourses">
+          
+            <section className="mb-8" id="completedcourses">
             <h2 className="mb-2 text-2xl font-bold">Class Rooms</h2>
-
             <Swiper
               navigation={true}
               modules={[Navigation]}
@@ -282,7 +279,6 @@ export default function Studentui({ classes, assessments }) {
           {/* The below code contains the cards related to the Assessments */}
           <section className="mb-8" id="upcomingassessments">
             <h2 className="mb-2 text-2xl font-bold">Upcoming Assessments</h2>
-
             <Swiper
               navigation={true}
               modules={[Navigation]}
@@ -315,9 +311,9 @@ export default function Studentui({ classes, assessments }) {
 
           {/*  This below sections related to the Leaderboard and Analyticboard  */}
 
-          <div className="flex gap-7" ref={leaderboardRef}>
+          <div className="flex flex-col md:flex-row gap-7" ref={leaderboardRef}>
             <section className="flex-1 mb-6" id="analyticsboard">
-              <div className="flex gap-9">
+               <div className="flex gap-9">
                 <h2 className="mb-2 text-2xl font-bold">Analytics Board</h2>
 
                 <Dropdown />
