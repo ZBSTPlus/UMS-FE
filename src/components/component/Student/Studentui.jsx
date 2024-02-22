@@ -214,7 +214,9 @@ export default function Studentui({ classes, assessments }) {
             <h2 className="mb-2 text-2xl font-bold">Student Details</h2>
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
               <Card className="p-2 bg-[#fff] shadow-lg flex justify-between items-center">
-                <div>
+                <div className="flex-1">
+                  {" "}
+                  {/* Added flex-1 class to allow the content to take up remaining space */}
                   <CardHeader>
                     <CardTitle>John Doe</CardTitle>
                   </CardHeader>
@@ -235,10 +237,11 @@ export default function Studentui({ classes, assessments }) {
                     </div>
                   </CardContent>
                 </div>
-                <div className="w-[100px] h-[100px] mx-20">
+                <div className="w-[100px] h-[100px]">
                   <img
                     src="https://imgs.search.brave.com/J0ixr3aHGA8aitBrET8u4exc5KcrQl8PWXGrvAdsUY4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mcmVl/c3ZnLm9yZy9pbWcv/YWJzdHJhY3QtdXNl/ci1mbGF0LTQucG5n"
                     alt=""
+                    className="w-full h-full object-cover rounded-full"
                   />
                 </div>
               </Card>
@@ -247,8 +250,7 @@ export default function Studentui({ classes, assessments }) {
 
           {/* The below code related to the Classroom cards which contains different classrooms */}
 
-          
-            <section className="mb-8" id="completedcourses">
+          <section className="mb-8" id="completedcourses">
             <h2 className="mb-2 text-2xl font-bold">Class Rooms</h2>
             <Swiper
               navigation={true}
@@ -313,7 +315,7 @@ export default function Studentui({ classes, assessments }) {
 
           <div className="flex flex-col md:flex-row gap-7" ref={leaderboardRef}>
             <section className="flex-1 mb-6" id="analyticsboard">
-               <div className="flex gap-9">
+              <div className="flex gap-9">
                 <h2 className="mb-2 text-2xl font-bold">Analytics Board</h2>
 
                 <Dropdown />
