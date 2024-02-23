@@ -105,6 +105,7 @@ export default function ProfessorPage({ classes }) {
               />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar> */}
+
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Avatar className="h-9 w-9">
@@ -315,6 +316,7 @@ export default function ProfessorPage({ classes }) {
           </div>
         </main>
       </div>
+
     </div>
   );
 }
