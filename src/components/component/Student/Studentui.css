@@ -24,3 +24,24 @@
   .swiper-button-next,.swiper-button-prev{
     color: #040404;
   }
+
+  aside{
+    width: 60px;
+  }
+
+  @media screen and (max-width: 768px) {
+    aside {
+      width: 100%; /* Take full width on smaller screens */
+      padding: 16px; /* Add padding for better spacing */
+    }
+  
+    .hide-on-small-screens {
+      display: none;
+    }
+  
+    /* Styles for the hamburger icon */
+    .hamburger-icon {
+      display: block;
+      cursor: pointer;
+    }
+  }
