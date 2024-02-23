@@ -1,53 +1,117 @@
+// QuestionForm.js
 import React, { useState } from "react";
-import { useQuestionContext } from "@/components/contexts/QuestionContext";
+import Navbar from "@/components/ui/Navbar";
+
 export default function CreateAssessment() {
-  const { addQuestion } = useQuestionContext();
-  const [question, setQuestion] = useState("");
+  const [questions, setQuestions] = useState([]);
 
-  const handleAddQuestion = (event) => {
-    event.preventDefault();
-    addQuestion({ question });
-    setQuestion("");
+  const addQuestion = () => {
+    setQuestions([
+      ...questions,
+      {
+        id: questions.length + 1,
+        question: "",
+        optionA: "",
+        optionB: "",
+        optionC: "",
+        optionD: "",
+      },
+    ]);
   };
-
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded shadow-md">
-        <h2 className="mb-4 text-3xl font-bold text-center">
-          Create Assessment Question
-        </h2>
-        <form>
-          <div className="mb-4">
-            <label className="block text-gray-700">Question Number</label>
-            <input
-              type="text"
-              id="question1"
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Question</label>
-            <input
-              type="text"
-              name="questionText"
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-            />
-          </div>
+    <div className="min-h-screen bg-[#040404] pt-[2vw]">
+      <Navbar name="Create Assessment" />
+      <div className="flex flex-col items-center justify-center gap-5 ">
+        <div className="w-full max-w-6xl p-6 bg-[#F3F4F6] rounded shadow-md px-10">
+          <h2 className="mb-4 text-3xl font-bold text-center text-[#040404]">
+            Create Assessment Questions
+          </h2>
+          <br />
+          {questions.map((q) => (
+            <div key={q.id}>
+              <div className="mb-4">
+                <label
+                  htmlFor="question"
+                  className="block text-[#262D3E] font-bold text-xl mb-[0.5vw]"
+                >
+                  Question : {q.id}
+                </label>
+                <input
+                  type="text"
+                  id="question"
+                  name={q.question}
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-[#B3CCC2]"
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="option1"
+                  className="block text-[#262D3E] font-semibold"
+                >
+                  Option A
+                </label>
+                <input
+                  type="text"
+                  id="option1"
+                  name={q.optionA}
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-[#B3CCC2]"
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="option2"
+                  className="block text-[#262D3E] font-semibold"
+                >
+                  Option B
+                </label>
+                <input
+                  type="text"
+                  id="option2"
+                  name={q.optionB}
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-[#B3CCC2]"
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="option3"
+                  className="block text-[#262D3E] font-semibold"
+                >
+                  Option C
+                </label>
+                <input
+                  type="text"
+                  id="option3"
+                  name={q.optionC}
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-[#B3CCC2]"
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="option4"
+                  className="block text-[#262D3E] font-semibold"
+                >
+                  Option D
+                </label>
+                <input
+                  type="text"
+                  id="option4"
+                  name={q.optionD}
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-[#B3CCC2]"
+                />
+              </div>
 
-          <div className="mb-4">
-            <label className="block text-gray-700"></label>
-            <input
-              type="text"
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-            />
-          </div>
+              <br />
 
-          <button className="w-full py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none">
-            SUBMIT
+              <hr className="h-[1.5vw]  w-full border-[#B3CCC2]" />
+            </div>
+          ))}
+          <button
+            onClick={addQuestion}
+            className="w-full py-2 bg-[#040404] text-[#B3CCC2] hover:bg-opacity-80  rounded-md  focus:outline-none uppercase"
+          >
+            Add Questions
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );
