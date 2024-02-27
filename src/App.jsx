@@ -11,6 +11,9 @@ import Quiz from "./components/component/Student/Quiz";
 import ProfessorPage from "./components/component/Professor/ProfessorPage";
 import CreateAssessment from "./components/component/Professor/CreateAssessment";
 import AssignedCoursedetails from "./components/component/Professor/AssignedCoursedetails";
+import CreateQuiz from "./components/component/Professor/CreateQuiz";
+import CreatePractice from "./components/component/Professor/CreatePractice";
+
 
 
 function App() {
@@ -121,6 +124,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/ca" element={<CreateAssessment />} />
+          <Route path="/cp" element={<CreatePractice/>}/>
+          <Route path="/cq" element={<CreateQuiz/>}/>
 
           <Route
             path="/professorpage"

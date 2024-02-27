@@ -193,9 +193,12 @@ export default function ProfessorPage({ classes }) {
                 <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900">
                   Student Practice Questions
                 </h2>
-                <Button className="bg-[#040404] text-[#B3CCC2]">
-                  Create Practice Questions
-                </Button>
+                <Link to="/cp">
+                  {" "}
+                  <Button className="bg-[#040404] text-[#B3CCC2]">
+                    Create Practice 
+                  </Button>
+                </Link>
               </div>
 
               <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3">
@@ -255,11 +258,14 @@ export default function ProfessorPage({ classes }) {
             <section className="mb-8" id="studentquizes">
               <div className="flex items-center justify-between gap-5">
                 <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900">
-                  Quizzes
+                  Quizes
                 </h2>
-                <Button className="bg-[#040404] text-[#B3CCC2]">
-                  Create Quiz
-                </Button>
+                <Link to="/cq">
+                  {" "}
+                  <Button className="bg-[#040404] text-[#B3CCC2]">
+                    Create Quiz 
+                  </Button>
+                </Link>
               </div>
               <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
                 <Card className="w-full">

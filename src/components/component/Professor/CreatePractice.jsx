@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Navbar from "@/components/ui/Navbar";
 
-export default function CreateAssessment() {
+export default function CreatePractice() {
   const [questions, setQuestions] = useState([]);
 
   const addQuestion = () => {
@@ -20,11 +20,11 @@ export default function CreateAssessment() {
   };
   return (
     <div className="min-h-screen bg-[#040404] pt-[2vw]">
-      <Navbar name="Assessment" />
+      <Navbar name="Practice" />
       <div className="flex flex-col items-center justify-center gap-5 ">
         <div className="w-full max-w-6xl p-6 bg-[#F3F4F6] rounded shadow-md px-10">
           <h2 className="mb-4 text-3xl font-bold text-center text-[#040404]">
-            Create Assessment Questions
+            Create Practice Questions
           </h2>
           <br />
           {questions.map((q) => (
