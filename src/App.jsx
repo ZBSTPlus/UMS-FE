@@ -14,8 +14,6 @@ import AssignedCoursedetails from "./components/component/Professor/AssignedCour
 import CreateQuiz from "./components/component/Professor/CreateQuiz";
 import CreatePractice from "./components/component/Professor/CreatePractice";
 
-
-
 function App() {
   const classes = [
     {
@@ -124,8 +122,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/ca" element={<CreateAssessment />} />
-          <Route path="/cp" element={<CreatePractice/>}/>
-          <Route path="/cq" element={<CreateQuiz/>}/>
+          <Route path="/cp" element={<CreatePractice />} />
+          <Route path="/cq" element={<CreateQuiz />} />
 
           <Route
             path="/professorpage"

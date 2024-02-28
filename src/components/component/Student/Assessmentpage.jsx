@@ -147,16 +147,15 @@ export default function Assessmentpage({ assessments }) {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#040404] dark:bg-gray-900">
-      <header className="flex items-center h-10 mb-5 dark:bg-gray-900  w-[95%] fixed top-12">
-        <nav className="flex items-center justify-between w-[100%]  px-10 py-0">
-          <div className="flex gap-4">
-            <div className=" h-[100px] w-[100px] flex items-center justify-center relative overflow-hidden">
+      <header className="flex items-center h-16 mb-5 dark:bg-gray-900  w-full fixed top-0 mt-9 ">
+        <nav className="flex items-center justify-between w-[100%]  md:px-10 py-2">
+          <div className="flex flex-shrink-0 items-center space-x-4">
+            <div className=" h-12 w-12 md:h-[100px] md:w-[100px] flex items-center justify-center relative overflow-hidden">
               <img className="object-cover " src={Logo} alt="" />
             </div>
 
-            <div className="flex items-center space-x-4">
-              {/* <LayoutDashboardIcon className="w-6 h-6" /> */}
-              <span className="text-xl font-semibold  py-2  text-[#B3CCC2] rounded-md ">
+            <div className="flex items-center space-x-2 md:space-x-4">
+              <span className="text-xl md:text-xl font-semibold text-[#B3CCC2] rounded-md ">
                 {selectedAssessment.title}
               </span>
             </div>
@@ -169,14 +168,14 @@ export default function Assessmentpage({ assessments }) {
                     alt="User avatar"
                     src="https://imgs.search.brave.com/J0ixr3aHGA8aitBrET8u4exc5KcrQl8PWXGrvAdsUY4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mcmVl/c3ZnLm9yZy9pbWcv/YWJzdHJhY3QtdXNl/ci1mbGF0LTQucG5n"
                   />
-                  {/* <AvatarFallback>JD</AvatarFallback> */}
+                 
                 </Avatar>
               </DropdownMenuTrigger>
             </DropdownMenu>
           </div>
         </nav>
       </header>
-      <div className="w-[75%] p-4 space-y-4 mt-5" ref={assesmentRef}>
+      <div className="w-full md:w-[75%] p-4 space-y-4 mt-20" ref={assesmentRef}>
         {questionIndex < data.length ? (
           <div className="flex flex-col p-6 bg-[#ECF0F1] rounded-lg shadow-md dark:bg-gray-800">
             <h1 className="mb-4 text-2xl font-bold text-center text-[#040404] dark:text-white">

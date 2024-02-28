@@ -20,8 +20,8 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
 import "./ProfessorPage.css";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -146,9 +146,9 @@ export default function ProfessorPage({ classes }) {
                 Assigned Courses
               </h2>
               <Swiper
-                navigation={true}
-                modules={[Navigation]}
-                className="px-3 py-3 mySwiper"
+                pagination={true}
+                modules={[Pagination]}
+                className="mySwiper p-3"
                 slidesPerView={3}
                 spaceBetween={30}
               >
@@ -196,7 +196,7 @@ export default function ProfessorPage({ classes }) {
                 <Link to="/cp">
                   {" "}
                   <Button className="bg-[#040404] text-[#B3CCC2]">
-                    Create Practice 
+                    Create Practice
                   </Button>
                 </Link>
               </div>
@@ -263,7 +263,7 @@ export default function ProfessorPage({ classes }) {
                 <Link to="/cq">
                   {" "}
                   <Button className="bg-[#040404] text-[#B3CCC2]">
-                    Create Quiz 
+                    Create Quiz
                   </Button>
                 </Link>
               </div>
@@ -322,7 +322,6 @@ export default function ProfessorPage({ classes }) {
           </div>
         </main>
       </div>
-
     </div>
   );
 }

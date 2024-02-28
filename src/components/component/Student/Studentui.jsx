@@ -5,7 +5,6 @@
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import {
   DropdownMenuTrigger,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuItem,
   DropdownMenuContent,
@@ -29,6 +28,7 @@ import {
   TableBody,
   Table,
 } from "@/components/ui/table";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
@@ -42,12 +42,14 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Leaderboard from "../../../assets/leaderboard.json";
 
 export default function Studentui({ classes, assessments }) {
   // Below are the references used for GSAP animations
+
+  const [slidesPerView, setSlidesPerView] = useState(3);
 
   const links = useRef(null);
   const logoRef = useRef(null);
@@ -56,46 +58,67 @@ export default function Studentui({ classes, assessments }) {
   const assessmentref = useRef(null);
   const leaderboardRef = useRef(null);
 
-  useGSAP(() => {
-    var tl = gsap.timeline();
-    tl.from(links.current, {
-      x: -500,
-      duration: 0.5,
-      stagger: 0.3,
-    });
+  // useGSAP(() => {
+  //   var tl = gsap.timeline();
+  //   tl.from(links.current, {
+  //     x: -500,
+  //     duration: 0.5,
+  //     stagger: 0.3,
+  //   });
 
-    tl.from(logoRef.current, {
-      y: -200,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.3,
-    });
-    tl.from(CardRef.current, {
-      x: -200,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.3,
-    });
-    tl.from(classroomRef.current, {
-      y: 100,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.3,
-    });
+  //   tl.from(logoRef.current, {
+  //     y: -200,
+  //     opacity: 0,
+  //     duration: 0.5,
+  //     stagger: 0.3,
+  //   });
+  //   tl.from(CardRef.current, {
+  //     x: -200,
+  //     opacity: 0,
+  //     duration: 0.5,
+  //     stagger: 0.3,
+  //   });
+  //   tl.from(classroomRef.current, {
+  //     y: 100,
+  //     opacity: 0,
+  //     duration: 0.5,
+  //     stagger: 0.3,
+  //   });
 
-    tl.from(assessmentref.current, {
-      y: 100,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.3,
-    });
-    tl.from(leaderboardRef.current, {
-      y: 100,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.3,
-    });
-  });
+  //   tl.from(assessmentref.current, {
+  //     y: 100,
+  //     opacity: 0,
+  //     duration: 0.5,
+  //     stagger: 0.3,
+  //   });
+  //   tl.from(leaderboardRef.current, {
+  //     y: 100,
+  //     opacity: 0,
+  //     duration: 0.5,
+  //     stagger: 0.3,
+  //   });
+  // });
+
+  useEffect(() => {
+    const updateSlidesPerView = () => {
+      if (window.innerWidth < 768) {
+        setSlidesPerView(1);
+      } else {
+        setSlidesPerView(3);
+      }
+    };
+
+    // Initial setup
+    updateSlidesPerView();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateSlidesPerView);
+
+    // Cleanup on component unmount
+    return () => {
+      window.removeEventListener("resize", updateSlidesPerView);
+    };
+  }, []);
 
   // Actual Student Page starts Here
 
@@ -104,7 +127,7 @@ export default function Studentui({ classes, assessments }) {
       <div className="flex flex-1 overflow-hidden">
         {/* It is a side navbar written below as aside */}
 
-        <aside className="w-60 bg-[#040404] min-h-screen flex flex-col items-center py-4 space-y-4 px-24 ">
+        {/* <aside className="w-1/4 md:w-1/5 lg:w-1/6 bg-[#040404] min-h-screen flex flex-col items-center py-4 space-y-4 px-4 md:px-8 lg:px-12">
           <div className="flex flex-col items-center">
             <img
               className="object-cover h-40 rounded-full cursor-pointer w-51"
@@ -117,20 +140,18 @@ export default function Studentui({ classes, assessments }) {
               ref={links}
             >
               <a
-                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
+                className="flex items-center gap-2 px-3 py-2 text-base md:text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
                 href="#studentdetails"
               >
-                {/* <FlagIcon className="hover:text-white  text-[#A8ABBA] h-8 w-8 " /> Home */}
                 <HomeIcon className="w-6 h-6 text-[#A8ABBA]" />
                 <span className="text-[#A8ABBA]  hover:text-[#ECF0F1]">
                   Home
                 </span>
               </a>
               <a
-                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
+                className="flex items-center gap-2 px-3 py-2 text-base md:text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
                 href="#completedcourses"
               >
-                {/* <LayoutDashboardIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA]" /> */}
                 <SchoolIcon className="w-6 h-6 text-[#A8ABBA]" />
                 <span className="text-[#A8ABBA]  hover:text-[#ECF0F1]">
                   Classrooms
@@ -138,10 +159,9 @@ export default function Studentui({ classes, assessments }) {
               </a>
 
               <a
-                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
+                className="flex items-center gap-2 px-3 py-2 text-base md:text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
                 href="#upcomingassessments"
               >
-                {/* <SettingsIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA]" /> */}
                 <ActivityIcon className="w-6 h-6 text-[#A8ABBA]" />
                 <span className="text-[#A8ABBA]  hover:text-[#ECF0F1]">
                   Assessments
@@ -149,10 +169,9 @@ export default function Studentui({ classes, assessments }) {
               </a>
 
               <a
-                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
+                className="flex items-center gap-2 px-3 py-2 text-base md:text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
                 href="#analyticsboard"
               >
-                {/* <SignalIcon className=" h-6 w-6 hover:text-white  text-[#A8ABBA] " /> */}
                 <PieChartIcon className="w-6 h-6 text-[#A8ABBA]" />
                 <span className="text-[#A8ABBA] hover:text-[#ECF0F1]">
                   Analytics
@@ -160,17 +179,20 @@ export default function Studentui({ classes, assessments }) {
               </a>
             </div>
           </div>
-        </aside>
+        </aside> */}
 
         {/* This is the main Content which right side of aside(side navbar) */}
 
-        <main className="flex-1 p-6 overflow-auto bg-[#F3F4F6] text-[#040404]">
+        <main className="flex-1   overflow-auto bg-[#F3F4F6] text-[#040404]">
           {/* This is the Header Content which contains student dashboard name and Profile */}
 
-          <header className="flex items-center h-16 mb-8 dark:bg-gray-900">
-            <nav className="flex items-center justify-between w-full px-2 py-5 bg-white">
-              <div className="flex items-center space-x-4">
-                <span className="text-xl font-semibold px-32 py-2 bg-[#040404] text-[#A8ABBA] rounded-md ">
+          <header className="h-16 md:mb-4 dark:bg-gray-900">
+            <nav className="flex items-center justify-between w-full px-4 md:px-8 lg:px-12 py-2 md:py-4 bg-[#040404]">
+              <div className="flex gap-10 items-center">
+                <div className=" h-10 w-10 md:h-[65px] md:w-[65px] flex items-center justify-center relative overflow-hidden">
+                  <img className="object-cover" src={Logo} alt="" />
+                </div>
+                <span className="text-lg md:text-xl lg:text-2xl font-semibold px-2 py-1 text-[#B3CCC2]">
                   Student Dashboard
                 </span>
               </div>
@@ -212,13 +234,19 @@ export default function Studentui({ classes, assessments }) {
 
           {/* It is the student details card */}
 
-          <section className="mb-8" id="studentdetails" ref={CardRef}>
+          <section
+            className="mb-8 px-6 mt-0 md:mt-14"
+            id="studentdetails"
+            ref={CardRef}
+          >
             <h2 className="mb-2 text-2xl font-bold">Student Details</h2>
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
               <Card className="p-2 bg-[#fff] shadow-lg flex justify-between items-center">
                 <div>
                   <CardHeader>
-                    <CardTitle>John Doe</CardTitle>
+                    <CardTitle className="text-lg md:text-xl lg:text-2xl font-bold">
+                      John Doe
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid gap-1">
@@ -250,21 +278,23 @@ export default function Studentui({ classes, assessments }) {
 
           {/* The below code related to the Classroom cards which contains different classrooms */}
 
-          <section className="mb-8" id="completedcourses">
+          <section className="mb-8 px-6 md:mb-12" id="completedcourses">
             <h2 className="mb-2 text-2xl font-bold">Class Rooms</h2>
             <Swiper
               navigation={true}
               modules={[Navigation]}
-              className="px-3 py-3 mySwiper"
-              slidesPerView={3}
+              slidesPerView={slidesPerView}
               spaceBetween={30}
+              className="px-2 py-2 mySwiper"
               ref={classroomRef}
             >
               {classes.map((subject) => (
                 <SwiperSlide className=" rounded-[50px]" key={subject.id}>
                   <Card className="p-4 bg-[#fff] shadow-lg w-[100%] rounded-[30px]">
                     <CardHeader>
-                      <CardTitle>{subject.title}</CardTitle>
+                      <CardTitle className="text-lg md:text-xl lg:text-2xl font-bold">
+                        {subject.title}
+                      </CardTitle>
                       {/* <CardDescription>{card.description}</CardDescription> */}
                     </CardHeader>
                     <Link to={`/detailspage/${subject.title.toLowerCase()}`}>
@@ -279,13 +309,13 @@ export default function Studentui({ classes, assessments }) {
           </section>
 
           {/* The below code contains the cards related to the Assessments */}
-          <section className="mb-8" id="upcomingassessments">
+          <section className="mb-8 px-6" id="upcomingassessments">
             <h2 className="mb-2 text-2xl font-bold">Upcoming Assessments</h2>
             <Swiper
               navigation={true}
               modules={[Navigation]}
               className="px-3 py-3 mySwiper"
-              slidesPerView={3}
+              slidesPerView={slidesPerView}
               spaceBetween={30}
               ref={assessmentref}
             >
@@ -293,7 +323,9 @@ export default function Studentui({ classes, assessments }) {
                 <SwiperSlide key={assessment.id} className="rounded-[50px]">
                   <Card className="p-4 bg-[#fff] shadow-lg w-[100%] rounded-[30px]">
                     <CardHeader>
-                      <CardTitle>{assessment.title}</CardTitle>
+                      <CardTitle className="text-lg md:text-xl lg:text-2xl font-bold">
+                        {assessment.title}
+                      </CardTitle>
                       <CardDescription>
                         {assessment.description}
                       </CardDescription>
@@ -313,10 +345,15 @@ export default function Studentui({ classes, assessments }) {
 
           {/*  This below sections related to the Leaderboard and Analyticboard  */}
 
-          <div className="flex flex-col md:flex-row gap-7" ref={leaderboardRef}>
-            <section className="flex-1 mb-6" id="analyticsboard">
+          <div
+            className="flex flex-col md:flex-row gap-4 md:gap-7 px-6"
+            ref={leaderboardRef}
+          >
+            <section className="flex-1 mb-6 md:mb-0" id="analyticsboard">
               <div className="flex gap-9">
-                <h2 className="mb-2 text-2xl font-bold">Analytics Board</h2>
+                <h2 className="mb-2 text-lg md:text-2xl font-bold">
+                  Analytics Board
+                </h2>
 
                 <Dropdown />
               </div>
