@@ -10,11 +10,9 @@ import Instructionpage from "./components/component/Student/Instructionpage";
 import Quiz from "./components/component/Student/Quiz";
 import ProfessorPage from "./components/component/Professor/ProfessorPage";
 import CreateAssessment from "./components/component/Professor/CreateAssessment";
-import AssignedCoursedetails from "./components/component/Professor/AssignedCoursedetails";
+
 import CreateQuiz from "./components/component/Professor/CreateQuiz";
 import CreatePractice from "./components/component/Professor/CreatePractice";
-
-
 
 function App() {
   const classes = [
@@ -34,6 +32,14 @@ function App() {
         {
           id: "3",
           name: "Division",
+        },
+        {
+          id: "4",
+          name: "Multiplication",
+        },
+        {
+          id: "5",
+          name: "Modulus",
         },
       ],
     },
@@ -124,16 +130,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/ca" element={<CreateAssessment />} />
-          <Route path="/cp" element={<CreatePractice/>}/>
-          <Route path="/cq" element={<CreateQuiz/>}/>
+          <Route path="/cp" element={<CreatePractice />} />
+          <Route path="/cq" element={<CreateQuiz />} />
 
           <Route
             path="/professorpage"
             element={<ProfessorPage classes={classes} />}
-          />
-          <Route
-            path="/assignedcoursedetails/:subject"
-            element={<AssignedCoursedetails classes={classes} />}
           />
 
           <Route

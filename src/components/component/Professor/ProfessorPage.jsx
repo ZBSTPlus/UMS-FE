@@ -20,95 +20,69 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
 import "./ProfessorPage.css";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import Logo from "../../../assets/Logo/logo.png";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+const calculateSlidesPerView = () => {
+  const windowWidth = window.innerWidth;
+
+  if (windowWidth >= 1024) {
+    return 3;
+  } else if (windowWidth >= 768) {
+    return 2;
+  } else {
+    return 1;
+  }
+};
 
 export default function ProfessorPage({ classes }) {
+  const [slidesPerView, setSlidesPerView] = useState(calculateSlidesPerView());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSlidesPerView(calculateSlidesPerView());
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col flex-1 h-screen bg-gray-100 dark:bg-gray-800">
       <div className="flex flex-1 overflow-hidden">
-        <aside className="w-60 bg-[#040404] min-h-screen flex flex-col items-center py-4 space-y-4 px-24 ">
-          <div className="flex flex-col items-center">
-            <img
-              className="object-cover w-48 rounded-full cursor-pointer h-36"
-              src={Logo}
-              alt=""
-            />
-            <div className="flex flex-col justify-start gap-6 mt-8 scroll-smooth">
-              <a
-                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
-                href="#teacherdashboard"
-              >
-                <HomeIcon className="w-6 h-6 text-[#A8ABBA]" />
-                <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
-                  Home
-                </span>
-              </a>
-              <a
-                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
-                href="#assignedcourses"
-              >
-                <BookIcon className="w-6 h-6 text-[#A8ABBA]" />
-                <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
-                  Assigned Courses
-                </span>
-              </a>
-
-              <a
-                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
-                href="#practicequestions"
-              >
-                <FileEditIcon className="w-6 h-6 text-[#A8ABBA]" />
-                <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
-                  Practice Questions
-                </span>
-              </a>
-              <a
-                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
-                href="#studentquizes"
-              >
-                <ListIcon className="w-6 h-6 text-[#A8ABBA]" />
-                <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
-                  Student Quizes
-                </span>
-              </a>
-              <a
-                className="flex items-center gap-2 px-3 py-2 text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
-                href="#studentassessments"
-              >
-                <ActivityIcon className="w-6 h-6 text-[#A8ABBA]" />
-                <span className="ml-4 text-[#A8ABBA]  hover:text-[#ECF0F1]">
-                  Student Assessments
-                </span>
-              </a>
-            </div>
-          </div>
-        </aside>
-        <main className="flex-1 p-6 overflow-auto">
-          <header className="mb-8 bg-white shadow">
+        <main className="flex-1 overflow-auto">
+          <header className="mb-8 bg-[#040404] text-white shadow">
             <div className="flex items-center justify-between px-4 py-5 sm:px-6">
-              <h1
-                className="text-xl font-semibold px-32 py-2 bg-[#040404] text-[#A8ABBA] rounded-md"
-                id="teacherdashboard"
-              >
-                Teacher Dashboard
-              </h1>
-              {/* <Avatar>
-              <AvatarImage
-                alt="Teacher profile"
-                src="/placeholder.svg?height=40&width=40"
-              />
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar> */}
+              <div className="flex gap-2 items-center justify-center">
+                <div className="h-10 w-10 md:h-[60px] md:w-[60px] flex items-center justify-center relative overflow-hidden cursor-pointer">
+                  <img className="object-cover" src={Logo} alt="" />
+                </div>
+                <div className="flex flex-col justify-start px-4">
+                  <h1
+                    className="text-xl md:text-2xl font-semibold py-2 text-[#B3CCC2] rounded-md"
+                    id="teacherdashboard"
+                  >
+                    Teacher Dashboard
+                  </h1>
+                  <div className="flex md:flex-row md:items-center gap-2">
+                    <p className="font-bold text-lg text-[#B3CCC2]">Name:</p>
+                    <p className="text-lg font-semibold">Jane Doe</p>
+                  </div>
+                </div>
+              </div>
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Avatar className="h-9 w-9">
+                  <Avatar className="h-9 w-9 md:h-12 md:w-12">
                     <AvatarImage
                       alt="User avatar"
                       src="https://imgs.search.brave.com/J0ixr3aHGA8aitBrET8u4exc5KcrQl8PWXGrvAdsUY4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mcmVl/c3ZnLm9yZy9pbWcv/YWJzdHJhY3QtdXNl/ci1mbGF0LTQucG5n"
@@ -146,10 +120,10 @@ export default function ProfessorPage({ classes }) {
                 Assigned Courses
               </h2>
               <Swiper
-                navigation={true}
-                modules={[Navigation]}
-                className="px-3 py-3 mySwiper"
-                slidesPerView={3}
+                pagination={true}
+                modules={[Pagination]}
+                className="mySwiper p-3"
+                slidesPerView={slidesPerView}
                 spaceBetween={30}
               >
                 {classes.map((course) => (
@@ -163,13 +137,9 @@ export default function ProfessorPage({ classes }) {
                         <Progress className="w-full" value={course.value} />
                       </CardContent>
                       <CardFooter className="flex justify-between">
-                        <Link
-                          to={`/assignedcoursedetails/${course.title.toLowerCase()}`}
-                        >
-                          <Button className="mt-4 bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]">
-                            View Details
-                          </Button>
-                        </Link>
+                        <Button className="mt-4 bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]">
+                          View Details
+                        </Button>
 
                         <div className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-1.5 rounded-md px-2 text-[15px]">
                           <div className="flex gap-2">
@@ -196,7 +166,7 @@ export default function ProfessorPage({ classes }) {
                 <Link to="/cp">
                   {" "}
                   <Button className="bg-[#040404] text-[#B3CCC2]">
-                    Create Practice 
+                    Create Practice
                   </Button>
                 </Link>
               </div>
@@ -263,7 +233,7 @@ export default function ProfessorPage({ classes }) {
                 <Link to="/cq">
                   {" "}
                   <Button className="bg-[#040404] text-[#B3CCC2]">
-                    Create Quiz 
+                    Create Quiz
                   </Button>
                 </Link>
               </div>
@@ -322,46 +292,7 @@ export default function ProfessorPage({ classes }) {
           </div>
         </main>
       </div>
-
     </div>
-  );
-}
-
-function HomeIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
-  );
-}
-function BookIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-    </svg>
   );
 }
 
@@ -385,50 +316,6 @@ function CheckCircleIcon(props) {
   );
 }
 
-function FileEditIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M4 13.5V4a2 2 0 0 1 2-2h8.5L20 7.5V20a2 2 0 0 1-2 2h-5.5" />
-      <polyline points="14 2 14 8 20 8" />
-      <path d="M10.42 12.61a2.1 2.1 0 1 1 2.97 2.97L7.95 21 4 22l.99-3.95 5.43-5.44Z" />
-    </svg>
-  );
-}
-
-function ListIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="8" x2="21" y1="6" y2="6" />
-      <line x1="8" x2="21" y1="12" y2="12" />
-      <line x1="8" x2="21" y1="18" y2="18" />
-      <line x1="3" x2="3.01" y1="6" y2="6" />
-      <line x1="3" x2="3.01" y1="12" y2="12" />
-      <line x1="3" x2="3.01" y1="18" y2="18" />
-    </svg>
-  );
-}
 function UserIcon(props) {
   return (
     <svg
@@ -506,4 +393,58 @@ function ActivityIcon(props) {
       <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
     </svg>
   );
+}
+
+{
+  /* <header className="mb-8 bg-[#040404] text-white shadow">
+  <div className="flex items-center justify-between px-4 py-5 sm:px-6">
+    <div className="flex gap-2 items-center justify-center">
+      <div className="h-10 w-10 md:h-[60px] md:w-[60px] flex items-center justify-center relative overflow-hidden cursor-pointer">
+        <img className="object-cover" src={Logo} alt="Logo" />
+      </div>
+      <div className="flex flex-col justify-start px-4">
+        <h1 className="text-xl md:text-2xl font-semibold py-2 text-[#B3CCC2] rounded-md" id="teacherdashboard">
+          Teacher Dashboard
+        </h1>
+        <div className="flex flex-col md:flex-row md:items-center gap-2">
+          <p className="font-bold text-lg text-[#B3CCC2]">Name:</p>
+          <p className="text-lg font-semibold">Jane Doe</p>
+        </div>
+      </div>
+    </div>
+
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Avatar className="h-9 w-9 md:h-12 md:w-12">
+          <AvatarImage
+            alt="User avatar"
+            src="https://imgs.search.brave.com/J0ixr3aHGA8aitBrET8u4exc5KcrQl8PWXGrvAdsUY4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mcmVl/c3ZnLm9yZy9pbWcv/YWJzdHJhY3QtdXNl/ci1mbGF0LTQucG5n"
+          />
+        </Avatar>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <a className="flex items-center gap-2" href="#">
+            <UserIcon className="w-4 h-4" />
+            John Doe
+          </a>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <a className="flex items-center gap-2" href="#">
+            <MailIcon className="w-4 h-4" />
+            ums@gmail.com
+          </a>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <a className="flex items-center gap-2" href="#">
+            <LogOutIcon className="w-4 h-4" />
+            Logout
+          </a>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  </div>
+</header> */
 }
