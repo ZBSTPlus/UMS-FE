@@ -1,11 +1,15 @@
 // QuestionForm.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/components/ui/Navbar";
 
 export default function CreateQuiz() {
   const [questions, setQuestions] = useState([]);
+  const [count, setCount] = useState(0);
+  const [enable, setEnable] = useState(false);
 
   const addQuestion = () => {
+    setCount((prev) => prev + 1);
+    console.log(count);
     setQuestions([
       ...questions,
       {
@@ -18,6 +22,13 @@ export default function CreateQuiz() {
       },
     ]);
   };
+
+  useEffect(() => {
+    if (count == 10) {
+      setEnable(true)
+    }
+  },[count]);
+
   return (
     <div className="min-h-screen bg-[#040404] pt-[2vw]">
       <Navbar name="Quiz" />
@@ -107,12 +118,17 @@ export default function CreateQuiz() {
           ))}
           <button
             onClick={addQuestion}
-            className="w-full py-2 bg-[#040404] text-[#B3CCC2] hover:bg-opacity-80  rounded-md  focus:outline-none uppercase"
+            className="m-2 w-full py-2 bg-[#040404] text-[#B3CCC2] hover:bg-opacity-80  rounded-md  focus:outline-none uppercase"
           >
             Add Questions
           </button>
-        </div>
 
+          {enable && <button
+            className="m-2 w-full py-2 bg-[#040404] text-[#B3CCC2] hover:bg-opacity-80  rounded-md  focus:outline-none uppercase"
+          >
+            Submit
+          </button>}
+        </div>
       </div>
     </div>
   );
