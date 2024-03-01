@@ -45,6 +45,7 @@ gsap.registerPlugin(ScrollTrigger);
 import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Leaderboard from "../../../assets/leaderboard.json";
+import Navbar from "@/components/ui/Navbar";
 
 const calculateSlidesPerView = () => {
   const windowWidth = window.innerWidth;
@@ -120,52 +121,7 @@ export default function Studentui({ classes, assessments }) {
         <main className="flex-1   overflow-auto bg-[#F3F4F6] text-[#040404]">
           {/* This is the Header Content which contains student dashboard name and Profile */}
 
-          <header className="h-16 md:mb-4 dark:bg-gray-900">
-            <nav className="flex items-center justify-between w-full px-4 md:px-8 lg:px-12 py-2 md:py-4 bg-[#040404]">
-              <div className="flex gap-4 items-center justify-center">
-                <div className="h-10 w-10 md:h-[60px] md:w-[60px] flex items-center justify-center relative overflow-hidden cursor-pointer">
-                  <img className="object-cover" src={Logo} alt="" />
-                </div>
-
-                <h1 className="text-lg md:text-xl lg:text-2xl font-semibold px-2 py-1 text-[#B3CCC2] mt-3">
-                  Student Dashboard
-                </h1>
-              </div>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Avatar className="h-9 w-9">
-                    <AvatarImage
-                      alt="User avatar"
-                      src="https://imgs.search.brave.com/J0ixr3aHGA8aitBrET8u4exc5KcrQl8PWXGrvAdsUY4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mcmVl/c3ZnLm9yZy9pbWcv/YWJzdHJhY3QtdXNl/ci1mbGF0LTQucG5n"
-                    />
-                  </Avatar>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <a className="flex items-center gap-2" href="#">
-                      <UserIcon className="w-4 h-4" />
-                      John Doe
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <a className="flex items-center gap-2" href="#">
-                      <MailIcon className="w-4 h-4" />
-                      ums@gmail.com
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <a className="flex items-center gap-2" href="#">
-                      <LogOutIcon className="w-4 h-4" />
-                      Logout
-                    </a>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </nav>
-          </header>
+          <Navbar name="Student Dashboard" />
 
           {/* It is the student details card */}
 
