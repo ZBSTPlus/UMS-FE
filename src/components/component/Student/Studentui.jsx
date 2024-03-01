@@ -46,79 +46,67 @@ import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Leaderboard from "../../../assets/leaderboard.json";
 
+const calculateSlidesPerView = () => {
+  const windowWidth = window.innerWidth;
+
+  if (windowWidth >= 1024) {
+    return 3;
+  } else if (windowWidth >= 768) {
+    return 2;
+  } else {
+    return 1;
+  }
+};
+
 export default function Studentui({ classes, assessments }) {
+  const [slidesPerView, setSlidesPerView] = useState(calculateSlidesPerView());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSlidesPerView(calculateSlidesPerView());
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   // Below are the references used for GSAP animations
-
-  const [slidesPerView, setSlidesPerView] = useState(3);
-
-  const links = useRef(null);
-  const logoRef = useRef(null);
   const CardRef = useRef(null);
   const classroomRef = useRef(null);
   const assessmentref = useRef(null);
   const leaderboardRef = useRef(null);
 
-  // useGSAP(() => {
-  //   var tl = gsap.timeline();
-  //   tl.from(links.current, {
-  //     x: -500,
-  //     duration: 0.5,
-  //     stagger: 0.3,
-  //   });
+  useGSAP(() => {
+    var tl = gsap.timeline();
+    tl.from(CardRef.current, {
+      x: -200,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.3,
+    });
+    tl.from(classroomRef.current, {
+      y: 100,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.3,
+    });
 
-  //   tl.from(logoRef.current, {
-  //     y: -200,
-  //     opacity: 0,
-  //     duration: 0.5,
-  //     stagger: 0.3,
-  //   });
-  //   tl.from(CardRef.current, {
-  //     x: -200,
-  //     opacity: 0,
-  //     duration: 0.5,
-  //     stagger: 0.3,
-  //   });
-  //   tl.from(classroomRef.current, {
-  //     y: 100,
-  //     opacity: 0,
-  //     duration: 0.5,
-  //     stagger: 0.3,
-  //   });
-
-  //   tl.from(assessmentref.current, {
-  //     y: 100,
-  //     opacity: 0,
-  //     duration: 0.5,
-  //     stagger: 0.3,
-  //   });
-  //   tl.from(leaderboardRef.current, {
-  //     y: 100,
-  //     opacity: 0,
-  //     duration: 0.5,
-  //     stagger: 0.3,
-  //   });
-  // });
-
-  useEffect(() => {
-    const updateSlidesPerView = () => {
-      if (window.innerWidth < 768) {
-        setSlidesPerView(1);
-      } else {
-        setSlidesPerView(3);
-      }
-    };
-
-    // Initial setup
-    updateSlidesPerView();
-
-    // Event listener for window resize
-    window.addEventListener("resize", updateSlidesPerView);
-
-    // Cleanup on component unmount
-    return () => {
-      window.removeEventListener("resize", updateSlidesPerView);
-    };
-  }, []);
+    tl.from(assessmentref.current, {
+      y: 100,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.3,
+    });
+    tl.from(leaderboardRef.current, {
+      y: 100,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.3,
+    });
+  });
 
   // Actual Student Page starts Here
 
@@ -127,60 +115,6 @@ export default function Studentui({ classes, assessments }) {
       <div className="flex flex-1 overflow-hidden">
         {/* It is a side navbar written below as aside */}
 
-        {/* <aside className="w-1/4 md:w-1/5 lg:w-1/6 bg-[#040404] min-h-screen flex flex-col items-center py-4 space-y-4 px-4 md:px-8 lg:px-12">
-          <div className="flex flex-col items-center">
-            <img
-              className="object-cover h-40 rounded-full cursor-pointer w-51"
-              src={Logo}
-              alt=""
-              ref={logoRef}
-            />
-            <div
-              className="flex flex-col justify-start gap-6 mt-8 scroll-smooth"
-              ref={links}
-            >
-              <a
-                className="flex items-center gap-2 px-3 py-2 text-base md:text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
-                href="#studentdetails"
-              >
-                <HomeIcon className="w-6 h-6 text-[#A8ABBA]" />
-                <span className="text-[#A8ABBA]  hover:text-[#ECF0F1]">
-                  Home
-                </span>
-              </a>
-              <a
-                className="flex items-center gap-2 px-3 py-2 text-base md:text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
-                href="#completedcourses"
-              >
-                <SchoolIcon className="w-6 h-6 text-[#A8ABBA]" />
-                <span className="text-[#A8ABBA]  hover:text-[#ECF0F1]">
-                  Classrooms
-                </span>
-              </a>
-
-              <a
-                className="flex items-center gap-2 px-3 py-2 text-base md:text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
-                href="#upcomingassessments"
-              >
-                <ActivityIcon className="w-6 h-6 text-[#A8ABBA]" />
-                <span className="text-[#A8ABBA]  hover:text-[#ECF0F1]">
-                  Assessments
-                </span>
-              </a>
-
-              <a
-                className="flex items-center gap-2 px-3 py-2 text-base md:text-lg font-semibold text-white rounded dark:hover:bg-gray-700"
-                href="#analyticsboard"
-              >
-                <PieChartIcon className="w-6 h-6 text-[#A8ABBA]" />
-                <span className="text-[#A8ABBA] hover:text-[#ECF0F1]">
-                  Analytics
-                </span>
-              </a>
-            </div>
-          </div>
-        </aside> */}
-
         {/* This is the main Content which right side of aside(side navbar) */}
 
         <main className="flex-1   overflow-auto bg-[#F3F4F6] text-[#040404]">
@@ -188,13 +122,14 @@ export default function Studentui({ classes, assessments }) {
 
           <header className="h-16 md:mb-4 dark:bg-gray-900">
             <nav className="flex items-center justify-between w-full px-4 md:px-8 lg:px-12 py-2 md:py-4 bg-[#040404]">
-              <div className="flex gap-10 items-center">
-                <div className=" h-10 w-10 md:h-[65px] md:w-[65px] flex items-center justify-center relative overflow-hidden">
+              <div className="flex gap-4 items-center justify-center">
+                <div className="h-10 w-10 md:h-[60px] md:w-[60px] flex items-center justify-center relative overflow-hidden cursor-pointer">
                   <img className="object-cover" src={Logo} alt="" />
                 </div>
-                <span className="text-lg md:text-xl lg:text-2xl font-semibold px-2 py-1 text-[#B3CCC2]">
+
+                <h1 className="text-lg md:text-xl lg:text-2xl font-semibold px-2 py-1 text-[#B3CCC2] mt-3">
                   Student Dashboard
-                </span>
+                </h1>
               </div>
 
               <DropdownMenu>
@@ -407,88 +342,6 @@ export default function Studentui({ classes, assessments }) {
   );
 }
 //   This below are the functions for icons used in the above code
-function ActivityIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-    </svg>
-  );
-}
-
-function HomeIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
-  );
-}
-
-function PieChartIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
-      <path d="M22 12A10 10 0 0 0 12 2v10z" />
-    </svg>
-  );
-}
-
-function SchoolIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m4 6 8-4 8 4" />
-      <path d="m18 10 4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2" />
-      <path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4" />
-      <path d="M18 5v17" />
-      <path d="M6 5v17" />
-      <circle cx="12" cy="9" r="2" />
-    </svg>
-  );
-}
 
 function LineChart(props) {
   return (

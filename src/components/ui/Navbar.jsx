@@ -16,8 +16,8 @@ export default function Navbar(props) {
     <div>
       <header className="flex items-center h-16 mb-5 dark:bg-gray-900  sticky top-5 z-[1] w-full">
         <nav className="flex items-center justify-between w-[100%] p-10">
-          <div className="flex gap-4">
-            <div className=" h-[100px] w-[100px] flex items-center justify-center relative overflow-hidden">
+          <div className="flex gap-4 items-center justify-center">
+            <div className="h-10 w-10 md:h-[60px] md:w-[60px] flex items-center justify-center relative overflow-hidden cursor-pointer">
               <Link to="/studentui">
                 <img
                   className="object-cover cursor-pointer "
@@ -28,9 +28,9 @@ export default function Navbar(props) {
             </div>
 
             <div className="flex items-center space-x-4">
-              <span className="text-xl font-semibold  py-2 bg-[#040404] text-[#B3CCC2] rounded-md uppercase">
+              <h1 className="text-xl font-semibold  py-2 bg-[#040404] text-[#B3CCC2] rounded-md uppercase mt-3">
                 {props.name}
-              </span>
+              </h1>
             </div>
           </div>
           <div>
