@@ -33,7 +33,7 @@ export default function CreateQuiz() {
   };
 
   useEffect(() => {
-    if (count == 2) {
+    if (count == 10) {
       setsubmitenable(true)
     }
   },[count]);
