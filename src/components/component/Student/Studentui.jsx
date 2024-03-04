@@ -29,8 +29,6 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import "./Studentui.css";
 import Dropdown from "./Dropdown";
-
-import Logo from "../../../assets/Logo/logo.png";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

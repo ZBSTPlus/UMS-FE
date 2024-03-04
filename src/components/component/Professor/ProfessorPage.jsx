@@ -131,7 +131,6 @@ export default function ProfessorPage({ classes }) {
                     <Card className="w-full shadow-lg  rounded-[30px]">
                       <CardHeader>
                         <CardTitle>{course.title}</CardTitle>
-                        {/* <CardDescription>{card.description}</CardDescription> */}
                       </CardHeader>
                       <CardContent>
                         <Progress className="w-full" value={course.value} />

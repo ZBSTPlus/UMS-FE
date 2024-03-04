@@ -13,8 +13,8 @@ import CreateAssessment from "./components/component/Professor/CreateAssessment"
 
 import CreateQuiz from "./components/component/Professor/CreateQuiz";
 import CreatePractice from "./components/component/Professor/CreatePractice";
-import Quizdynamic from "./components/component/Student/Quizdynamic";
-import Assessmentdynamic from "./components/component/Student/Assessmentdynamic";
+import QuizPage from "./components/component/Student/QuizPage";
+import AssessmentPage from "./components/component/Student/AssessmentPage";
 
 function App() {
   const classes = [
@@ -110,11 +110,11 @@ function App() {
           />
           <Route
             path="/quizpage/:subject/:unit"
-            element={<Quizdynamic classes={classes} />}
+            element={<QuizPage classes={classes} />}
           />
           <Route
             path="/assessmentpage/:assessment"
-            element={<Assessmentdynamic classes={classes} />}
+            element={<AssessmentPage classes={classes} />}
           />
           <Route
             path="/instructionpage/:assessment"

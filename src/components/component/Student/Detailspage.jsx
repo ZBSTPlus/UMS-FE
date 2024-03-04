@@ -18,8 +18,6 @@ import { AvatarImage, Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Logo from "../../../assets/Logo/logo.png";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { useParams } from "react-router-dom";
 
@@ -31,30 +29,11 @@ export default function Detailspage({ classes }) {
     return <div>Class not found!</div>;
   }
 
-  const imgRef = useRef(null);
-  const subRef = useRef(null);
-  const profRef = useRef(null);
-
-  useGSAP(() => {
-    var tl = gsap.timeline();
-
-    tl.from([imgRef.current, profRef.current], {
-      y: -100,
-      duration: 0.5,
-      stagger: 0.3,
-    });
-    tl.from(subRef.current, {
-      y: 100,
-      opacity: 0,
-      duration: 0.5,
-    });
-  });
-
   return (
     <div className="flex items-center bg-[#040404] min-h-screen relative flex-col justify-start gap-4">
       <header className="flex items-center flex-col dark:bg-gray-900 z-[1] w-full sm:px-8">
         <nav className="flex items-center justify-between w-[100%]">
-          <div className="flex gap-2" ref={imgRef}>
+          <div className="flex gap-2">
             <div className=" h-[100px] w-[100px] flex items-center justify-center relative overflow-hidden">
               <Link to="/studentui">
                 <img
@@ -71,7 +50,7 @@ export default function Detailspage({ classes }) {
               </span>
             </div>
           </div>
-          <div className="sm:mt-0 px-2" ref={profRef}>
+          <div className="sm:mt-0 px-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar className="h-9 w-9">
@@ -113,7 +92,6 @@ export default function Detailspage({ classes }) {
       <div
         key="1"
         className="flex flex-col gap-6 p-4 lg:p-10 w-[90%] md:w-[95%] lg:w-[80%] xl:w-[70%] 2xl:w-[60%] border rounded-[30px] bg-[#fff] mt-10"
-        ref={subRef}
       >
         <div className="flex flex-col md:flex-row items-center justify-between mb-4">
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center md:text-left mb-2 md:mb-0">
