@@ -19,8 +19,8 @@ const PracticeDynamic = (props) => {
 
   const generateSingleQuestion = () => {
     // Generate a single addition question
-    const a = getNumber();
-    const b = getNumber();
+    const a = getRandomNumber(1, 100);
+    const b = getRandomNumber(1, 100);
 
     let result;
 
@@ -50,20 +50,33 @@ const PracticeDynamic = (props) => {
     return { question: questionString, options, correctOption };
   };
 
-  const getNumber = (max = 100) => {
-    return Math.floor(Math.random() * max);
+  const getRandomNumber = (min, max) => {
+    if (min > max) {
+      [min, max] = [max, min];
+    }
+
+    const range = max - min + 1;
+
+    const byteArray = new Uint8Array(1);
+    window.crypto.getRandomValues(byteArray);
+
+    const randomValue = byteArray[0] % range;
+
+    const randomNumber = min + randomValue;
+
+    return randomNumber;
   };
 
   const generateOptions = (correctResult) => {
     const options = [];
-    const correctIndex = Math.floor(Math.random() * 4); // Randomly select an index for the correct option
+    const correctIndex = getRandomNumber(0, 4); // Randomly select an index for the correct option
     for (let i = 0; i < 4; i++) {
       if (i === correctIndex) {
         options.push(correctResult.toString());
       } else {
         let randomOption;
         do {
-          randomOption = getNumber(200); // Generate random options within a range
+          randomOption = getRandomNumber(0, 200); // Generate random options within a range
         } while (
           options.includes(randomOption.toString()) ||
           randomOption === correctResult

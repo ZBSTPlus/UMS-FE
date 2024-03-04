@@ -16,7 +16,7 @@ const DynamicPage = ({ classes, isAssessment }) => {
   const [selectedOption, setSelectedOption] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [scores, setScores] = useState([]);
-  const [score, setScore] = useState(0);
+
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
   const numberOfQuestions = 20;
@@ -122,7 +122,7 @@ const DynamicPage = ({ classes, isAssessment }) => {
 
   const generateOptions = (correctResult) => {
     const options = [];
-    const correctIndex = Math.floor(Math.random() * 4);
+    const correctIndex = getRandomNumber(0, 4);
 
     for (let i = 0; i < 4; i++) {
       const randomOption =
