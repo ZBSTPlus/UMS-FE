@@ -37,6 +37,7 @@ import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Leaderboard from "../../../assets/leaderboard.json";
 import Navbar from "@/components/ui/Navbar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const calculateSlidesPerView = () => {
   const windowWidth = window.innerWidth;
@@ -71,6 +72,12 @@ export default function Studentui({ classes }) {
   const assessmentref = useRef(null);
   const leaderboardRef = useRef(null);
 
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+
   useGSAP(() => {
     var tl = gsap.timeline();
     tl.from(CardRef.current, {
@@ -101,7 +108,7 @@ export default function Studentui({ classes }) {
   });
 
   // Actual Student Page starts Here
-
+  console.log(user,isAuthenticated,"Auth0")
   return (
     <div className="flex flex-col flex-1 h-screen bg-gray-100 dark:bg-gray-800">
       <div className="flex flex-1 overflow-hidden">
@@ -127,7 +134,7 @@ export default function Studentui({ classes }) {
                 <div>
                   <CardHeader>
                     <CardTitle className="text-lg md:text-xl lg:text-2xl font-bold">
-                      John Doe
+                    {isAuthenticated ? user.name : "John Doe"}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -142,7 +149,7 @@ export default function Studentui({ classes }) {
                         <span className="text-[#111129] font-bold">
                           Mail ID
                         </span>
-                        : ums@gmail.com
+                        : {isAuthenticated ? user.email : "ums@gmail.com"}
                       </div>
                     </div>
                   </CardContent>
