@@ -17,6 +17,7 @@ import QuizPage from "./components/component/Student/QuizPage";
 import AssessmentPage from "./components/component/Student/AssessmentPage";
 
 import BA from "./components/component/Auth/BaseAuth"
+import { AuthenticationGuard } from "./components/component/Auth/AuthenticationGuard";
 
 function App() {
   const classes = [
@@ -97,7 +98,7 @@ function App() {
 
           <Route
             path="/professorpage"
-            element={<ProfessorPage classes={classes} />}
+            element={<AuthenticationGuard component={ProfessorPage} classes={classes} allowed={"Sir"} />}
           />
 
           <Route
@@ -105,7 +106,10 @@ function App() {
             element={<Detailspage classes={classes} />}
           />
           <Route path="/" element={<BA />} />
-          <Route path="/studentui" element={<Studentui classes={classes} />} />
+          <Route
+            path="/studentui"
+            element={<AuthenticationGuard component={Studentui} classes={classes} />}
+          />
           <Route
             path="/practicepage/:subject/:unit"
             element={<Question classes={classes} />}

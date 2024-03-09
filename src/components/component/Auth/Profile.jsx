@@ -1,15 +1,22 @@
 import React, { useCallback, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-  const { user, isAuthenticated, isLoading, getIdTokenClaims } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  let history = useNavigate()
 
- let logC = useCallback(async () => {
-      console.log(user,"user")
-      console.log(isLoading)
-      console.log(await getIdTokenClaims(),"claims")
-  },[isLoading])
-  useEffect(()=> {logC()},[logC])
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      const nickname = user.name;
+
+      if (nickname.endsWith('Sir')) {
+        history('/professorpage');
+      } else if (nickname.endsWith('AD')) {
+        history('/adminui');
+      }
+    }
+  }, [isAuthenticated, user, history]);
   
   if (isLoading) {
     return <div>Loading ...</div>;
