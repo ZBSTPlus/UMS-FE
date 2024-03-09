@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Profile = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, getIdTokenClaims } = useAuth0();
 
+ let logC = useCallback(async () => {
+      console.log(user,"user")
+      console.log(isLoading)
+      console.log(await getIdTokenClaims(),"claims")
+  },[isLoading])
+  useEffect(()=> {logC()},[logC])
+  
   if (isLoading) {
     return <div>Loading ...</div>;
   }
-  
-  console.log(user,isAuthenticated)
+
   return (
     isAuthenticated && (
       <div>
