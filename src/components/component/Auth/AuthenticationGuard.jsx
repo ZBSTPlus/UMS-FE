@@ -1,18 +1,23 @@
 import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import React from "react";
+import Loader from "@/components/ui/Loader/Loader.jsx";
 
 export const AuthenticationGuard = ({ component, classes, allowed }) => {
   const Component = withAuthenticationRequired(component, {
     onRedirecting: () => (
-      <div className="page-layout">
-        <p>Loading.....</p>
+      <div className="bg-[#040404] h-screen flex items-center justify-center">
+        <Loader />
       </div>
     ),
   });
 
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isLoading } = useAuth0();
   if (isLoading) {
-    return <p>Loading.....</p>;
+    return (
+      <div className="bg-[#040404] h-screen flex items-center justify-center">
+        <Loader />
+      </div>
+    );
   }
   console.log(user?.name);
   if (!allowed || user?.name.endsWith(allowed)) {

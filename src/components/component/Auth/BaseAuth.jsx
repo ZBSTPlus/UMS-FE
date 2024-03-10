@@ -1,22 +1,38 @@
-import LoginButton from "./LoginComponent";
-import LogoutButton from "./LogOutComponent";
-// import Profile from './Profile';
-import Logo from "../../../assets/Logo/logo.png";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import Loader from "@/components/ui/Loader/Loader.jsx";
 
-function BA() {
+function BaseAuth() {
+  const { loginWithRedirect } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  let history = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      const name = user.name;
+
+      if (name.endsWith("Sir")) {
+        history("/professorpage");
+      } else if (name.endsWith("AD")) {
+        history("/adminui");
+      } else if (name.endsWith("_")) {
+        history("/studentui");
+      }
+    }
+  }, [isAuthenticated, user, history]);
+
+  if (isLoading) {
+    return (
+      <div className="bg-[#040404] h-screen flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="h-screen bg-[#040404] text-white flex items-center justify-center">
-        {/* <div className="w-[40%] h-screen bg-slate-400 text-black">
-          <img src={Logo} alt="" />
-        </div>
-        <div className="w-[60%] h-screen bg-slate-800 text-white">
-          <div className="flex gap-4">
-            <LoginButton />
-
-            <LogoutButton />
-          </div>
-        </div> */}
         <div className=" text-center px-10 py-10">
           <h1 className="text-[5vw] font-bold leading-none">
             Welcome to the <span className="text-[#FFD31A]">UMS</span>
@@ -32,14 +48,17 @@ function BA() {
           </div>
 
           <div className="flex items-center justify-center mt-10">
-            <LoginButton />
+            <button
+              className="bg-[#ffd11aab] hover:bg-[#FFD31A] text-black outline-none px-6 py-3 rounded-md font-semibold text-xl"
+              onClick={() => loginWithRedirect()}
+            >
+              Log in
+            </button>
           </div>
         </div>
       </div>
-
-      {/* <Profile /> */}
     </>
   );
 }
 
-export default BA;
+export default BaseAuth;

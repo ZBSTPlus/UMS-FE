@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo/logo.png";
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
@@ -52,6 +53,8 @@ function UserNameBadge({ name }) {
 }
 
 function UserDropdownMenu({ avatarSrc }) {
+  const { logout } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -64,21 +67,26 @@ function UserDropdownMenu({ avatarSrc }) {
         <DropdownMenuItem>
           <a className="flex items-center gap-2" href="#">
             <UserIcon className="w-4 h-4" />
-            John Doe
+            {isAuthenticated ? user.name : "John Doe"}
           </a>
         </DropdownMenuItem>
         <DropdownMenuItem>
           <a className="flex items-center gap-2" href="#">
             <MailIcon className="w-4 h-4" />
-            ums@gmail.com
+            {isAuthenticated ? user.email : "ums@gmail.com"}
           </a>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <a className="flex items-center gap-2" href="#">
+          <button
+            className="flex items-center gap-2"
+            onClick={() =>
+              logout({ logoutParams: { returnTo: window.location.origin } })
+            }
+          >
             <LogOutIcon className="w-4 h-4" />
-            Logout
-          </a>
+            Log Out
+          </button>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

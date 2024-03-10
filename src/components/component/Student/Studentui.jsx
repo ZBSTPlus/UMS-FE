@@ -66,18 +66,6 @@ export default function Studentui({ classes }) {
     };
   }, []);
 
-  // Below are the references used for GSAP animations
-  const CardRef = useRef(null);
-  const classroomRef = useRef(null);
-  const assessmentref = useRef(null);
-  const leaderboardRef = useRef(null);
-
-  const { user, isAuthenticated, isLoading } = useAuth0();
-
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
-
   useGSAP(() => {
     var tl = gsap.timeline();
     tl.from(CardRef.current, {
@@ -107,8 +95,20 @@ export default function Studentui({ classes }) {
     });
   });
 
+  // Below are the references used for GSAP animations
+  const CardRef = useRef(null);
+  const classroomRef = useRef(null);
+  const assessmentref = useRef(null);
+  const leaderboardRef = useRef(null);
+
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+
   // Actual Student Page starts Here
-  console.log(user,isAuthenticated,"Auth0")
+  console.log(user, isAuthenticated, "Auth0");
   return (
     <div className="flex flex-col flex-1 h-screen bg-gray-100 dark:bg-gray-800">
       <div className="flex flex-1 overflow-hidden">
@@ -134,7 +134,7 @@ export default function Studentui({ classes }) {
                 <div>
                   <CardHeader>
                     <CardTitle className="text-lg md:text-xl lg:text-2xl font-bold">
-                    {isAuthenticated ? user.name : "John Doe"}
+                      {isAuthenticated ? user.name : "John Doe"}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
