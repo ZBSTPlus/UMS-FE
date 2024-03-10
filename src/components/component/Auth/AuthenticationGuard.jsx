@@ -10,15 +10,14 @@ export const AuthenticationGuard = ({ component, classes, allowed }) => {
     ),
   });
 
-  const {user, isAuthenticated, isLoading } = useAuth0();
-  if(isLoading){
-    return <p>Loading.....</p>
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  if (isLoading) {
+    return <p>Loading.....</p>;
   }
-
-  if(!allowed || user?.nickname.endsWith(allowed)){
+  console.log(user?.name);
+  if (!allowed || user?.name.endsWith(allowed)) {
     return <Component classes={classes} />;
-  }else{
-    return <>UnAuthorized Access</>
+  } else {
+    return <>UnAuthorized Access</>;
   }
-
 };

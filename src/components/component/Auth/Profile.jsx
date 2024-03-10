@@ -8,12 +8,15 @@ const Profile = () => {
 
   useEffect(() => {
     if (isAuthenticated && user) {
-      const nickname = user.name;
+      const name = user.name;
+      
 
-      if (nickname.endsWith('Sir')) {
+      if (name.endsWith('Sir')) {
         history('/professorpage');
-      } else if (nickname.endsWith('AD')) {
+      } else if (name.endsWith('AD')) {
         history('/adminui');
+      }else if(name.endsWith('_')){
+        history('/studentui')
       }
     }
   }, [isAuthenticated, user, history]);

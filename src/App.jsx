@@ -108,7 +108,7 @@ function App() {
           <Route path="/" element={<BA />} />
           <Route
             path="/studentui"
-            element={<AuthenticationGuard component={Studentui} classes={classes} />}
+            element={<AuthenticationGuard component={Studentui} classes={classes} allowed={`_`} />}
           />
           <Route
             path="/practicepage/:subject/:unit"
