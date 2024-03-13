@@ -186,13 +186,13 @@ const DynamicPage = ({ classes, isAssessment }) => {
       <div className="bg-[#040404] min-h-screen text-white">
         <Navbar name={isAssessment ? "Assessment" : "Quiz"} />
         {!submitted && (
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-center">
+          <div className="mx-auto max-w-7xl">
+            <h2 className="mb-6 text-3xl font-bold text-center">
               {isAssessment ? "Assessment Questions" : "Quiz Questions"}
             </h2>
             {currentQuestion && (
-              <div className="bg-white text-black p-6 rounded-lg shadow-lg mb-8">
-                <p className="mb-4 font-bold text-xl">
+              <div className="p-6 mb-8 text-black bg-white rounded-lg shadow-lg">
+                <p className="mb-4 text-xl font-bold">
                   Question {currentQuestion.questionNumber}
                   <br />{" "}
                 </p>{" "}
@@ -214,7 +214,7 @@ const DynamicPage = ({ classes, isAssessment }) => {
                           checked={option === selectedOption}
                           onChange={() => handleOptionSelect(option)}
                           disabled={submitted}
-                          className="form-radio text-green-500"
+                          className="text-green-500 form-radio"
                         />
                         <span className="ml-2">{option}</span>
                       </label>
@@ -257,7 +257,7 @@ const DynamicPage = ({ classes, isAssessment }) => {
 
         {submitted && (
           <div className="max-w-7xl mx-auto bg-zinc-100 text-[#040404] flex flex-col justify-center items-center p-10 rounded-md">
-            <h3 className="font-bold text-2xl text-green-500">
+            <h3 className="text-2xl font-bold text-green-500">
               {isAssessment ? "Assessment completed!" : "Quiz completed!"}
             </h3>
 
@@ -266,7 +266,7 @@ const DynamicPage = ({ classes, isAssessment }) => {
                 <p className="mt-3 text-xl font-semibold">
                   Thank you for completing the assessment.
                 </p>
-                <div className="mt-10 flex justify-center items-center">
+                <div className="flex items-center justify-center mt-10">
                   <Link to="/studentui">
                     <button className="px-6 py-3 text-lg  font-semibold rounded-md  bg-[#96b1a7] text-[#040404] hover:bg-[#040404] hover:text-[#ECF0F1] focus:outline-none">
                       Back To Home
@@ -276,7 +276,7 @@ const DynamicPage = ({ classes, isAssessment }) => {
               </div>
             ) : (
               <div>
-                <p className="mt-3 font-semibold text-xl">Your Score: </p>
+                <p className="mt-3 text-xl font-semibold">Your Score: </p>
                 <span
                   className={`font-medium ${
                     totalScore >= 0 ? `text-green-500` : `text-red-500`
@@ -284,14 +284,14 @@ const DynamicPage = ({ classes, isAssessment }) => {
                 >
                   {totalScore}
                 </span>
-                <p className="mt-3 font-semibold text-xl">Correct Answers: </p>
-                <span className="font-medium text-green-500 mt-3">
+                <p className="mt-3 text-xl font-semibold">Correct Answers: </p>
+                <span className="mt-3 font-medium text-green-500">
                   {correctAnswers}
                 </span>
-                <p className="mt-3 font-semibold text-xl">
+                <p className="mt-3 text-xl font-semibold">
                   Incorrect Answers:{" "}
                 </p>
-                <span className="text-red-500 font-medium mt-3">
+                <span className="mt-3 font-medium text-red-500">
                   {incorrectAnswers}
                 </span>
               </div>

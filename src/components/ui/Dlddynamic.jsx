@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../ui/Navbar";
 
-const PracticeDynamic = ({ classParam, topic }) => {
+const Dlddynamic = (props) => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
@@ -10,66 +10,50 @@ const PracticeDynamic = ({ classParam, topic }) => {
 
   useEffect(() => {
     generateQuestion();
-  }, [classParam, topic]);
+  }, []);
 
   const generateQuestion = () => {
-    const newQuestion = generateSingleQuestion(classParam, topic);
+    const newQuestion = generateSingleQuestion();
     setQuestions((prevQuestions) => [...prevQuestions, newQuestion]);
   };
 
-  const generateSingleQuestion = (classParam, topic) => {
+  const generateSingleQuestion = () => {
+    const operations = [
+      "binaryToDecimal",
+      "binaryToOctal",
+      "binaryToHexadecimal",
+      "decimalToBinary",
+    ];
+    const selectedOperation =
+      operations[Math.floor(Math.random() * operations.length)];
+
     let questionString, correctOption;
-
-    if (classParam === "digital logic design") {
-      if (topic === "binarytodecimal") {
+    switch (selectedOperation) {
+      case "binaryToDecimal":
         const binaryNumber = getRandomBinaryNumber();
-        if (binaryNumber) {
-          questionString = `Convert ${binaryNumber} from binary to decimal.`;
-          correctOption = parseInt(binaryNumber, 2).toString();
-        }
-      } else if (topic === "binarytooctal") {
-        const binaryNumber = getRandomBinaryNumber();
-        if (binaryNumber) {
-          questionString = `Convert ${binaryNumber} from binary to octal.`;
-          correctOption = parseInt(binaryNumber, 2).toString(8);
-        }
-      } else if (topic === "binarytohexadecimal") {
-        const binaryNumber = getRandomBinaryNumber();
-        if (binaryNumber) {
-          questionString = `Convert ${binaryNumber} from binary to hexadecimal.`;
-          correctOption = parseInt(binaryNumber, 2).toString(16).toUpperCase();
-        }
-      } else if (topic === "decimaltobinary") {
+        questionString = `Convert ${binaryNumber} from binary to decimal.`;
+        correctOption = parseInt(binaryNumber, 2).toString();
+        break;
+      case "binaryToOctal":
+        const binaryNumber2 = getRandomBinaryNumber();
+        questionString = `Convert ${binaryNumber2} from binary to octal.`;
+        correctOption = parseInt(binaryNumber2, 2).toString(8);
+        break;
+      case "binaryToHexadecimal":
+        const binaryNumber3 = getRandomBinaryNumber();
+        questionString = `Convert ${binaryNumber3} from binary to hexadecimal.`;
+        correctOption = parseInt(binaryNumber3, 2).toString(16).toUpperCase();
+        break;
+      case "decimalToBinary":
         const decimalNumber = getRandomNumber(1, 100);
-        if (decimalNumber !== undefined && decimalNumber !== null) {
-          questionString = `Convert ${decimalNumber} from decimal to binary.`;
-          correctOption = decimalNumber.toString(2);
-        }
-      }
-    } else if (classParam === "mathematics") {
-      const a = getRandomNumber(1, 100);
-      const b = getRandomNumber(1, 100);
-      let operator;
-
-      if (topic === "addition") {
-        operator = "+";
-      } else if (topic === "subtraction") {
-        operator = "-";
-      } else if (topic === "multiplication") {
-        operator = "*";
-      } else if (topic === "division") {
-        operator = "/";
-      } else {
-        console.error("Invalid topic for mathematics:", topic);
-      }
-
-      const result = evaluateExpression(a, b, operator);
-
-      questionString = `${a} ${operator} ${b}`;
-      correctOption = result.toString();
+        questionString = `Convert ${decimalNumber} from decimal to binary.`;
+        correctOption = decimalNumber.toString(2);
+        break;
+      default:
+        console.error("Invalid operation:", selectedOperation);
     }
 
-    const options = generateOptions(correctOption, classParam);
+    const options = generateOptions(correctOption);
 
     return { question: questionString, options, correctOption };
   };
@@ -88,47 +72,32 @@ const PracticeDynamic = ({ classParam, topic }) => {
     }
 
     const range = max - min + 1;
-    return min + Math.floor(Math.random() * range);
+
+    const byteArray = new Uint8Array(1);
+    window.crypto.getRandomValues(byteArray);
+
+    const randomValue = byteArray[0] % range;
+
+    const randomNumber = min + randomValue;
+
+    return randomNumber;
   };
 
-  const evaluateExpression = (a, b, operator) => {
-    switch (operator) {
-      case "+":
-        return a + b;
-      case "-":
-        return a - b;
-      case "*":
-        return a * b;
-      case "/":
-        return (a / b).toFixed(3);
-      default:
-        console.error("Invalid operator:", operator);
-        return null;
-    }
-  };
-
-  const generateOptions = (correctResult, classParam) => {
+  const generateOptions = (correctResult) => {
     const options = [];
-    const correctIndex = getRandomNumber(0, 3);
+    const correctIndex = getRandomNumber(0, 3); // Randomly select an index for the correct option
     for (let i = 0; i < 4; i++) {
       if (i === correctIndex) {
         options.push(correctResult.toString());
       } else {
         let randomOption;
-        if (classParam === "digital logic design") {
-          if (topic === "binarytodecimal") {
-            randomOption = getRandomNumber(1, 100).toString();
-          } else if (topic === "binarytooctal") {
-            randomOption = getRandomNumber(1, 100).toString(8);
-          } else if (topic === "binarytohexadecimal") {
-            randomOption = getRandomNumber(1, 100).toString(16).toUpperCase();
-          } else if (topic === "decimaltobinary") {
-            randomOption = getRandomBinaryNumber();
-          }
-        } else if (classParam === "mathematics") {
-          randomOption = getRandomNumber(0, 200).toString();
-        }
-        options.push(randomOption);
+        do {
+          randomOption = getRandomNumber(0, 100); // Generate random options within a range
+        } while (
+          options.includes(randomOption.toString()) ||
+          randomOption === correctResult
+        ); // Ensure uniqueness and not equal to the correct answer
+        options.push(randomOption.toString());
       }
     }
     return options;
@@ -165,12 +134,12 @@ const PracticeDynamic = ({ classParam, topic }) => {
   const currentQuestion = questions[questionIndex];
 
   return (
-    <div className="min-h-screen bg-[#040404] dark:bg-gray-900 relative">
+    <div className=" min-h-screen bg-[#040404] dark:bg-gray-900 relative">
       <div className="w-[100%] flex flex-col bg-[#040404]">
         <Navbar name="Practice" />
         <div className="w-[100%] p-4 space-y-4 flex justify-center transition-all">
           {currentQuestion && (
-            <div className="w-[100%] flex flex-col p-6 bg-[#fff] rounded-lg shadow-md dark:bg-gray-800">
+            <div className=" w-[100%] flex flex-col p-6 bg-[#fff] rounded-lg shadow-md dark:bg-gray-800">
               <h1 className="mb-0 text-2xl font-bold text-center text-[#040404] dark:text-white">
                 Practice Questions
               </h1>
@@ -179,7 +148,7 @@ const PracticeDynamic = ({ classParam, topic }) => {
                 questionIndex + 1
               }`}</h2>
               <p className="mt-2 text-lg text-[#040404] dark:text-gray-400">
-                {currentQuestion.question} = ?
+                {currentQuestion.question}
               </p>
               <div className="mt-4 space-y-2">
                 {currentQuestion.options.map((option, index) => (
@@ -223,7 +192,7 @@ const PracticeDynamic = ({ classParam, topic }) => {
               <div className="flex justify-between mt-6 space-x-4">
                 <button
                   onClick={handleSubmit}
-                  className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] rounded-md focus:outline-none ${
+                  className={`px-4 py-2 text-sm font-medium  bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] rounded-md  focus:outline-none ${
                     selectedOption === null
                       ? " opacity-50 cursor-not-allowed"
                       : ""
@@ -235,7 +204,7 @@ const PracticeDynamic = ({ classParam, topic }) => {
                 <button
                   onClick={handlePreviousQuestion}
                   disabled={questionIndex === 0}
-                  className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] rounded-md focus:outline-none ${
+                  className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]  rounded-md  focus:outline-none ${
                     selectedOption === null
                       ? " opacity-50 cursor-not-allowed"
                       : ""
@@ -252,6 +221,7 @@ const PracticeDynamic = ({ classParam, topic }) => {
               </div>
             </div>
           )}
+
           <br />
         </div>
         <div className="flex items-center justify-center">
@@ -271,4 +241,4 @@ const PracticeDynamic = ({ classParam, topic }) => {
   );
 };
 
-export default PracticeDynamic;
+export default Dlddynamic;

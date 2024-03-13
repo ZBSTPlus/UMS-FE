@@ -9,9 +9,12 @@ export default function Question({ classes }) {
     (u) => u.name.toLowerCase() === unit
   );
 
+  const classParam = subject;
+  const topic = unit;
+
   return (
     <div>
-      <PracticeDynamic operator={selectedUnit.operator} />
+      <PracticeDynamic classParam={classParam} topic={topic} />
     </div>
   );
 }

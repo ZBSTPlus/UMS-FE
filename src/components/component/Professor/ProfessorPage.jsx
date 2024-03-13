@@ -28,6 +28,7 @@ import { Progress } from "@/components/ui/progress";
 import Logo from "../../../assets/Logo/logo.png";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Navbar from "@/components/ui/Navbar";
 
 const calculateSlidesPerView = () => {
   const windowWidth = window.innerWidth;
@@ -60,60 +61,7 @@ export default function ProfessorPage({ classes }) {
     <div className="flex flex-col flex-1 h-screen bg-gray-100 dark:bg-gray-800">
       <div className="flex flex-1 overflow-hidden">
         <main className="flex-1 overflow-auto">
-          <header className="mb-8 bg-[#040404] text-white shadow">
-            <div className="flex items-center justify-between px-4 py-5 sm:px-6">
-              <div className="flex gap-2 items-center justify-center">
-                <div className="h-10 w-10 md:h-[60px] md:w-[60px] flex items-center justify-center relative overflow-hidden cursor-pointer">
-                  <img className="object-cover" src={Logo} alt="" />
-                </div>
-                <div className="flex flex-col justify-start px-4">
-                  <h1
-                    className="text-xl md:text-2xl font-semibold py-2 text-[#B3CCC2] rounded-md"
-                    id="teacherdashboard"
-                  >
-                    Teacher Dashboard
-                  </h1>
-                  <div className="flex md:flex-row md:items-center gap-2">
-                    <p className="font-bold text-lg text-[#B3CCC2]">Name:</p>
-                    <p className="text-lg font-semibold">Jane Doe</p>
-                  </div>
-                </div>
-              </div>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Avatar className="h-9 w-9 md:h-12 md:w-12">
-                    <AvatarImage
-                      alt="User avatar"
-                      src="https://imgs.search.brave.com/J0ixr3aHGA8aitBrET8u4exc5KcrQl8PWXGrvAdsUY4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mcmVl/c3ZnLm9yZy9pbWcv/YWJzdHJhY3QtdXNl/ci1mbGF0LTQucG5n"
-                    />
-                  </Avatar>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <a className="flex items-center gap-2" href="#">
-                      <UserIcon className="w-4 h-4" />
-                      John Doe
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <a className="flex items-center gap-2" href="#">
-                      <MailIcon className="w-4 h-4" />
-                      ums@gmail.com
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <a className="flex items-center gap-2" href="#">
-                      <LogOutIcon className="w-4 h-4" />
-                      Logout
-                    </a>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          </header>
+          <Navbar name="Teacher Dashboard" />
           <div className="px-4 py-5 sm:p-6">
             <section className="mb-8" id="assignedcourses">
               <h2 className="mb-2 text-2xl font-bold leading-6 text-gray-900 ">

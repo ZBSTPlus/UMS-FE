@@ -37,6 +37,7 @@ import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Leaderboard from "../../../assets/leaderboard.json";
 import Navbar from "@/components/ui/Navbar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const calculateSlidesPerView = () => {
   const windowWidth = window.innerWidth;
@@ -64,12 +65,6 @@ export default function Studentui({ classes }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  // Below are the references used for GSAP animations
-  const CardRef = useRef(null);
-  const classroomRef = useRef(null);
-  const assessmentref = useRef(null);
-  const leaderboardRef = useRef(null);
 
   useGSAP(() => {
     var tl = gsap.timeline();
@@ -100,8 +95,20 @@ export default function Studentui({ classes }) {
     });
   });
 
-  // Actual Student Page starts Here
+  // Below are the references used for GSAP animations
+  const CardRef = useRef(null);
+  const classroomRef = useRef(null);
+  const assessmentref = useRef(null);
+  const leaderboardRef = useRef(null);
 
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+
+  // Actual Student Page starts Here
+  console.log(user, isAuthenticated, "Auth0");
   return (
     <div className="flex flex-col flex-1 h-screen bg-gray-100 dark:bg-gray-800">
       <div className="flex flex-1 overflow-hidden">
@@ -117,7 +124,7 @@ export default function Studentui({ classes }) {
           {/* It is the student details card */}
 
           <section
-            className="mb-8 px-6 mt-0 md:mt-14"
+            className="px-6 mt-0 mb-8 md:mt-14"
             id="studentdetails"
             ref={CardRef}
           >
@@ -126,8 +133,8 @@ export default function Studentui({ classes }) {
               <Card className="p-2 bg-[#fff] shadow-lg flex justify-between items-center">
                 <div>
                   <CardHeader>
-                    <CardTitle className="text-lg md:text-xl lg:text-2xl font-bold">
-                      John Doe
+                    <CardTitle className="text-lg font-bold md:text-xl lg:text-2xl">
+                      {isAuthenticated ? user.name : "John Doe"}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -142,7 +149,7 @@ export default function Studentui({ classes }) {
                         <span className="text-[#111129] font-bold">
                           Mail ID
                         </span>
-                        : ums@gmail.com
+                        : {isAuthenticated ? user.email : "ums@gmail.com"}
                       </div>
                     </div>
                   </CardContent>
@@ -151,7 +158,7 @@ export default function Studentui({ classes }) {
                   <img
                     src="https://imgs.search.brave.com/J0ixr3aHGA8aitBrET8u4exc5KcrQl8PWXGrvAdsUY4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mcmVl/c3ZnLm9yZy9pbWcv/YWJzdHJhY3QtdXNl/ci1mbGF0LTQucG5n"
                     alt=""
-                    className="w-full h-full object-cover rounded-full"
+                    className="object-cover w-full h-full rounded-full"
                   />
                 </div>
               </Card>
@@ -160,7 +167,7 @@ export default function Studentui({ classes }) {
 
           {/* The below code related to the Classroom cards which contains different classrooms */}
 
-          <section className="mb-8 px-6 md:mb-12" id="completedcourses">
+          <section className="px-6 mb-8 md:mb-12" id="completedcourses">
             <h2 className="mb-2 text-2xl font-bold">Class Rooms</h2>
             <Swiper
               pagination={true}
@@ -174,7 +181,7 @@ export default function Studentui({ classes }) {
                 <SwiperSlide className=" rounded-[50px]" key={subject.id}>
                   <Card className="p-4 bg-[#fff] shadow-lg w-[100%] rounded-[30px]">
                     <CardHeader>
-                      <CardTitle className="text-lg md:text-xl lg:text-2xl font-bold">
+                      <CardTitle className="text-lg font-bold md:text-xl lg:text-2xl">
                         {subject.title}
                       </CardTitle>
                     </CardHeader>
@@ -190,7 +197,7 @@ export default function Studentui({ classes }) {
           </section>
 
           {/* The below code contains the cards related to the Assessments */}
-          <section className="mb-8 px-6" id="upcomingassessments">
+          <section className="px-6 mb-8" id="upcomingassessments">
             <h2 className="mb-2 text-2xl font-bold">Upcoming Assessments</h2>
             <Swiper
               pagination={true}
@@ -208,7 +215,7 @@ export default function Studentui({ classes }) {
                     }`}
                   >
                     <CardHeader>
-                      <CardTitle className="text-lg md:text-xl lg:text-2xl font-bold">
+                      <CardTitle className="text-lg font-bold md:text-xl lg:text-2xl">
                         {assessment.title}
                       </CardTitle>
 
@@ -232,12 +239,12 @@ export default function Studentui({ classes }) {
           {/*  This below sections related to the Leaderboard and Analyticboard  */}
 
           <div
-            className="flex flex-col md:flex-row gap-4 md:gap-7 px-6"
+            className="flex flex-col gap-4 px-6 md:flex-row md:gap-7"
             ref={leaderboardRef}
           >
             <section className="flex-1 mb-6 md:mb-0" id="analyticsboard">
               <div className="flex gap-9">
-                <h2 className="mb-2 text-lg md:text-2xl font-bold">
+                <h2 className="mb-2 text-lg font-bold md:text-2xl">
                   Analytics Board
                 </h2>
 
