@@ -19,7 +19,7 @@ export default function Navbar(props) {
     <div>
       <header className="flex items-center justify-center h-32 mb-5 dark:bg-gray-900 bg-[#040404] sticky top-5 z-[1] w-full">
         <nav className="flex items-center justify-between w-[100%] p-10">
-          <div className="flex gap-4 items-center justify-center">
+          <div className="flex items-center justify-center gap-4">
             <LogoLink to="/studentui" imageSrc={Logo} />
             <div className="flex items-center space-x-4">
               <UserNameBadge name={props.name} />

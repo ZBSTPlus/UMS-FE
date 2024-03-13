@@ -29,22 +29,18 @@ function App() {
         {
           id: "1",
           name: "Addition",
-          operator: "+",
         },
         {
           id: "2",
           name: "Subtraction",
-          operator: "-",
         },
         {
           id: "3",
           name: "Multiplication",
-          operator: "*",
         },
         {
           id: "4",
           name: "Division",
-          operator: "/",
         },
       ],
     },
@@ -55,15 +51,19 @@ function App() {
       units: [
         {
           id: "1",
-          name: "Flipflops",
+          name: "binaryToDecimal",
         },
         {
           id: "2",
-          name: "UpDown Counters",
+          name: "binaryToOctal",
         },
         {
           id: "3",
-          name: "Hexa to Octa",
+          name: "binaryToHexadecimal",
+        },
+        {
+          id: "4",
+          name: "decimalToBinary",
         },
       ],
     },

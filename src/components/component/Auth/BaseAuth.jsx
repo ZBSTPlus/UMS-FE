@@ -40,10 +40,9 @@ function BaseAuth() {
   return (
     <>
       <div className="h-screen bg-[#040404] text-white flex items-center justify-center">
-        <div className=" text-center px-10 py-10 box">
+        <div className="px-10 py-10 text-center box">
           <h1 className="text-[5vw] font-bold leading-none text-[#ffd11abe]">
             {typeEffect}
-
             <span>
               <Cursor />
             </span>
@@ -51,7 +50,7 @@ function BaseAuth() {
           <h1 className="text-[3vw] font-semibold text-zinc-400 leading-none mt-5">
             University Management System
           </h1>
-          <div className=" flex items-center justify-center">
+          <div className="flex items-center justify-center ">
             <h2 className="text-[1vw] mt-10 text-zinc-500 w-[600px] text-center">
               The Best Platform for learning and managing their classrooms.
               Connect with it and get your learning done
