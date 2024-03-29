@@ -5,14 +5,16 @@ import React from "react";
 
 import Detailspage from "./components/component/Student/Detailspage";
 import Question from "./components/component/Student/Question";
-import Assessmentpage from "./components/component/Student/Assessmentpage";
+
 import Instructionpage from "./components/component/Student/Instructionpage";
-import Quiz from "./components/component/Student/Quiz";
+
 import ProfessorPage from "./components/component/Professor/ProfessorPage";
 import CreateAssessment from "./components/component/Professor/CreateAssessment";
 
 import CreateQuiz from "./components/component/Professor/CreateQuiz";
 import CreatePractice from "./components/component/Professor/CreatePractice";
+import QuizPage from "./components/component/Student/QuizPage";
+import AssessmentPage from "./components/component/Student/AssessmentPage";
 
 function App() {
   const classes = [
@@ -24,22 +26,22 @@ function App() {
         {
           id: "1",
           name: "Addition",
+          operator: "+",
         },
         {
           id: "2",
           name: "Subtraction",
+          operator: "-",
         },
         {
           id: "3",
-          name: "Division",
+          name: "Multiplication",
+          operator: "*",
         },
         {
           id: "4",
-          name: "Multiplication",
-        },
-        {
-          id: "5",
-          name: "Modulus",
+          name: "Division",
+          operator: "/",
         },
       ],
     },
@@ -81,48 +83,6 @@ function App() {
         },
       ],
     },
-    {
-      id: 4,
-      title: "COA",
-      value: "100",
-      units: [
-        {
-          id: "1",
-          name: "Database",
-        },
-        {
-          id: "2",
-          name: "MySQL",
-        },
-        {
-          id: "3",
-          name: "DBMS",
-        },
-      ],
-    },
-  ];
-
-  const assessments = [
-    {
-      id: "lcmandhcf",
-      title: "LCM and HCF",
-      description: "Duration: 1hour",
-    },
-    {
-      id: "conversion",
-      title: "Conversions",
-      description: "Duration: 1hour",
-    },
-    {
-      id: "algebra",
-      title: "Algebra",
-      description: "Duration: 1hour",
-    },
-    {
-      id: "equations",
-      title: "Linear Equations",
-      description: "Duration: 1hour",
-    },
   ];
 
   return (
@@ -142,29 +102,23 @@ function App() {
             path="/detailspage/:subject"
             element={<Detailspage classes={classes} />}
           />
-          <Route
-            path="/"
-            element={<Studentui classes={classes} assessments={assessments} />}
-          />
-          <Route
-            path="/studentui"
-            element={<Studentui classes={classes} assessments={assessments} />}
-          />
+          <Route path="/" element={<Studentui classes={classes} />} />
+          <Route path="/studentui" element={<Studentui classes={classes} />} />
           <Route
             path="/practicepage/:subject/:unit"
             element={<Question classes={classes} />}
           />
           <Route
             path="/quizpage/:subject/:unit"
-            element={<Quiz classes={classes} />}
+            element={<QuizPage classes={classes} />}
           />
           <Route
             path="/assessmentpage/:assessment"
-            element={<Assessmentpage assessments={assessments} />}
+            element={<AssessmentPage classes={classes} />}
           />
           <Route
             path="/instructionpage/:assessment"
-            element={<Instructionpage assessments={assessments} />}
+            element={<Instructionpage />}
           />
         </Routes>
       </BrowserRouter>
