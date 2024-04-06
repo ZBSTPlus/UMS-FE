@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter as Router, MemoryRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import Instructionpage from "../src/components/component/student/Instructionpage";
 import "@testing-library/jest-dom";
 
