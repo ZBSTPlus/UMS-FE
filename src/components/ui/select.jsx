@@ -28,7 +28,7 @@ const SelectTrigger = React.forwardRef(({ className, children, ...props }, ref) 
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
 SelectTrigger.propTypes = {
   className: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 const SelectScrollUpButton = React.forwardRef(({ className, ...props }, ref) => (
@@ -82,14 +82,8 @@ const SelectContent = React.forwardRef(({ className, children, position = "poppe
 SelectContent.displayName = SelectPrimitive.Content.displayName
 SelectContent.propTypes = {
   className: PropTypes.string.isRequired,
-  children:PropTypes.string.isRequired,
-  position:function(props, propName, componentName) {
-    if (props[propName] !== 'popper') {
-      return new Error(
-        `Invalid prop ${propName} supplied to ${componentName}. Expected 'popper'.`
-      );
-    }
-  }
+  children:PropTypes.node.isRequired,
+  position: PropTypes.oneOf(["popper"]).isRequired, 
 };
 
 const SelectLabel = React.forwardRef(({ className, ...props }, ref) => (
@@ -123,7 +117,7 @@ const SelectItem = React.forwardRef(({ className, children, ...props }, ref) => 
 SelectItem.displayName = SelectPrimitive.Item.displayName
 SelectItem.propTypes = {
   className: PropTypes.string.isRequired, // This ensures className is a string
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 const SelectSeparator = React.forwardRef(({ className, ...props }, ref) => (
