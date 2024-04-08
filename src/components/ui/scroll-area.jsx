@@ -19,7 +19,7 @@ const ScrollArea = React.forwardRef(({ className, children, ...props }, ref) => 
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName
 ScrollArea.propTypes = {
   className: PropTypes.string.isRequired, // This ensures className is a string
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 const ScrollBar = React.forwardRef(({ className, orientation = "vertical", ...props }, ref) => (
@@ -41,7 +41,7 @@ const ScrollBar = React.forwardRef(({ className, orientation = "vertical", ...pr
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName
 ScrollBar.propTypes = {
   className: PropTypes.string.isRequired, // This ensures className is a string
-  orientation: PropTypes.string.isRequired,
+  orientation: PropTypes.oneOf(["vertical", "horizontal"]).isRequired,
 };
 
 export { ScrollArea, ScrollBar }
