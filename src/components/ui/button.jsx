@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
-
+import PropTypes from "prop-types"
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -46,5 +46,11 @@ const Button = React.forwardRef(
   }
 );
 Button.displayName = "Button";
+Button.propTypes = {
+  className: PropTypes.string, // Validates className as a string
+  variant: PropTypes.string, // Validates variant as a string
+  size: PropTypes.string, // Validates size as a string
+  asChild: PropTypes.bool, // Validates asChild as a boolean
+};
 
 export { Button, buttonVariants };
