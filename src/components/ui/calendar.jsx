@@ -5,6 +5,11 @@ import PropTypes from "prop-types"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 
+const iconLeft = ({ ...props }) => <ChevronLeft className="h-4 w-4" />;
+
+const iconRight = ({ ...props }) => <ChevronRight className="h-4 w-4" />;
+
+
 function Calendar({
   className,
   classNames,
@@ -50,8 +55,8 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        IconLeft: iconLeft,
+        IconRight: iconRight,
       }}
       {...props} />)
   );
