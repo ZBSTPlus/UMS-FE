@@ -1,4 +1,5 @@
 import * as React from "react"
+import PropTypes from  "prop-types"
 import * as PopoverPrimitive from "@radix-ui/react-popover"
 
 import { cn } from "@/lib/utils"
@@ -21,5 +22,11 @@ const PopoverContent = React.forwardRef(({ className, align = "center", sideOffs
   </PopoverPrimitive.Portal>
 ))
 PopoverContent.displayName = PopoverPrimitive.Content.displayName
+PopoverContent.propTypes = {
+  className: PropTypes.string.isRequired,
+  align: PropTypes.oneOf(["center"]).isRequired, // Restricts align to only "center"
+  sideOffset: PropTypes.oneOf([4]).isRequired, // Restricts sideOffset to only the default value of 4
+};
+
 
 export { Popover, PopoverTrigger, PopoverContent }

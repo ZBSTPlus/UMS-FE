@@ -15,15 +15,19 @@ const DynamicPage = ({ classes, isAssessment }) => {
   const [questions, setQuestions] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
 
+
+
   const [submitted, setSubmitted] = useState(false);
   const [scores, setScores] = useState([]);
 
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
   const numberOfQuestions = 20;
+
   const [selectedOptions, setSelectedOptions] = useState(
     Array(numberOfQuestions).fill("")
   );
+
 
   const generateQuestions = () => {
     const newQuestions = Array.from(
@@ -35,6 +39,7 @@ const DynamicPage = ({ classes, isAssessment }) => {
           a = getRandomNumber(1, 100);
           b = getRandomNumber(1, 100);
           operation = getRandomNumber(0, 3);
+
 
           if (isAssessment || !selectedUnit) {
             switch (operation) {
@@ -126,6 +131,7 @@ const DynamicPage = ({ classes, isAssessment }) => {
 
   const generateOptions = (correctResult) => {
     const options = [];
+
     const correctIndex = getRandomNumber(0, 3); // Change from 4 to 3
 
     for (let i = 0; i < 4; i++) {
@@ -141,6 +147,7 @@ const DynamicPage = ({ classes, isAssessment }) => {
       }
 
       if (options.includes(randomOption.toString())) {
+
         i--;
       } else {
         options.push(randomOption.toString());
@@ -163,6 +170,7 @@ const DynamicPage = ({ classes, isAssessment }) => {
     setSubmitted(false);
     setSelectedOption(selectedOptions[questionIndex + 1]);
 
+
     if (!isAssessment) {
       if (selectedOption === questions[questionIndex].correctOption) {
         setScores((prevScores) => [...prevScores, 1]);
@@ -177,10 +185,12 @@ const DynamicPage = ({ classes, isAssessment }) => {
     setSelectedOption("");
   };
 
+
   
   const handlePreviousQuestion = () => {
     setQuestionIndex((prevIndex) => prevIndex - 1);
     setSelectedOption(selectedOptions[questionIndex - 1]);
+
     setSubmitted(false);
   };
 

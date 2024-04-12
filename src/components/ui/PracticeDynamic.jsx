@@ -9,6 +9,7 @@ const PracticeDynamic = (props) => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
 
+
   useEffect(() => {
     generateQuestion();
   }, []);
@@ -70,6 +71,7 @@ const PracticeDynamic = (props) => {
 
   const generateOptions = (correctResult) => {
     const options = [];
+
     const correctIndex = getRandomNumber(0, 3); // Change from 4 to 3
 
     for (let i = 0; i < 4; i++) {
@@ -99,17 +101,21 @@ const PracticeDynamic = (props) => {
   };
 
   const handleNextQuestion = () => {
+
     if (!isSubmitClicked) {
       alert(`Please Submit first`);
       return;
     }
+
     if (questionIndex === questions.length - 1) {
       generateQuestion();
     }
     setQuestionIndex((prevIndex) => prevIndex + 1);
     setSelectedOption("");
     setSubmitted(false);
+
     setIsSubmitClicked(false);
+
   };
 
   const handlePreviousQuestion = () => {
@@ -125,6 +131,7 @@ const PracticeDynamic = (props) => {
       setScore((prevScore) => prevScore - 1);
     }
     setSubmitted(true);
+
     setIsSubmitClicked(true);
   };
 
@@ -202,6 +209,7 @@ const PracticeDynamic = (props) => {
                   onClick={handlePreviousQuestion}
                   disabled={questionIndex === 0}
                   className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]  rounded-md  focus:outline-none ${
+
                     questionIndex === 0 ? " opacity-50 cursor-not-allowed" : ""
                   }`}
                 >
@@ -209,9 +217,11 @@ const PracticeDynamic = (props) => {
                 </button>
                 <button
                   onClick={handleNextQuestion}
+
                   className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] rounded-md focus:outline-none
                 
                   `}
+
                 >
                   Next
                 </button>

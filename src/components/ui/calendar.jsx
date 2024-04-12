@@ -1,7 +1,7 @@
 import * as React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { DayPicker } from "react-day-picker"
-
+import PropTypes from "prop-types"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 
@@ -57,5 +57,10 @@ function Calendar({
   );
 }
 Calendar.displayName = "Calendar"
+Calendar.Card.propTypes = {
+  className: PropTypes.string.isRequired,
+  classNames: PropTypes.string.isRequired,
+  showOutsideDays: PropTypes.bool.isRequired,
+};
 
 export { Calendar }

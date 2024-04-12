@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Studentui from "./components/component/Student/Studentui";
 
 import React from "react";
@@ -15,10 +15,12 @@ import CreateQuiz from "./components/component/Professor/CreateQuiz";
 import CreatePractice from "./components/component/Professor/CreatePractice";
 import QuizPage from "./components/component/Student/QuizPage";
 import AssessmentPage from "./components/component/Student/AssessmentPage";
+
 import CreateClassroom from "./components/ui/CreateClassroom";
 import Adminpage from "./components/component/Admin/Adminpage";
 import Viewclassroom from "./components/ui/Viewclassroom";
 import ViewDetails from "./components/component/Professor/ViewDetails";
+
 
 function App() {
   const classes = [
@@ -90,7 +92,9 @@ function App() {
     },
   ];
 
+
   
+
 
   return (
     <div>
