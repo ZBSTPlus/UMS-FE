@@ -35,7 +35,7 @@ export default function Detailspage({ classes }) {
             <div className=" h-[100px] w-[100px] flex items-center justify-center relative overflow-hidden">
               <Link to="/studentui">
                 <img
-                  className="object-cover cursor-pointer h-14 w-14  "
+                  className="object-cover cursor-pointer h-14 w-14 "
                   src={Logo}
                   alt=""
                 />
@@ -48,7 +48,7 @@ export default function Detailspage({ classes }) {
               </span>
             </div>
           </div>
-          <div className="sm:mt-0 px-2">
+          <div className="px-2 sm:mt-0">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar className="h-9 w-9">
@@ -91,11 +91,11 @@ export default function Detailspage({ classes }) {
         key="1"
         className="flex flex-col gap-6 p-4 lg:p-10 w-[90%] md:w-[95%] lg:w-[80%] xl:w-[70%] 2xl:w-[60%] border rounded-[30px] bg-[#fff] mt-10"
       >
-        <div className="flex flex-col md:flex-row items-center justify-between mb-4">
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center md:text-left mb-2 md:mb-0">
+        <div className="flex flex-col items-center justify-between mb-4 md:flex-row">
+          <h1 className="mb-2 text-2xl font-bold text-center md:text-4xl lg:text-5xl md:text-left md:mb-0">
             {selectedClass.title}
           </h1>
-          <p className="text-base md:text-xl font-semibold text-center md:text-left">
+          <p className="text-base font-semibold text-center md:text-xl md:text-left">
             Estimated Completion : 8 weeks
           </p>
         </div>

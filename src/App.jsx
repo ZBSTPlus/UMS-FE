@@ -16,6 +16,9 @@ import CreatePractice from "./components/component/Professor/CreatePractice";
 import QuizPage from "./components/component/Student/QuizPage";
 import AssessmentPage from "./components/component/Student/AssessmentPage";
 
+import { AuthenticationGuard } from "./components/component/Auth/AuthenticationGuard";
+import BaseAuth from "./components/component/Auth/BaseAuth";
+
 function App() {
   const classes = [
     {
@@ -26,22 +29,18 @@ function App() {
         {
           id: "1",
           name: "Addition",
-          operator: "+",
         },
         {
           id: "2",
           name: "Subtraction",
-          operator: "-",
         },
         {
           id: "3",
           name: "Multiplication",
-          operator: "*",
         },
         {
           id: "4",
           name: "Division",
-          operator: "/",
         },
       ],
     },
@@ -52,15 +51,19 @@ function App() {
       units: [
         {
           id: "1",
-          name: "Flipflops",
+          name: "binaryToDecimal",
         },
         {
           id: "2",
-          name: "UpDown Counters",
+          name: "binaryToOctal",
         },
         {
           id: "3",
-          name: "Hexa to Octa",
+          name: "binaryToHexadecimal",
+        },
+        {
+          id: "4",
+          name: "decimalToBinary",
         },
       ],
     },
@@ -95,15 +98,30 @@ function App() {
 
           <Route
             path="/professorpage"
-            element={<ProfessorPage classes={classes} />}
+            element={
+              <AuthenticationGuard
+                component={ProfessorPage}
+                classes={classes}
+                allowed={"Sir"}
+              />
+            }
           />
 
           <Route
             path="/detailspage/:subject"
             element={<Detailspage classes={classes} />}
           />
-          <Route path="/" element={<Studentui classes={classes} />} />
-          <Route path="/studentui" element={<Studentui classes={classes} />} />
+          <Route path="/" element={<BaseAuth />} />
+          <Route
+            path="/studentui"
+            element={
+              <AuthenticationGuard
+                component={Studentui}
+                classes={classes}
+                allowed={`_`}
+              />
+            }
+          />
           <Route
             path="/practicepage/:subject/:unit"
             element={<Question classes={classes} />}
