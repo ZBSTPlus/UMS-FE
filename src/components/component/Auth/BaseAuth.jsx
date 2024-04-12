@@ -22,7 +22,7 @@ function BaseAuth() {
       if (name.endsWith("Sir")) {
         history("/professorpage");
       } else if (name.endsWith("AD")) {
-        history("/adminui");
+        history("/Adminpage");
       } else if (name.endsWith("_")) {
         history("/studentui");
       }
