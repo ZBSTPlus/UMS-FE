@@ -17,7 +17,10 @@ import {
 import { AvatarImage, Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Logo from "../../../assets/Logo/logo.png";
+
+import { useRef } from "react";
 import { useParams, Link } from "react-router-dom";
+
 
 export default function Detailspage({ classes }) {
   const { subject } = useParams();

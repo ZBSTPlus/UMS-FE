@@ -7,6 +7,8 @@ const PracticeDynamic = ({ classParam, topic }) => {
   const [selectedOption, setSelectedOption] = useState("");
   const [score, setScore] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitClicked, setIsSubmitClicked] = useState(false);
+
 
   useEffect(() => {
     generateQuestion();
@@ -109,10 +111,23 @@ const PracticeDynamic = ({ classParam, topic }) => {
 
   const generateOptions = (correctResult, classParam) => {
     const options = [];
-    const correctIndex = getRandomNumber(0, 3);
+
+
+    const correctIndex = getRandomNumber(0, 3); // Change from 4 to 3
     for (let i = 0; i < 4; i++) {
+      let randomOption;
+
       if (i === correctIndex) {
-        options.push(correctResult.toString());
+        randomOption = correctResult;
+      } else {
+        // Generate slightly greater or lesser values for incorrect options
+        const deviation = getRandomNumber(1, 10); // Adjust the range as needed
+        randomOption =
+          i % 2 === 0 ? correctResult + deviation : correctResult - deviation;
+      }
+
+      if (options.includes(randomOption.toString())) {
+        i--;
       } else {
         let randomOption;
         if (classParam === "digital logic design") {
@@ -129,8 +144,10 @@ const PracticeDynamic = ({ classParam, topic }) => {
           randomOption = getRandomNumber(0, 200).toString();
         }
         options.push(randomOption);
+
       }
     }
+
     return options;
   };
 
@@ -139,12 +156,21 @@ const PracticeDynamic = ({ classParam, topic }) => {
   };
 
   const handleNextQuestion = () => {
+
+    if (!isSubmitClicked) {
+      alert(`Please Submit first`);
+      return;
+    }
+
     if (questionIndex === questions.length - 1) {
       generateQuestion();
     }
     setQuestionIndex((prevIndex) => prevIndex + 1);
     setSelectedOption("");
     setSubmitted(false);
+
+    setIsSubmitClicked(false);
+
   };
 
   const handlePreviousQuestion = () => {
@@ -160,6 +186,8 @@ const PracticeDynamic = ({ classParam, topic }) => {
       setScore((prevScore) => prevScore - 1);
     }
     setSubmitted(true);
+
+    setIsSubmitClicked(true);
   };
 
   const currentQuestion = questions[questionIndex];
@@ -235,17 +263,21 @@ const PracticeDynamic = ({ classParam, topic }) => {
                 <button
                   onClick={handlePreviousQuestion}
                   disabled={questionIndex === 0}
-                  className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] rounded-md focus:outline-none ${
-                    selectedOption === null
-                      ? " opacity-50 cursor-not-allowed"
-                      : ""
+
+                  className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]  rounded-md  focus:outline-none ${
+
+                    questionIndex === 0 ? " opacity-50 cursor-not-allowed" : ""
                   }`}
                 >
                   Previous
                 </button>
                 <button
                   onClick={handleNextQuestion}
-                  className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] rounded-md focus:outline-none`}
+
+                  className={`px-4 py-2 text-sm font-medium bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404] rounded-md focus:outline-none
+                
+                  `}
+
                 >
                   Next
                 </button>

@@ -16,6 +16,10 @@ import CreatePractice from "./components/component/Professor/CreatePractice";
 import QuizPage from "./components/component/Student/QuizPage";
 import AssessmentPage from "./components/component/Student/AssessmentPage";
 
+import CreateClassroom from "./components/ui/CreateClassroom";
+import Adminpage from "./components/component/Admin/Adminpage";
+import Viewclassroom from "./components/ui/Viewclassroom";
+import ViewDetails from "./components/component/Professor/ViewDetails";
 import { AuthenticationGuard } from "./components/component/Auth/AuthenticationGuard";
 import BaseAuth from "./components/component/Auth/BaseAuth";
 
@@ -43,6 +47,7 @@ function App() {
           name: "Division",
         },
       ],
+      
     },
     {
       id: 2,
@@ -88,13 +93,26 @@ function App() {
     },
   ];
 
+
+  
+
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
+      
           <Route path="/ca" element={<CreateAssessment />} />
           <Route path="/cp" element={<CreatePractice />} />
           <Route path="/cq" element={<CreateQuiz />} />
+
+          <Route path="ViewDetails" element ={<ViewDetails/>}/>
+         
+          
+          <Route path="/Adminpage" element={<Adminpage classes={classes} />}/>
+          <Route path="/classroom" element={<CreateClassroom />} />
+          <Route path="/Viewclassroom" element={<Viewclassroom/>}/>
+
 
           <Route
             path="/professorpage"
@@ -106,6 +124,7 @@ function App() {
               />
             }
           />
+
 
           <Route
             path="/detailspage/:subject"

@@ -28,6 +28,7 @@ import { Progress } from "@/components/ui/progress";
 import Logo from "../../../assets/Logo/logo.png";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import ViewDetails from "@/components/component/Professor/ViewDetails"; // Update the path as needed
 import Navbar from "@/components/ui/Navbar";
 
 const calculateSlidesPerView = () => {
@@ -44,7 +45,7 @@ const calculateSlidesPerView = () => {
 
 export default function ProfessorPage({ classes }) {
   const [slidesPerView, setSlidesPerView] = useState(calculateSlidesPerView());
-
+ 
   useEffect(() => {
     const handleResize = () => {
       setSlidesPerView(calculateSlidesPerView());
@@ -81,23 +82,17 @@ export default function ProfessorPage({ classes }) {
                         <CardTitle>{course.title}</CardTitle>
                       </CardHeader>
                       <CardContent>
+                     
                         <Progress className="w-full" value={course.value} />
                       </CardContent>
-                      <CardFooter className="flex justify-between">
+                      <CardFooter className="flex justify-center">
+                         <Link to = "/ViewDetails">
+                          {" "}
                         <Button className="mt-4 bg-[#040404] text-[#B3CCC2] hover:bg-[#B3CCC2] hover:text-[#040404]">
                           View Details
                         </Button>
-
-                        <div className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-1.5 rounded-md px-2 text-[15px]">
-                          <div className="flex gap-2">
-                            <span className="text-[#272E3F] font-bold">
-                              {course.value}%
-                            </span>{" "}
-                            <span className="text-[#272E3F] font-semibold">
-                              Completed
-                            </span>
-                          </div>
-                        </div>
+                          </Link>
+                        
                       </CardFooter>
                     </Card>
                   </SwiperSlide>
