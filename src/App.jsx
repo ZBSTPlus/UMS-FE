@@ -20,7 +20,8 @@ import CreateClassroom from "./components/ui/CreateClassroom";
 import Adminpage from "./components/component/Admin/Adminpage";
 import Viewclassroom from "./components/ui/Viewclassroom";
 import ViewDetails from "./components/component/Professor/ViewDetails";
-
+import { AuthenticationGuard } from "./components/component/Auth/AuthenticationGuard";
+import BaseAuth from "./components/component/Auth/BaseAuth";
 
 function App() {
   const classes = [
@@ -32,22 +33,18 @@ function App() {
         {
           id: "1",
           name: "Addition",
-          operator: "+",
         },
         {
           id: "2",
           name: "Subtraction",
-          operator: "-",
         },
         {
           id: "3",
           name: "Multiplication",
-          operator: "*",
         },
         {
           id: "4",
           name: "Division",
-          operator: "/",
         },
       ],
       
@@ -59,15 +56,19 @@ function App() {
       units: [
         {
           id: "1",
-          name: "Flipflops",
+          name: "binaryToDecimal",
         },
         {
           id: "2",
-          name: "UpDown Counters",
+          name: "binaryToOctal",
         },
         {
           id: "3",
-          name: "Hexa to Octa",
+          name: "binaryToHexadecimal",
+        },
+        {
+          id: "4",
+          name: "decimalToBinary",
         },
       ],
     },
@@ -100,10 +101,11 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-        <Route path="/professorpage" element={<ProfessorPage classes={classes} />}/>
+      
           <Route path="/ca" element={<CreateAssessment />} />
           <Route path="/cp" element={<CreatePractice />} />
           <Route path="/cq" element={<CreateQuiz />} />
+
           <Route path="ViewDetails" element ={<ViewDetails/>}/>
          
           
@@ -111,12 +113,34 @@ function App() {
           <Route path="/classroom" element={<CreateClassroom />} />
           <Route path="/Viewclassroom" element={<Viewclassroom/>}/>
 
+
+          <Route
+            path="/professorpage"
+            element={
+              <AuthenticationGuard
+                component={ProfessorPage}
+                classes={classes}
+                allowed={"Sir"}
+              />
+            }
+          />
+
+
           <Route
             path="/detailspage/:subject"
             element={<Detailspage classes={classes} />}
           />
-          <Route path="/" element={<Studentui classes={classes} />} />
-          <Route path="/studentui" element={<Studentui classes={classes} />} />
+          <Route path="/" element={<BaseAuth />} />
+          <Route
+            path="/studentui"
+            element={
+              <AuthenticationGuard
+                component={Studentui}
+                classes={classes}
+                allowed={`_`}
+              />
+            }
+          />
           <Route
             path="/practicepage/:subject/:unit"
             element={<Question classes={classes} />}
