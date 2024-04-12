@@ -1,4 +1,5 @@
 import * as React from "react"
+import PropTypes from "prop-types"
 import * as ProgressPrimitive from "@radix-ui/react-progress"
 
 import { cn } from "@/lib/utils"
@@ -14,5 +15,9 @@ const Progress = React.forwardRef(({ className, value, ...props }, ref) => (
   </ProgressPrimitive.Root>
 ))
 Progress.displayName = ProgressPrimitive.Root.displayName
+Progress.propTypes = {
+  className: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired, // Ensures value is a number and required
+};
 
 export { Progress }
