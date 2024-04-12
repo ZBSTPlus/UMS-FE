@@ -1,4 +1,5 @@
 import * as React from "react"
+import PropTypes from "prop-types"
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 
@@ -25,6 +26,10 @@ const SelectTrigger = React.forwardRef(({ className, children, ...props }, ref) 
   </SelectPrimitive.Trigger>
 ))
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
+SelectTrigger.propTypes = {
+  className: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 const SelectScrollUpButton = React.forwardRef(({ className, ...props }, ref) => (
   <SelectPrimitive.ScrollUpButton
@@ -35,6 +40,9 @@ const SelectScrollUpButton = React.forwardRef(({ className, ...props }, ref) => 
   </SelectPrimitive.ScrollUpButton>
 ))
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
+SelectScrollUpButton.propTypes = {
+  className: PropTypes.string.isRequired, // This ensures className is a string
+};
 
 const SelectScrollDownButton = React.forwardRef(({ className, ...props }, ref) => (
   <SelectPrimitive.ScrollDownButton
@@ -44,8 +52,10 @@ const SelectScrollDownButton = React.forwardRef(({ className, ...props }, ref) =
     <ChevronDown className="h-4 w-4" />
   </SelectPrimitive.ScrollDownButton>
 ))
-SelectScrollDownButton.displayName =
-  SelectPrimitive.ScrollDownButton.displayName
+SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName
+SelectScrollDownButton.propTypes = {
+  className: PropTypes.string.isRequired, // This ensures className is a string
+};
 
 const SelectContent = React.forwardRef(({ className, children, position = "popper", ...props }, ref) => (
   <SelectPrimitive.Portal>
@@ -70,6 +80,11 @@ const SelectContent = React.forwardRef(({ className, children, position = "poppe
   </SelectPrimitive.Portal>
 ))
 SelectContent.displayName = SelectPrimitive.Content.displayName
+SelectContent.propTypes = {
+  className: PropTypes.string.isRequired,
+  children:PropTypes.node.isRequired,
+  position: PropTypes.oneOf(["popper"]).isRequired, 
+};
 
 const SelectLabel = React.forwardRef(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
@@ -78,6 +93,9 @@ const SelectLabel = React.forwardRef(({ className, ...props }, ref) => (
     {...props} />
 ))
 SelectLabel.displayName = SelectPrimitive.Label.displayName
+SelectLabel.propTypes = {
+  className: PropTypes.string.isRequired, // This ensures className is a string
+};
 
 const SelectItem = React.forwardRef(({ className, children, ...props }, ref) => (
   <SelectPrimitive.Item
@@ -97,6 +115,10 @@ const SelectItem = React.forwardRef(({ className, children, ...props }, ref) => 
   </SelectPrimitive.Item>
 ))
 SelectItem.displayName = SelectPrimitive.Item.displayName
+SelectItem.propTypes = {
+  className: PropTypes.string.isRequired, // This ensures className is a string
+  children: PropTypes.node.isRequired,
+};
 
 const SelectSeparator = React.forwardRef(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
@@ -105,6 +127,9 @@ const SelectSeparator = React.forwardRef(({ className, ...props }, ref) => (
     {...props} />
 ))
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName
+SelectSeparator.propTypes = {
+  className: PropTypes.string.isRequired, // This ensures className is a string
+};
 
 export {
   Select,

@@ -1,5 +1,3 @@
-// QuestionForm.js
-import React, { useState } from "react";
 import Navbar from "@/components/ui/Navbar";
 import CreatingQuestions from "@/components/ui/CreatingQuestions";
 

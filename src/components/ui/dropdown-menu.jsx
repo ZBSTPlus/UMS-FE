@@ -1,4 +1,5 @@
 import * as React from "react"
+import PropTypes from "prop-types"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import { Check, ChevronRight, Circle } from "lucide-react"
 
@@ -31,6 +32,11 @@ const DropdownMenuSubTrigger = React.forwardRef(({ className, inset, children, .
 ))
 DropdownMenuSubTrigger.displayName =
   DropdownMenuPrimitive.SubTrigger.displayName
+DropdownMenuSubTrigger.propTypes = {
+    className: PropTypes.string.isRequired, // Validates className as a string
+    inset: PropTypes.bool, // Validates inset as a boolean
+    children: PropTypes.node.isRequired, // Validates children as a React node and required
+};
 
 const DropdownMenuSubContent = React.forwardRef(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.SubContent
@@ -43,6 +49,9 @@ const DropdownMenuSubContent = React.forwardRef(({ className, ...props }, ref) =
 ))
 DropdownMenuSubContent.displayName =
   DropdownMenuPrimitive.SubContent.displayName
+DropdownMenuSubContent.propTypes = {
+  className: PropTypes.string.isRequired,
+};
 
 const DropdownMenuContent = React.forwardRef(({ className, sideOffset = 4, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
@@ -57,6 +66,10 @@ const DropdownMenuContent = React.forwardRef(({ className, sideOffset = 4, ...pr
   </DropdownMenuPrimitive.Portal>
 ))
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
+DropdownMenuContent.propTypes = {
+  className: PropTypes.string.isRequired,
+  sideOffset: PropTypes.oneOf([4]).isRequired,
+};
 
 const DropdownMenuItem = React.forwardRef(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Item
@@ -69,6 +82,10 @@ const DropdownMenuItem = React.forwardRef(({ className, inset, ...props }, ref) 
     {...props} />
 ))
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName
+DropdownMenuItem.propTypes = {
+  className: PropTypes.string.isRequired,
+  inset: PropTypes.bool,
+};
 
 const DropdownMenuCheckboxItem = React.forwardRef(({ className, children, checked, ...props }, ref) => (
   <DropdownMenuPrimitive.CheckboxItem
@@ -89,6 +106,11 @@ const DropdownMenuCheckboxItem = React.forwardRef(({ className, children, checke
 ))
 DropdownMenuCheckboxItem.displayName =
   DropdownMenuPrimitive.CheckboxItem.displayName
+DropdownMenuCheckboxItem.propTypes = {
+    className: PropTypes.string.isRequired, // Validates className as a string
+    children: PropTypes.node.isRequired, // Validates children as a React node and required
+    checked: PropTypes.bool.isRequired, // Validates checked as a boolean and required
+};
 
 const DropdownMenuRadioItem = React.forwardRef(({ className, children, ...props }, ref) => (
   <DropdownMenuPrimitive.RadioItem
@@ -107,6 +129,10 @@ const DropdownMenuRadioItem = React.forwardRef(({ className, children, ...props 
   </DropdownMenuPrimitive.RadioItem>
 ))
 DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName
+DropdownMenuRadioItem.propTypes = {
+  className: PropTypes.string.isRequired, // Validates className as a string
+  children: PropTypes.node.isRequired,
+};
 
 const DropdownMenuLabel = React.forwardRef(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Label
@@ -115,6 +141,10 @@ const DropdownMenuLabel = React.forwardRef(({ className, inset, ...props }, ref)
     {...props} />
 ))
 DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName
+DropdownMenuLabel.propTypes = {
+  className: PropTypes.string.isRequired,
+  inset: PropTypes.bool,
+};
 
 const DropdownMenuSeparator = React.forwardRef(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
@@ -123,6 +153,9 @@ const DropdownMenuSeparator = React.forwardRef(({ className, ...props }, ref) =>
     {...props} />
 ))
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName
+DropdownMenuSeparator.propTypes = {
+  className: PropTypes.string.isRequired,
+};
 
 const DropdownMenuShortcut = ({
   className,
@@ -135,6 +168,9 @@ const DropdownMenuShortcut = ({
   );
 }
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut"
+DropdownMenuShortcut.propTypes = {
+  className: PropTypes.string.isRequired,
+};
 
 export {
   DropdownMenu,

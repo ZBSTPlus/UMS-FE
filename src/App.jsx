@@ -1,18 +1,27 @@
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Studentui from "./components/component/Student/Studentui";
 
 import React from "react";
 
 import Detailspage from "./components/component/Student/Detailspage";
 import Question from "./components/component/Student/Question";
-import Assessmentpage from "./components/component/Student/Assessmentpage";
+
 import Instructionpage from "./components/component/Student/Instructionpage";
-import Quiz from "./components/component/Student/Quiz";
+
 import ProfessorPage from "./components/component/Professor/ProfessorPage";
 import CreateAssessment from "./components/component/Professor/CreateAssessment";
 
 import CreateQuiz from "./components/component/Professor/CreateQuiz";
 import CreatePractice from "./components/component/Professor/CreatePractice";
+import QuizPage from "./components/component/Student/QuizPage";
+import AssessmentPage from "./components/component/Student/AssessmentPage";
+
+import CreateClassroom from "./components/ui/CreateClassroom";
+import Adminpage from "./components/component/Admin/Adminpage";
+import Viewclassroom from "./components/ui/Viewclassroom";
+import ViewDetails from "./components/component/Professor/ViewDetails";
+import { AuthenticationGuard } from "./components/component/Auth/AuthenticationGuard";
+import BaseAuth from "./components/component/Auth/BaseAuth";
 
 function App() {
   const classes = [
@@ -31,17 +40,14 @@ function App() {
         },
         {
           id: "3",
-          name: "Division",
-        },
-        {
-          id: "4",
           name: "Multiplication",
         },
         {
-          id: "5",
-          name: "Modulus",
+          id: "4",
+          name: "Division",
         },
       ],
+      
     },
     {
       id: 2,
@@ -50,15 +56,19 @@ function App() {
       units: [
         {
           id: "1",
-          name: "Flipflops",
+          name: "binaryToDecimal",
         },
         {
           id: "2",
-          name: "UpDown Counters",
+          name: "binaryToOctal",
         },
         {
           id: "3",
-          name: "Hexa to Octa",
+          name: "binaryToHexadecimal",
+        },
+        {
+          id: "4",
+          name: "decimalToBinary",
         },
       ],
     },
@@ -81,74 +91,55 @@ function App() {
         },
       ],
     },
-    {
-      id: 4,
-      title: "COA",
-      value: "100",
-      units: [
-        {
-          id: "1",
-          name: "Database",
-        },
-        {
-          id: "2",
-          name: "MySQL",
-        },
-        {
-          id: "3",
-          name: "DBMS",
-        },
-      ],
-    },
   ];
 
-  const assessments = [
-    {
-      id: "lcmandhcf",
-      title: "LCM and HCF",
-      description: "Duration: 1hour",
-    },
-    {
-      id: "conversion",
-      title: "Conversions",
-      description: "Duration: 1hour",
-    },
-    {
-      id: "algebra",
-      title: "Algebra",
-      description: "Duration: 1hour",
-    },
-    {
-      id: "equations",
-      title: "Linear Equations",
-      description: "Duration: 1hour",
-    },
-  ];
+
+  
+
 
   return (
     <div>
       <BrowserRouter>
         <Routes>
+      
           <Route path="/ca" element={<CreateAssessment />} />
           <Route path="/cp" element={<CreatePractice />} />
           <Route path="/cq" element={<CreateQuiz />} />
 
+          <Route path="ViewDetails" element ={<ViewDetails/>}/>
+         
+          
+          <Route path="/Adminpage" element={<Adminpage classes={classes} />}/>
+          <Route path="/classroom" element={<CreateClassroom />} />
+          <Route path="/Viewclassroom" element={<Viewclassroom/>}/>
+
+
           <Route
             path="/professorpage"
-            element={<ProfessorPage classes={classes} />}
+            element={
+              <AuthenticationGuard
+                component={ProfessorPage}
+                classes={classes}
+                allowed={"Sir"}
+              />
+            }
           />
+
 
           <Route
             path="/detailspage/:subject"
             element={<Detailspage classes={classes} />}
           />
-          <Route
-            path="/"
-            element={<Studentui classes={classes} assessments={assessments} />}
-          />
+          <Route path="/" element={<BaseAuth />} />
           <Route
             path="/studentui"
-            element={<Studentui classes={classes} assessments={assessments} />}
+            element={
+              <AuthenticationGuard
+                component={Studentui}
+                classes={classes}
+                allowed={`_`}
+              />
+            }
           />
           <Route
             path="/practicepage/:subject/:unit"
@@ -156,15 +147,15 @@ function App() {
           />
           <Route
             path="/quizpage/:subject/:unit"
-            element={<Quiz classes={classes} />}
+            element={<QuizPage classes={classes} />}
           />
           <Route
             path="/assessmentpage/:assessment"
-            element={<Assessmentpage assessments={assessments} />}
+            element={<AssessmentPage classes={classes} />}
           />
           <Route
             path="/instructionpage/:assessment"
-            element={<Instructionpage assessments={assessments} />}
+            element={<Instructionpage />}
           />
         </Routes>
       </BrowserRouter>

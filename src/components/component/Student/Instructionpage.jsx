@@ -4,8 +4,9 @@
  */
 // import Link from "next/link"
 import { Link, useParams } from "react-router-dom";
+import React from "react";
 
-export default function Instructionpage({ assessments }) {
+export default function Instructionpage() {
   const { assessment } = useParams();
 
   return (
@@ -39,7 +40,7 @@ export default function Instructionpage({ assessments }) {
               className="w-full md:w-auto inline-flex items-center justify-center h-10 px-6 text-sm md:text-base font-medium transition-colors bg-[#B3CCC2] rounded-md shadow text-[#040404] hover:bg-gray-900 hover:text-gray-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
               href="#"
             >
-              Start Quiz
+              Start Assessment
             </button>
           </Link>
         </div>
@@ -47,38 +48,3 @@ export default function Instructionpage({ assessments }) {
     </main>
   );
 }
-
-// return (
-//   <main className="flex flex-col min-h-screen bg-[#040404] text-[#A8ABBA] justify-center items-center">
-//     <div className="flex flex-col h-screen md:h-[700px] justify-center relative max-w-screen-md mx-auto">
-//       <header className="w-full mb-10">
-//         <h1 className="text-4xl md:text-6xl font-bold text-[#fff] text-center">
-//           Assessment Instructions
-//         </h1>
-//       </header>
-//       <ol className="space-y-2 text-lg md:text-2xl leading-7 list-decimal list-inside w-full text-[#A8ABBA]">
-//         <li>Read each question carefully before answering.</li>
-//         <li>Choose the best answer for each question.</li>
-//         <li>There is a "TIMER" for the assessment.</li>
-//         <li>Each question has "ONE MINUTE" to submit an answer.</li>
-//         <li>Click the "SUBMIT" button to submit your answer for the next question.</li>
-//       </ol>
-//       <div className="flex flex-col md:flex-row items-center justify-between w-full mt-10 space-y-4 md:space-y-0 md:space-x-4">
-//         <Link to="/studentui">
-//           <button
-//             className="w-full md:w-auto inline-flex items-center justify-center h-10 px-6 text-sm md:text-base font-medium transition-colors bg-[#B3CCC2] rounded-md shadow text-[#040404] hover:bg-gray-900 hover:text-gray-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-//           >
-//             Back
-//           </button>
-//         </Link>
-//         <Link to={`/assessmentpage/${assessment}`}>
-//           <button
-//             className="w-full md:w-auto inline-flex items-center justify-center h-10 px-6 text-sm md:text-base font-medium transition-colors bg-[#B3CCC2] rounded-md shadow text-[#040404] hover:bg-gray-900 hover:text-gray-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-//           >
-//             Start Quiz
-//           </button>
-//         </Link>
-//       </div>
-//     </div>
-//   </main>
-// );

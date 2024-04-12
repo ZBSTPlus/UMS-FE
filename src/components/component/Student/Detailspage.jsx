@@ -9,20 +9,18 @@ import {
 } from "@/components/ui/collapsible";
 import {
   DropdownMenuTrigger,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuItem,
   DropdownMenuContent,
   DropdownMenu,
 } from "@/components/ui/dropdown-menu";
-import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
+import { AvatarImage, Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import Logo from "../../../assets/Logo/logo.png";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+
 import { useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+
 
 export default function Detailspage({ classes }) {
   const { subject } = useParams();
@@ -32,34 +30,15 @@ export default function Detailspage({ classes }) {
     return <div>Class not found!</div>;
   }
 
-  const imgRef = useRef(null);
-  const subRef = useRef(null);
-  const profRef = useRef(null);
-
-  useGSAP(() => {
-    var tl = gsap.timeline();
-
-    tl.from([imgRef.current, profRef.current], {
-      y: -100,
-      duration: 0.5,
-      stagger: 0.3,
-    });
-    tl.from(subRef.current, {
-      y: 100,
-      opacity: 0,
-      duration: 0.5,
-    });
-  });
-
   return (
     <div className="flex items-center bg-[#040404] min-h-screen relative flex-col justify-start gap-4">
       <header className="flex items-center flex-col dark:bg-gray-900 z-[1] w-full sm:px-8">
         <nav className="flex items-center justify-between w-[100%]">
-          <div className="flex gap-2" ref={imgRef}>
+          <div className="flex gap-2">
             <div className=" h-[100px] w-[100px] flex items-center justify-center relative overflow-hidden">
               <Link to="/studentui">
                 <img
-                  className="object-cover cursor-pointer h-14 w-14  "
+                  className="object-cover cursor-pointer h-14 w-14 "
                   src={Logo}
                   alt=""
                 />
@@ -72,7 +51,7 @@ export default function Detailspage({ classes }) {
               </span>
             </div>
           </div>
-          <div className="sm:mt-0 px-2" ref={profRef}>
+          <div className="px-2 sm:mt-0">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar className="h-9 w-9">
@@ -114,13 +93,12 @@ export default function Detailspage({ classes }) {
       <div
         key="1"
         className="flex flex-col gap-6 p-4 lg:p-10 w-[90%] md:w-[95%] lg:w-[80%] xl:w-[70%] 2xl:w-[60%] border rounded-[30px] bg-[#fff] mt-10"
-        ref={subRef}
       >
-        <div className="flex flex-col md:flex-row items-center justify-between mb-4">
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center md:text-left mb-2 md:mb-0">
+        <div className="flex flex-col items-center justify-between mb-4 md:flex-row">
+          <h1 className="mb-2 text-2xl font-bold text-center md:text-4xl lg:text-5xl md:text-left md:mb-0">
             {selectedClass.title}
           </h1>
-          <p className="text-base md:text-xl font-semibold text-center md:text-left">
+          <p className="text-base font-semibold text-center md:text-xl md:text-left">
             Estimated Completion : 8 weeks
           </p>
         </div>
@@ -251,63 +229,4 @@ function LogOutIcon(props) {
       <line x1="21" x2="9" y1="12" y2="12" />
     </svg>
   );
-}
-
-{
-  /* <header className="flex items-center flex-col sm:flex-row h-16 mb-5 dark:bg-gray-900 sticky top-5 z-[1] w-full px-4 sm:px-8 py-5 mt-10">
-  <nav className="flex items-center justify-between w-full">
-    <div className="flex items-center gap-2">
-      <div className="h-[100px] w-[100px] flex items-center justify-center relative overflow-hidden">
-        <Link to="/studentui">
-          <img
-            className="object-cover cursor-pointer h-14 w-14"
-            src={Logo}
-            alt=""
-          />
-        </Link>
-      </div>
-
-      <div className="flex items-center space-x-4">
-        <span className="text-xl font-semibold py-2 bg-[#040404] text-[#B3CCC2] rounded-md">
-          YOUR CLASSROOM
-        </span>
-      </div>
-    </div>
-
-    <div className="mt-4 sm:mt-0">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Avatar className="h-9 w-9">
-            <AvatarImage
-              alt="User avatar"
-              src="https://imgs.search.brave.com/J0ixr3aHGA8aitBrET8u4exc5KcrQl8PWXGrvAdsUY4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mcmVl/c3ZnLm9yZy9pbWcv/YWJzdHJhY3QtdXNl/ci1mbGF0LTQucG5n"
-            />
-          </Avatar>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <a className="flex items-center gap-2" href="#">
-              <UserIcon className="w-4 h-4" />
-              John Doe
-            </a>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <a className="flex items-center gap-2" href="#">
-              <MailIcon className="w-4 h-4" />
-              ums@gmail.com
-            </a>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <a className="flex items-center gap-2" href="#">
-              <LogOutIcon className="w-4 h-4" />
-              Logout
-            </a>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
-  </nav>
-</header> */
 }
